@@ -1,1 +1,237 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="CoLeXEM — Método de Avaliação da Learner eXperience no contexto colaborativo mediado por TDIC." />
+  <title>CoLeXEM | Avaliação da Learner eXperience</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Página inicial do CoLeXEM">
+      <span class="brand-mark">CX</span>
+      <span>
+        <strong>CoLeXEM</strong>
+        <small>Collaborative Learner eXperience Evaluation Method</small>
+      </span>
+    </a>
 
+    <button class="menu-button" id="menuButton" aria-label="Abrir menu" aria-expanded="false">☰</button>
+
+    <nav id="mainNav" aria-label="Navegação principal">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#avaliacao">Avaliação</a>
+      <a href="#diretrizes">Diretrizes</a>
+      <a href="#pesquisa">Pesquisa</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <span class="eyebrow">Avaliação da LX em contextos colaborativos</span>
+        <h1>Compreenda e melhore a experiência dos aprendizes com TDIC.</h1>
+        <p>
+          O CoLeXEM apoia a avaliação da <em>Learner eXperience</em> em atividades colaborativas
+          mediadas por Tecnologias Digitais de Informação e Comunicação.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#avaliacao">Iniciar avaliação</a>
+          <a class="button secondary" href="#sobre">Conhecer o método</a>
+        </div>
+        <div class="hero-points" aria-label="Principais recursos">
+          <span>Questionário estruturado</span>
+          <span>Resultados por elemento</span>
+          <span>Diretrizes personalizadas</span>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h2>Fluxo do CoLeXEM</h2>
+        <ol>
+          <li><strong>Contextualizar</strong><span>Identifique a atividade, o grupo e a TDIC.</span></li>
+          <li><strong>Avaliar</strong><span>Registre a percepção do aprendiz.</span></li>
+          <li><strong>Interpretar</strong><span>Visualize os resultados por elemento.</span></li>
+          <li><strong>Melhorar</strong><span>Aplique diretrizes adequadas ao resultado.</span></li>
+        </ol>
+      </aside>
+    </section>
+
+    <section class="section" id="sobre">
+      <div class="section-heading">
+        <span class="eyebrow">Sobre o método</span>
+        <h2>Uma avaliação centrada no aprendiz, na aprendizagem e na tecnologia.</h2>
+        <p>
+          O CoLeXEM considera a experiência do aprendiz durante tarefas de aprendizagem
+          colaborativa realizadas com apoio de TDIC. O método combina elementos da
+          Learner eXperience com aspectos de comunicação, coordenação e cooperação.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <span class="feature-number">01</span>
+          <h3>Aprendiz</h3>
+          <p>Relata sua percepção sobre a experiência vivenciada durante a atividade colaborativa.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">02</span>
+          <h3>Professor</h3>
+          <p>Interpreta os resultados e recebe orientações para manter ou melhorar a LX.</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">03</span>
+          <h3>TDIC</h3>
+          <p>É analisada considerando sua contribuição para os objetivos de aprendizagem e para o trabalho em grupo.</p>
+        </article>
+      </div>
+
+      <div class="elements-panel">
+        <h3>Elementos avaliados</h3>
+        <div class="tag-list">
+          <span>Valor</span>
+          <span>Desejabilidade</span>
+          <span>Usabilidade</span>
+          <span>Confortabilidade</span>
+          <span>Adaptabilidade</span>
+          <span>Comunicação</span>
+          <span>Coordenação</span>
+          <span>Cooperação</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assessment-section" id="avaliacao">
+      <div class="section-heading">
+        <span class="eyebrow">Aplicação do questionário</span>
+        <h2>Avalie a experiência colaborativa.</h2>
+        <p>
+          Utilize a escala de 1 a 5, em que 1 representa “discordo totalmente”
+          e 5 representa “concordo totalmente”.
+        </p>
+      </div>
+
+      <form id="assessmentForm">
+        <fieldset class="context-card">
+          <legend>Contexto da atividade</legend>
+          <div class="form-grid">
+            <label>
+              Disciplina ou curso
+              <input type="text" id="course" name="course" placeholder="Ex.: Interação Humano-Computador" required />
+            </label>
+            <label>
+              Atividade colaborativa
+              <input type="text" id="activity" name="activity" placeholder="Ex.: Projeto de avaliação de interface" required />
+            </label>
+            <label>
+              TDIC utilizada
+              <input type="text" id="technology" name="technology" placeholder="Ex.: Google Docs, Moodle, Discord" required />
+            </label>
+            <label>
+              Identificação do grupo
+              <input type="text" id="group" name="group" placeholder="Ex.: Grupo 3" />
+            </label>
+          </div>
+        </fieldset>
+
+        <div id="questionnaire"></div>
+
+        <div class="form-actions">
+          <button type="button" class="button ghost" id="saveButton">Salvar rascunho</button>
+          <button type="reset" class="button secondary" id="resetButton">Limpar respostas</button>
+          <button type="submit" class="button primary">Gerar resultados</button>
+        </div>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+
+      <section id="results" class="results hidden" aria-live="polite">
+        <div class="results-header">
+          <div>
+            <span class="eyebrow">Síntese da avaliação</span>
+            <h2>Resultados do CoLeXEM</h2>
+            <p id="resultContext"></p>
+          </div>
+          <div class="result-actions">
+            <button class="button secondary" id="printButton">Imprimir relatório</button>
+            <button class="button ghost" id="downloadButton">Baixar dados</button>
+          </div>
+        </div>
+
+        <div class="overall-card">
+          <div>
+            <span>Resultado geral</span>
+            <strong id="overallScore">0,0</strong>
+            <small>de 5,0</small>
+          </div>
+          <div>
+            <span>Interpretação</span>
+            <strong id="overallLabel">—</strong>
+            <small id="overallExplanation"></small>
+          </div>
+        </div>
+
+        <div id="resultCards" class="result-grid"></div>
+      </section>
+    </section>
+
+    <section class="section" id="diretrizes">
+      <div class="section-heading">
+        <span class="eyebrow">Apoio ao professor</span>
+        <h2>Diretrizes para interpretar e melhorar a LX.</h2>
+        <p>
+          As diretrizes são apresentadas automaticamente após o cálculo dos resultados.
+          A recomendação varia conforme a pontuação obtida em cada elemento.
+        </p>
+      </div>
+
+      <div class="guideline-scale">
+        <article>
+          <span class="status-dot attention"></span>
+          <h3>Requer atenção</h3>
+          <p>Indica que a experiência pode não ter atendido adequadamente às necessidades dos aprendizes.</p>
+        </article>
+        <article>
+          <span class="status-dot monitor"></span>
+          <h3>Resultado intermediário</h3>
+          <p>Indica uma experiência parcialmente satisfatória, com aspectos que devem ser acompanhados.</p>
+        </article>
+        <article>
+          <span class="status-dot positive"></span>
+          <h3>Resultado positivo</h3>
+          <p>Indica que o elemento contribuiu favoravelmente para a experiência e deve ser mantido.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section research-section" id="pesquisa">
+      <div>
+        <span class="eyebrow">Pesquisa acadêmica</span>
+        <h2>CoLeXEM</h2>
+        <p>
+          Proposta de tecnologia para avaliar a Learner eXperience no contexto colaborativo,
+          considerando a interação do aprendiz com TDIC e oferecendo apoio à melhoria da experiência.
+        </p>
+      </div>
+      <div class="research-card">
+        <strong>Versão demonstrativa</strong>
+        <p>
+          Este protótipo pode ser adaptado para incluir o questionário final da tese,
+          autenticação, banco de dados, painel por turma e exportação de relatórios.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <strong>CoLeXEM</strong>
+      <p>Collaborative Learner eXperience Evaluation Method</p>
+    </div>
+    <p>Protótipo acadêmico para avaliação da Learner eXperience.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
