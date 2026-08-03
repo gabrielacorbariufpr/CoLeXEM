@@ -26,12 +26,11 @@
   <header id="site-header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300">
    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"><a href="#inicio" class="flex items-center gap-3">
      <div class="w-9 h-9 rounded-lg bg-emerald-500 flex items-center justify-center">
-      <div class="flex gap-0.5"><span class="w-1.5 h-4 bg-white rounded-full"></span> <span class="w-1.5 h-3 bg-white/70 rounded-full mt-1"></span> <span class="w-1.5 h-5 bg-white/50 rounded-full"></span>
+      <div class="flex gap-0.5">
+       <span class="w-1.5 h-4 bg-white rounded-full"></span><span class="w-1.5 h-3 bg-white/70 rounded-full mt-1"></span><span class="w-1.5 h-5 bg-white/50 rounded-full"></span>
       </div>
-     </div>
-     <div><strong class="text-emerald-900 font-bold text-lg">CoLeXEeM</strong>
-     </div></a> <button id="menu-btn" type="button" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Abrir menu"> <span class="w-6 h-0.5 bg-emerald-900 rounded"></span> <span class="w-6 h-0.5 bg-emerald-900 rounded"></span> <span class="w-6 h-0.5 bg-emerald-900 rounded"></span> </button>
-    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-64 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-6 p-8 md:p-0 z-50" aria-label="Navegação principal"><a href="#sobre" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">O CoLeXEeM</a> <a href="#objetivo" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Objetivo</a> <a href="#composicao" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Composição</a> <a href="#como-usar" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Como usar</a>
+     </div><strong class="text-emerald-900 font-bold text-lg">CoLeXEeM</strong> </a> <button id="menu-btn" type="button" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Abrir menu"> <span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span> </button>
+    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-64 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-6 p-8 md:p-0 z-50" aria-label="Navegação principal"><a href="#sobre" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">O Método</a> <a href="#objetivo" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Objetivo</a> <a href="#composicao" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Composição</a> <a href="#5w2h" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">5W2H</a> <a href="#como-usar" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Como usar</a>
     </nav>
    </div>
   </header>
@@ -42,60 +41,62 @@
      <div class="grid md:grid-cols-2 gap-12 items-center">
       <div class="fade-up">
        <p data-template-id="hero-kicker" class="canva-text text-sm font-semibold uppercase tracking-wider mb-4" style="color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 13px;">Avaliação da Learner eXperience</p>
-       <h1 data-template-id="hero-title" class="canva-text heading-font font-bold leading-tight mb-6" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 32px;">Compreender a experiência para melhorar a aprendizagem colaborativa.</h1>
-       <p data-template-id="hero-subtitle" class="canva-text text-lg leading-relaxed mb-8" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">O CoLeXEeM é um método para avaliar a Learner eXperience colaborativamente no contexto da aprendizagem mediada por Tecnologias Digitais da Informação e Comunicação.</p>
-       <div class="flex flex-wrap gap-4"><a href="#sobre" data-template-id="cta-primary" class="canva-button inline-block px-6 py-3 rounded-xl font-semibold transition-transform hover:scale-105" style="background: rgb(6, 95, 70); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Conhecer o CoLeXEeM</a> <a href="#como-usar" data-template-id="cta-secondary" class="canva-button inline-block px-6 py-3 rounded-xl font-semibold border-2 border-emerald-700 transition-transform hover:scale-105" style="color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 16px;">Entender como usar</a>
+       <h1 data-template-id="hero-title" class="canva-text heading-font font-bold leading-tight mb-6" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 32px;">Avaliar e melhorar a experiência colaborativa do aprendiz.</h1>
+       <p data-template-id="hero-subtitle" class="canva-text text-lg leading-relaxed mb-8" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">O CoLeXEeM é um método para avaliar a Learner eXperience em contextos colaborativos mediados por TDIC e subsidiar a melhoria dessas experiências a partir de diretrizes destinadas aos avaliadores.</p>
+       <div class="flex flex-wrap gap-4"><a href="#sobre" data-template-id="cta-primary" class="canva-button inline-block px-6 py-3 rounded-xl font-semibold transition-transform hover:scale-105" style="background: rgb(6, 95, 70); color: rgb(255, 255, 255); font-weight: 600; font-style: normal; font-size: 16px;">Conhecer o método</a> <a href="#como-usar" data-template-id="cta-secondary" class="canva-button inline-block px-6 py-3 rounded-xl font-semibold border-2 border-emerald-700 transition-transform hover:scale-105" style="color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 16px;">Como usar</a>
        </div>
-      </div><!-- Visual element -->
+      </div>
       <div class="hidden md:block relative h-80">
        <div class="orbit orbit-lg"></div>
        <div class="orbit orbit-sm"></div>
        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl shadow-xl p-6 text-center w-48">
-        <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-emerald-100 flex items-center justify-center"><i data-lucide="users" style="width:20px;height:20px;color:#065f46"></i>
+        <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-emerald-100 flex items-center justify-center">
+         <i data-lucide="users" style="width:20px;height:20px;color:#065f46"></i>
         </div>
         <p class="text-xs text-emerald-700 mb-1">Experiência do aprendiz</p><strong class="text-emerald-900 heading-font">CoLeXEeM</strong>
        </div>
        <div class="absolute top-4 left-4 bg-white rounded-xl shadow-lg p-3 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-emerald-500 text-white text-xs flex items-center justify-center font-bold">01</span>
         <div>
-         <small class="text-[10px] text-gray-400">Participante</small><br><strong class="text-xs text-emerald-900">Aprendiz</strong>
+         <small class="text-[10px] text-gray-400">Componente</small><br><strong class="text-xs text-emerald-900">Normativas</strong>
         </div>
        </div>
        <div class="absolute bottom-4 left-8 bg-white rounded-xl shadow-lg p-3 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-sky-500 text-white text-xs flex items-center justify-center font-bold">02</span>
         <div>
-         <small class="text-[10px] text-gray-400">Mediação</small><br><strong class="text-xs text-emerald-900">TDIC</strong>
+         <small class="text-[10px] text-gray-400">Componente</small><br><strong class="text-xs text-emerald-900">Questionário</strong>
         </div>
        </div>
        <div class="absolute top-8 right-4 bg-white rounded-xl shadow-lg p-3 flex items-center gap-2"><span class="w-7 h-7 rounded-full bg-amber-500 text-white text-xs flex items-center justify-center font-bold">03</span>
         <div>
-         <small class="text-[10px] text-gray-400">Interpretação</small><br><strong class="text-xs text-emerald-900">Professor</strong>
+         <small class="text-[10px] text-gray-400">Componente</small><br><strong class="text-xs text-emerald-900">Diretrizes</strong>
         </div>
        </div>
       </div>
-     </div><!-- Summary -->
+     </div><!-- Summary cards -->
      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div data-template-id="summary-1" class="canva-card rounded-xl p-5" style="background: rgb(236, 253, 245);"><strong data-template-id="summary-1-title" class="canva-text text-sm font-bold block mb-1" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Quem avalia?</strong> <span data-template-id="summary-1-text" class="canva-text text-sm" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">O aprendiz</span>
+      <div data-template-id="summary-1" class="canva-card rounded-xl p-5" style="background: rgb(236, 253, 245);">
+       <strong data-template-id="summary-1-title" class="canva-text text-sm font-bold block mb-1" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Público-alvo</strong><span data-template-id="summary-1-text" class="canva-text text-sm" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">Aprendizes, educadores e pesquisadores</span>
       </div>
-      <div data-template-id="summary-2" class="canva-card rounded-xl p-5" style="background: rgb(236, 253, 245);"><strong data-template-id="summary-2-title" class="canva-text text-sm font-bold block mb-1" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Quem interpreta?</strong> <span data-template-id="summary-2-text" class="canva-text text-sm" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">O professor</span>
+      <div data-template-id="summary-2" class="canva-card rounded-xl p-5" style="background: rgb(236, 253, 245);">
+       <strong data-template-id="summary-2-title" class="canva-text text-sm font-bold block mb-1" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Três componentes</strong><span data-template-id="summary-2-text" class="canva-text text-sm" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">Normativas, Questionário e Diretrizes</span>
       </div>
-      <div data-template-id="summary-3" class="canva-card rounded-xl p-5" style="background: rgb(236, 253, 245);"><strong data-template-id="summary-3-title" class="canva-text text-sm font-bold block mb-1" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">O que é analisado?</strong> <span data-template-id="summary-3-text" class="canva-text text-sm" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">A LX colaborativamente usando a TDIC</span>
+      <div data-template-id="summary-3" class="canva-card rounded-xl p-5" style="background: rgb(236, 253, 245);">
+       <strong data-template-id="summary-3-title" class="canva-text text-sm font-bold block mb-1" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Contexto</strong><span data-template-id="summary-3-text" class="canva-text text-sm" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">Atividades colaborativas mediadas por TDIC</span>
       </div>
      </div>
     </div>
    </section><!-- Sobre -->
    <section id="sobre" class="py-20">
-    <div class="max-w-6xl mx-auto px-6">
-     <div class="flex items-center gap-3 mb-12"><span data-template-id="section-1-label" class="canva-text text-xs font-semibold uppercase tracking-widest" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">01 · O que é</span>
-     </div>
+    <div class="max-w-6xl mx-auto px-6"><span data-template-id="section-1-label" class="canva-text text-xs font-semibold uppercase tracking-widest block mb-12" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">01 · O que é</span>
      <div class="grid md:grid-cols-2 gap-12">
       <div>
        <p data-template-id="sobre-kicker" class="canva-text text-sm font-semibold uppercase tracking-wider mb-3" style="color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 13px;">O CoLeXEeM</p>
-       <h2 data-template-id="sobre-title" class="canva-text heading-font font-bold leading-tight mb-6" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 24px;">Um método de avaliação voltado à experiência colaborativa do aprendiz.</h2>
+       <h2 data-template-id="sobre-title" class="canva-text heading-font font-bold leading-tight mb-6" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 24px;">Um método de avaliação e redesign da experiência colaborativa do aprendiz.</h2>
       </div>
       <div>
-       <p data-template-id="sobre-lead" class="canva-text text-lg leading-relaxed mb-4" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">O Collaborative Learner eXperience Evaluation and redesign Method foi concebido para apoiar a avaliação da Learner eXperience em situações nas quais aprendizes trabalham de forma colaborativa com o apoio de uma TDIC.</p>
-       <p data-template-id="sobre-body" class="canva-text leading-relaxed mb-6" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">A proposta considera que a experiência não depende apenas da facilidade de uso da tecnologia. Ela também envolve a contribuição da TDIC para a aprendizagem, o envolvimento do aprendiz, o bem-estar durante a atividade e a forma como os integrantes do grupo se comunicam, coordenam suas ações e constroem resultados conjuntamente.</p>
+       <p data-template-id="sobre-lead" class="canva-text text-lg leading-relaxed mb-4" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">O Collaborative Learner eXperience Evaluation and redesign Method foi concebido para avaliar a LX em situações nas quais aprendizes trabalham de forma colaborativa com apoio de TDIC, e subsidiar a melhoria dessas experiências.</p>
+       <p data-template-id="sobre-body" class="canva-text leading-relaxed mb-6" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">A estrutura do CoLeXEeM é composta por três componentes complementares: normativas, questionário e diretrizes. As normativas estabelecem condições para a aplicação adequada da avaliação. O questionário coleta percepções dos aprendizes. As diretrizes apoiam a interpretação dos resultados e orientam ações para promover melhorias na LX.</p>
        <div data-template-id="definition-box" class="canva-card rounded-xl p-6 border-l-4 border-emerald-500" style="background: rgb(240, 253, 244);"><span data-template-id="definition-label" class="canva-text text-xs font-bold uppercase tracking-wider block mb-2" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Em síntese</span>
-        <p data-template-id="definition-text" class="canva-text leading-relaxed" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">O CoLeXEeM permite avaliar, interpretar e orientar a melhoria da experiência dos aprendizes em atividades colaborativas mediadas por TDIC.</p>
+        <p data-template-id="definition-text" class="canva-text leading-relaxed" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">O CoLeXEeM permite que a avaliação seja conduzida de forma sistemática e que seus resultados sejam convertidos em recomendações práticas para melhorar experiências colaborativas futuras.</p>
        </div>
       </div>
      </div>
@@ -106,26 +107,20 @@
      <div class="grid md:grid-cols-2 gap-12 items-start">
       <div>
        <p data-template-id="objetivo-kicker" class="canva-text text-sm font-semibold uppercase tracking-wider mb-3" style="color: rgb(110, 231, 183); font-weight: 600; font-style: normal; font-size: 13px;">Por que utilizar?</p>
-       <h2 data-template-id="objetivo-title" class="canva-text heading-font font-bold leading-tight mb-6" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">Apoiar decisões pedagógicas com base na experiência relatada pelos aprendizes.</h2>
-       <p data-template-id="objetivo-body" class="canva-text leading-relaxed" style="color: rgb(209, 250, 229); font-weight: 400; font-style: normal; font-size: 16px;">O CoLeXEeM tem como objetivo identificar como os aprendizes percebem a atividade colaborativa e o uso da TDIC, oferecendo evidências para que o professor possa compreender os resultados e planejar ações de manutenção ou melhoria.</p>
+       <h2 data-template-id="objetivo-title" class="canva-text heading-font font-bold leading-tight mb-6" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">Dois objetivos centrais orientam o método.</h2>
+       <p data-template-id="objetivo-body" class="canva-text leading-relaxed" style="color: rgb(209, 250, 229); font-weight: 400; font-style: normal; font-size: 16px;">O CoLeXEeM foi concebido para avaliar a LX vivenciada durante atividades colaborativas e subsidiar a melhoria da LX a partir de diretrizes destinadas aos avaliadores.</p>
       </div>
       <div class="space-y-4">
        <article data-template-id="obj-card-1" class="canva-card rounded-xl p-5 flex gap-4 items-start" style="background: rgba(255, 255, 255, 0.08);"><span class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shrink-0">01</span>
         <div>
-         <h3 data-template-id="obj-card-1-title" class="canva-text font-bold mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Compreender</h3>
-         <p data-template-id="obj-card-1-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Identificar percepções positivas, dificuldades e necessidades dos aprendizes.</p>
+         <h3 data-template-id="obj-card-1-title" class="canva-text font-bold mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Avaliar a LX</h3>
+         <p data-template-id="obj-card-1-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Avaliar a Learner eXperience vivenciada durante atividades colaborativas por meio de um questionário estruturado.</p>
         </div>
        </article>
        <article data-template-id="obj-card-2" class="canva-card rounded-xl p-5 flex gap-4 items-start" style="background: rgba(255, 255, 255, 0.08);"><span class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shrink-0">02</span>
         <div>
-         <h3 data-template-id="obj-card-2-title" class="canva-text font-bold mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Interpretar</h3>
-         <p data-template-id="obj-card-2-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Analisar os resultados de cada elemento da Learner eXperience.</p>
-        </div>
-       </article>
-       <article data-template-id="obj-card-3" class="canva-card rounded-xl p-5 flex gap-4 items-start" style="background: rgba(255, 255, 255, 0.08);"><span class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm shrink-0">03</span>
-        <div>
-         <h3 data-template-id="obj-card-3-title" class="canva-text font-bold mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Melhorar</h3>
-         <p data-template-id="obj-card-3-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Orientar ajustes na atividade, na organização dos grupos e no uso da TDIC.</p>
+         <h3 data-template-id="obj-card-2-title" class="canva-text font-bold mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Subsidiar a melhoria</h3>
+         <p data-template-id="obj-card-2-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Subsidiar a melhoria da LX a partir de diretrizes destinadas aos avaliadores, transformando resultados em ações concretas.</p>
         </div>
        </article>
       </div>
@@ -135,45 +130,84 @@
    <section id="composicao" class="py-20">
     <div class="max-w-6xl mx-auto px-6"><span data-template-id="section-3-label" class="canva-text text-xs font-semibold uppercase tracking-widest block mb-6" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">03 · Composição</span>
      <div class="text-center max-w-2xl mx-auto mb-14">
-      <p data-template-id="comp-kicker" class="canva-text text-sm font-semibold uppercase tracking-wider mb-3" style="color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 13px;">O que compõe o método?</p>
-      <h2 data-template-id="comp-title" class="canva-text heading-font font-bold leading-tight mb-4" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 24px;">Dois instrumentos complementares.</h2>
-      <p data-template-id="comp-subtitle" class="canva-text leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">O CoLeXEeM integra a percepção do aprendiz ao apoio oferecido ao professor, permitindo que a avaliação resulte em ações concretas.</p>
+      <p data-template-id="comp-kicker" class="canva-text text-sm font-semibold uppercase tracking-wider mb-3" style="color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 13px;">Estrutura do método</p>
+      <h2 data-template-id="comp-title" class="canva-text heading-font font-bold leading-tight mb-4" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 24px;">Três componentes complementares.</h2>
+      <p data-template-id="comp-subtitle" class="canva-text leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Em conjunto, os componentes permitem que a avaliação seja conduzida de forma sistemática e que seus resultados sejam convertidos em recomendações práticas.</p>
      </div>
-     <div class="grid md:grid-cols-3 gap-6 items-start mb-14">
-      <article data-template-id="instrument-1" class="canva-card rounded-2xl p-8 border border-emerald-200" style="background: rgb(255, 255, 255);">
-       <div class="flex items-center justify-between mb-6"><span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">01</span> <span data-template-id="instrument-1-audience" class="canva-text text-xs font-medium" style="color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Para o aprendiz</span>
+     <div class="grid md:grid-cols-3 gap-6 mb-14"><!-- Normativas -->
+      <article data-template-id="comp-card-1" class="canva-card rounded-2xl p-8 border border-emerald-200" style="background: rgb(255, 255, 255);">
+       <div class="flex items-center justify-between mb-6">
+        <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">01</span>
        </div>
-       <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mb-4"><i data-lucide="clipboard-list" style="width:24px;height:24px;color:#065f46"></i>
+       <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
+        <i data-lucide="shield-check" style="width:24px;height:24px;color:#065f46"></i>
        </div>
-       <h3 data-template-id="instrument-1-title" class="canva-text heading-font font-bold mb-3" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Questionário de avaliação</h3>
-       <p data-template-id="instrument-1-desc" class="canva-text text-sm leading-relaxed mb-4" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Instrumento utilizado pelo aprendiz para relatar sua percepção sobre a experiência vivenciada durante a atividade colaborativa.</p>
-       <ul class="space-y-2">
-        <li data-template-id="instrument-1-item-1" class="canva-text text-sm flex items-start gap-2" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">Avaliação dos elementos da LX</li>
-        <li data-template-id="instrument-1-item-2" class="canva-text text-sm flex items-start gap-2" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">Percepção sobre o uso da TDIC</li>
-        <li data-template-id="instrument-1-item-3" class="canva-text text-sm flex items-start gap-2" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">Experiência de trabalho em grupo</li>
-       </ul>
+       <h3 data-template-id="comp-card-1-title" class="canva-text heading-font font-bold mb-3" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Normativas</h3>
+       <p data-template-id="comp-card-1-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Estabelecem as condições necessárias para a aplicação adequada da avaliação, orientando o avaliador quanto aos requisitos mínimos do processo avaliativo.</p>
+      </article><!-- Questionário -->
+      <article data-template-id="comp-card-2" class="canva-card rounded-2xl p-8 border border-sky-200" style="background: rgb(255, 255, 255);">
+       <div class="flex items-center justify-between mb-6">
+        <span class="text-xs font-bold text-sky-600 bg-sky-50 px-3 py-1 rounded-full">02</span>
+       </div>
+       <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center mb-4">
+        <i data-lucide="clipboard-list" style="width:24px;height:24px;color:#0c4a6e"></i>
+       </div>
+       <h3 data-template-id="comp-card-2-title" class="canva-text heading-font font-bold mb-3" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Questionário</h3>
+       <p data-template-id="comp-card-2-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Permite coletar as percepções dos aprendizes sobre sua experiência durante a atividade colaborativa mediada por TDIC.</p>
+      </article><!-- Diretrizes -->
+      <article data-template-id="comp-card-3" class="canva-card rounded-2xl p-8 border border-amber-200" style="background: rgb(255, 255, 255);">
+       <div class="flex items-center justify-between mb-6">
+        <span class="text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full">03</span>
+       </div>
+       <div class="w-12 h-12 rounded-full bg-amber-100 flex items-center justify-center mb-4">
+        <i data-lucide="lightbulb" style="width:24px;height:24px;color:#92400e"></i>
+       </div>
+       <h3 data-template-id="comp-card-3-title" class="canva-text heading-font font-bold mb-3" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Diretrizes</h3>
+       <p data-template-id="comp-card-3-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Apoiam a interpretação dos resultados e orientam ações para promover melhorias na LX em atividades colaborativas futuras.</p>
       </article>
-      <div class="flex flex-col items-center justify-center h-full py-8 md:py-16">
-       <div class="w-px h-8 md:w-12 md:h-px bg-emerald-300"></div><span data-template-id="connection-label" class="canva-text text-xs font-bold uppercase tracking-wider my-3" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">resultados</span>
-       <div class="w-px h-8 md:w-12 md:h-px bg-emerald-300"></div>
-      </div>
-      <article data-template-id="instrument-2" class="canva-card rounded-2xl p-8 border border-sky-200" style="background: rgb(255, 255, 255);">
-       <div class="flex items-center justify-between mb-6"><span class="text-xs font-bold text-sky-600 bg-sky-50 px-3 py-1 rounded-full">02</span> <span data-template-id="instrument-2-audience" class="canva-text text-xs font-medium" style="color: rgb(12, 74, 110); font-weight: 400; font-style: normal; font-size: 16px;">Para o professor</span>
-       </div>
-       <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center mb-4"><i data-lucide="lightbulb" style="width:24px;height:24px;color:#0c4a6e"></i>
-       </div>
-       <h3 data-template-id="instrument-2-title" class="canva-text heading-font font-bold mb-3" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Diretrizes de interpretação e melhoria</h3>
-       <p data-template-id="instrument-2-desc" class="canva-text text-sm leading-relaxed mb-4" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Orientações utilizadas pelo professor após a avaliação para compreender o significado dos resultados e definir ações.</p>
-       <ul class="space-y-2">
-        <li data-template-id="instrument-2-item-1" class="canva-text text-sm flex items-start gap-2" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">Interpretação dos resultados</li>
-        <li data-template-id="instrument-2-item-2" class="canva-text text-sm flex items-start gap-2" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">Ações quando o resultado é baixo</li>
-        <li data-template-id="instrument-2-item-3" class="canva-text text-sm flex items-start gap-2" style="color: rgb(30, 58, 43); font-weight: 400; font-style: normal; font-size: 16px;">Manutenção das práticas positivas</li>
-       </ul>
-      </article>
-     </div><!-- Element tags -->
+     </div><!-- Elements tags -->
      <div data-template-id="elements-box" class="canva-card rounded-2xl p-8 text-center" style="background: rgb(248, 250, 249);"><span data-template-id="elements-label" class="canva-text text-xs font-bold uppercase tracking-wider block mb-2" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Elementos avaliados</span>
       <p data-template-id="elements-desc" class="canva-text text-sm mb-5" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">O questionário considera elementos da Learner eXperience e do trabalho colaborativo.</p>
       <div class="flex flex-wrap justify-center gap-3"><span data-template-id="tag-1" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Valor</span> <span data-template-id="tag-2" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Desejabilidade</span> <span data-template-id="tag-3" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Usabilidade</span> <span data-template-id="tag-4" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Confortabilidade</span> <span data-template-id="tag-5" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Adaptabilidade</span> <span data-template-id="tag-6" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(224, 242, 254); color: rgb(12, 74, 110); font-weight: 400; font-style: normal; font-size: 16px;">Comunicação</span> <span data-template-id="tag-7" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(224, 242, 254); color: rgb(12, 74, 110); font-weight: 400; font-style: normal; font-size: 16px;">Coordenação</span> <span data-template-id="tag-8" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(224, 242, 254); color: rgb(12, 74, 110); font-weight: 400; font-style: normal; font-size: 16px;">Cooperação</span>
+      </div>
+     </div>
+    </div>
+   </section><!-- 5W2H -->
+   <section id="5w2h" data-template-id="w5h2-section" class="canva-section py-20" style="background: rgb(10, 31, 21);">
+    <div class="max-w-6xl mx-auto px-6"><span data-template-id="section-5-label" class="canva-text text-xs font-semibold uppercase tracking-widest block mb-6" style="color: rgb(110, 231, 183); font-weight: 400; font-style: normal; font-size: 16px;">05 · Estruturação</span>
+     <div class="text-center max-w-2xl mx-auto mb-14">
+      <p data-template-id="w5h2-kicker" class="canva-text text-sm font-semibold uppercase tracking-wider mb-3" style="color: rgb(110, 231, 183); font-weight: 600; font-style: normal; font-size: 13px;">Framework 5W2H</p>
+      <h2 data-template-id="w5h2-title" class="canva-text heading-font font-bold leading-tight mb-4" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">Sete dimensões que orientam a proposta.</h2>
+      <p data-template-id="w5h2-subtitle" class="canva-text leading-relaxed" style="color: rgb(209, 250, 229); font-weight: 400; font-style: normal; font-size: 16px;">O framework 5W2H fornece uma abordagem sistemática que auxilia na definição dos principais aspectos envolvidos na concepção do método.</p>
+     </div>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div data-template-id="dim-quem" class="canva-card rounded-xl p-5" style="background: rgba(255, 255, 255, 0.08);">
+       <h3 data-template-id="dim-quem-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Quem?</h3>
+       <p data-template-id="dim-quem-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Aprendizes como público primário — estudantes ou profissionais que assumem postura ativa. Educadores e pesquisadores como público secundário.</p>
+      </div>
+      <div data-template-id="dim-oque" class="canva-card rounded-xl p-5" style="background: rgba(255, 255, 255, 0.08);">
+       <h3 data-template-id="dim-oque-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">O quê?</h3>
+       <p data-template-id="dim-oque-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Comportamentos e interações dos aprendizes durante atividades colaborativas mediadas por TDIC.</p>
+      </div>
+      <div data-template-id="dim-porque" class="canva-card rounded-xl p-5" style="background: rgba(255, 255, 255, 0.08);">
+       <h3 data-template-id="dim-porque-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Por quê?</h3>
+       <p data-template-id="dim-porque-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Fornecer evidências para compreender os elementos que influenciam a LX e orientar ações de melhoria.</p>
+      </div>
+      <div data-template-id="dim-quando" class="canva-card rounded-xl p-5" style="background: rgba(255, 255, 255, 0.08);">
+       <h3 data-template-id="dim-quando-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Quando?</h3>
+       <p data-template-id="dim-quando-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Após a atividade colaborativa, no momento adequado identificado pelo avaliador. Resultados podem subsidiar ações durante atividades futuras.</p>
+      </div>
+      <div data-template-id="dim-como" class="canva-card rounded-xl p-5" style="background: rgba(255, 255, 255, 0.08);">
+       <h3 data-template-id="dim-como-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Como?</h3>
+       <p data-template-id="dim-como-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Integrando questionário, normativas e diretrizes para apoiar avaliação, interpretação e definição de ações de melhoria.</p>
+      </div>
+      <div data-template-id="dim-onde" class="canva-card rounded-xl p-5" style="background: rgba(255, 255, 255, 0.08);">
+       <h3 data-template-id="dim-onde-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Onde?</h3>
+       <p data-template-id="dim-onde-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Atividades colaborativas mediadas por TDIC em ambientes presenciais, online ou híbridos.</p>
+      </div>
+      <div data-template-id="dim-quanto" class="canva-card rounded-xl p-5 md:col-span-2 lg:col-span-3" style="background: rgba(255, 255, 255, 0.08);">
+       <h3 data-template-id="dim-quanto-title" class="canva-text font-bold mb-2" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 19px;">Quanto?</h3>
+       <p data-template-id="dim-quanto-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Identificar o quanto foi possível avaliar a LX e o quanto foi possível melhorá-la, considerando as percepções dos aprendizes sobre interações, colaboração e uso das TDIC.</p>
       </div>
      </div>
     </div>
@@ -199,11 +233,11 @@
        <li class="relative">
         <div class="absolute left-[-28px] w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">
          3
-        </div><span data-template-id="step-3-phase" class="canva-text text-xs font-bold uppercase tracking-wider block mb-1" style="color: rgb(16, 185, 129); font-weight: 400; font-style: normal; font-size: 16px;">Analisar</span> <h3 data-template-id="step-3-title" class="canva-text font-bold mb-1" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Interpretar os resultados por elemento</h3><p data-template-id="step-3-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">O professor observa quais elementos apresentaram resultados positivos, intermediários ou que requerem atenção.</p></li>
+        </div><span data-template-id="step-3-phase" class="canva-text text-xs font-bold uppercase tracking-wider block mb-1" style="color: rgb(16, 185, 129); font-weight: 400; font-style: normal; font-size: 16px;">Analisar</span> <h3 data-template-id="step-3-title" class="canva-text font-bold mb-1" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Interpretar os resultados por elemento</h3><p data-template-id="step-3-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">O avaliador observa quais elementos apresentaram resultados positivos, intermediários ou que requerem atenção.</p></li>
        <li class="relative">
         <div class="absolute left-[-28px] w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">
          4
-        </div><span data-template-id="step-4-phase" class="canva-text text-xs font-bold uppercase tracking-wider block mb-1" style="color: rgb(16, 185, 129); font-weight: 400; font-style: normal; font-size: 16px;">Agir</span> <h3 data-template-id="step-4-title" class="canva-text font-bold mb-1" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Aplicar as diretrizes de melhoria</h3><p data-template-id="step-4-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Com base nos resultados, o professor mantém práticas positivas ou realiza ajustes na atividade, no grupo e na TDIC.</p></li>
+        </div><span data-template-id="step-4-phase" class="canva-text text-xs font-bold uppercase tracking-wider block mb-1" style="color: rgb(16, 185, 129); font-weight: 400; font-style: normal; font-size: 16px;">Agir</span> <h3 data-template-id="step-4-title" class="canva-text font-bold mb-1" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Aplicar as diretrizes de melhoria</h3><p data-template-id="step-4-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Com base nos resultados, o avaliador mantém práticas positivas ou realiza ajustes na atividade, no grupo e na TDIC.</p></li>
       </ol>
      </div>
     </div>
@@ -211,37 +245,24 @@
    <section data-template-id="final-cta" class="canva-section py-20 text-center" style="background: rgb(6, 95, 70);">
     <div class="max-w-3xl mx-auto px-6">
      <p data-template-id="final-kicker" class="canva-text text-sm font-semibold uppercase tracking-wider mb-4" style="color: rgb(110, 231, 183); font-weight: 600; font-style: normal; font-size: 13px;">CoLeXEeM</p>
-     <h2 data-template-id="final-title" class="canva-text heading-font font-bold leading-tight mb-8" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">A experiência do aprendiz como evidência para melhorar o processo de aprendizagem.</h2><a href="#inicio" data-template-id="final-button" class="canva-button inline-block px-8 py-4 rounded-xl font-semibold transition-transform hover:scale-105" style="background: rgb(255, 255, 255); color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 16px;">Voltar ao início</a>
+     <h2 data-template-id="final-title" class="canva-text heading-font font-bold leading-tight mb-8" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">Transformar resultados em experiências educacionais envolventes e memoráveis.</h2><a href="#inicio" data-template-id="final-button" class="canva-button inline-block px-8 py-4 rounded-xl font-semibold transition-transform hover:scale-105" style="background: rgb(255, 255, 255); color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 16px;">Voltar ao início</a>
     </div>
    </section>
   </main>
   <footer data-template-id="footer-section" class="canva-footer py-10 text-center" style="background: rgb(10, 31, 21);"><strong data-template-id="footer-brand" class="canva-text block text-lg mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">CoLeXEeM</strong> <span data-template-id="footer-tagline" class="canva-text block text-sm mb-3" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Collaborative Learner eXperience Evaluation and redesign Method</span>
-   <p data-template-id="footer-note" class="canva-text text-xs" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Proposta acadêmica para avaliação da Learner eXperience no contexto colaborativo.</p>
+   <p data-template-id="footer-note" class="canva-text text-xs" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Proposta acadêmica para avaliação e melhoria da Learner eXperience no contexto colaborativo.</p>
   </footer>
   <script src="/_sdk/c229d146679821d6.editing_sdk.js" integrity="sha512-umX8A9h8eJWRPB7xE7gh7Ngl1Y7fHpiaFvRwc6mxacvabfaLB/fImp68nlFMPDFjFbXCyl4OWAaW63aecWWnEA=="></script>
   <script>
         lucide.createIcons();
-
-        // Mobile menu
         const menuBtn = document.getElementById('menu-btn');
         const nav = document.getElementById('main-nav');
-        menuBtn.addEventListener('click', () => {
-            nav.classList.toggle('nav-active');
-        });
-        nav.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => nav.classList.remove('nav-active'));
-        });
-
-        // Header scroll
+        menuBtn.addEventListener('click', () => nav.classList.toggle('nav-active'));
+        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('nav-active')));
         const header = document.getElementById('site-header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 60) {
-                header.style.background = 'rgba(255,255,255,0.95)';
-                header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
-            } else {
-                header.style.background = 'transparent';
-                header.style.boxShadow = 'none';
-            }
+            if (window.scrollY > 60) { header.style.background = 'rgba(255,255,255,0.95)'; header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)'; }
+            else { header.style.background = 'transparent'; header.style.boxShadow = 'none'; }
         });
     </script>
  
