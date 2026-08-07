@@ -248,25 +248,171 @@
      <div data-template-id="elements-box" class="canva-card rounded-2xl p-8 text-center" style="background: rgb(248, 250, 249);"><span data-template-id="elements-label" class="canva-text text-xs font-bold uppercase tracking-wider block mb-2" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Elementos avaliados</span>
       <p data-template-id="elements-desc" class="canva-text text-sm mb-5" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">O Formulário de Avaliação da LX considera elementos da LX que impactam o trabalho colaborativo.</p>
 <div class="flex flex-wrap justify-center gap-3">
-  <span data-template-id="tag-1" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-weight: 400; font-style: normal; font-size: 16px;">Abertura</span>
-  <span data-template-id="tag-2" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Adaptabilidade</span>
-  <span data-template-id="tag-3" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-weight: 400; font-style: normal; font-size: 16px;">Alegria</span>
-  <span data-template-id="tag-4" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-weight: 400; font-style: normal; font-size: 16px;">Amabilidade</span>
-  <span data-template-id="tag-5" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-weight: 400; font-style: normal; font-size: 16px;">Antecipação</span>
-  <span data-template-id="tag-6" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(224, 242, 254); color: rgb(12, 74, 110); font-weight: 400; font-style: normal; font-size: 16px;">Comunicação</span>
-  <span data-template-id="tag-7" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-weight: 400; font-style: normal; font-size: 16px;">Confiar</span>
-  <span data-template-id="tag-8" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Confortabilidade</span>
-  <span data-template-id="tag-9" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-weight: 400; font-style: normal; font-size: 16px;">Conscienciosidade</span>
-  <span data-template-id="tag-10" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(224, 242, 254); color: rgb(12, 74, 110); font-weight: 400; font-style: normal; font-size: 16px;">Coordenação</span>
-  <span data-template-id="tag-11" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(224, 242, 254); color: rgb(12, 74, 110); font-weight: 400; font-style: normal; font-size: 16px;">Cooperação</span>
-  <span data-template-id="tag-12" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Desejabilidade</span>
-  <span data-template-id="tag-13" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-weight: 400; font-style: normal; font-size: 16px;">Extroversão</span>
-  <span data-template-id="tag-14" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-weight: 400; font-style: normal; font-size: 16px;">Neuroticismo</span>
-  <span data-template-id="tag-15" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-weight: 400; font-style: normal; font-size: 16px;">Raiva</span>
-  <span data-template-id="tag-16" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-weight: 400; font-style: normal; font-size: 16px;">Temer</span>
-  <span data-template-id="tag-17" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Usabilidade</span>
-  <span data-template-id="tag-18" class="canva-tag px-4 py-2 rounded-full text-sm font-medium" style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-weight: 400; font-style: normal; font-size: 16px;">Valor</span>
-</div>      </div>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Abertura"
+    style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-size: 16px;">
+    Abertura
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Adaptabilidade"
+    style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-size: 16px;">
+    Adaptabilidade
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Alegria"
+    style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-size: 16px;">
+    Alegria
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Amabilidade"
+    style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-size: 16px;">
+    Amabilidade
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Antecipação"
+    style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-size: 16px;">
+    Antecipação
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Comunicação"
+    style="background: rgb(224, 242, 254); color: rgb(12, 74, 110); font-size: 16px;">
+    Comunicação
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Confiar"
+    style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-size: 16px;">
+    Confiar
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Confortabilidade"
+    style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-size: 16px;">
+    Confortabilidade
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Conscienciosidade"
+    style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-size: 16px;">
+    Conscienciosidade
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Coordenação"
+    style="background: rgb(224, 242, 254); color: rgb(12, 74, 110); font-size: 16px;">
+    Coordenação
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Cooperação"
+    style="background: rgb(224, 242, 254); color: rgb(12, 74, 110); font-size: 16px;">
+    Cooperação
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Desejabilidade"
+    style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-size: 16px;">
+    Desejabilidade
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Extroversão"
+    style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-size: 16px;">
+    Extroversão
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Neuroticismo"
+    style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-size: 16px;">
+    Neuroticismo
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Raiva"
+    style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-size: 16px;">
+    Raiva
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Temer"
+    style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-size: 16px;">
+    Temer
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Usabilidade"
+    style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-size: 16px;">
+    Usabilidade
+  </button>
+
+  <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
+    data-element="Valor"
+    style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-size: 16px;">
+    Valor
+  </button>
+
+</div>
+<!-- Modal de informações dos elementos -->
+<div id="element-modal"
+     class="fixed inset-0 z-[100] hidden items-center justify-center p-4"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="element-modal-title">
+
+  <!-- Fundo escuro -->
+  <div id="element-modal-backdrop"
+       class="absolute inset-0 bg-black/50 backdrop-blur-sm">
+  </div>
+
+  <!-- Janela -->
+  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-xl p-7 md:p-8">
+
+    <!-- Botão fechar -->
+    <button id="element-modal-close"
+            type="button"
+            aria-label="Fechar informações"
+            class="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition">
+      <i data-lucide="x" style="width:20px;height:20px;"></i>
+    </button>
+
+    <!-- Ícone -->
+    <div class="w-11 h-11 rounded-full bg-emerald-100 flex items-center justify-center mb-5">
+      <i data-lucide="info"
+         style="width:22px;height:22px;color:#065f46;"></i>
+    </div>
+
+    <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">
+      Elemento da LX
+    </span>
+
+    <h3 id="element-modal-title"
+        class="heading-font text-2xl font-bold text-emerald-950 mt-2 mb-4">
+    </h3>
+
+    <p id="element-modal-description"
+       class="text-gray-600 leading-relaxed mb-6">
+    </p>
+
+    <div class="border-t border-gray-200 pt-4">
+      <span class="text-xs font-bold uppercase tracking-wider text-gray-400">
+        Fundamentação
+      </span>
+
+      <p id="element-modal-author"
+         class="text-sm font-semibold text-emerald-800 mt-1">
+      </p>
+    </div>
+
+  </div>
+</div>       
+     
+     </div>
      </div>
     </div>
    </section><!-- 5W2H -->
