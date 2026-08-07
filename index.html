@@ -525,6 +525,131 @@
             }
         });
 
+
+        // Informações dos elementos avaliados
+        const elementData = {
+            "Abertura": {
+                description: "Refere-se à tendência do indivíduo em ser curioso, imaginativo, criativo e receptivo a novas ideias, experiências e perspectivas. No contexto da LX, manifesta-se pelo interesse em explorar TDIC, experimentar diferentes estratégias de aprendizagem e buscar soluções criativas.",
+                author: "McCrae e Costa (1999)"
+            },
+            "Adaptabilidade": {
+                description: "Refere-se à flexibilidade da TDIC para atender às diferentes necessidades, estilos, preferências e contextos dos aprendizes.",
+                author: "Huang et al. (2019)"
+            },
+            "Alegria": {
+                description: "É um estado afetivo positivo associado à satisfação, ao prazer e ao bem-estar.",
+                author: "Plutchik (1980)"
+            },
+            "Amabilidade": {
+                description: "Refere-se à predisposição para agir de forma cooperativa, empática, altruísta e respeitosa nas relações interpessoais.",
+                author: "McCrae e Costa (1999)"
+            },
+            "Antecipação": {
+                description: "É um estado emocional orientado para o futuro, relacionado à atenção ao que está por vir e às expectativas sobre resultados futuros.",
+                author: "Plutchik (1980)"
+            },
+            "Comunicação": {
+                description: "Refere-se à troca de mensagens, argumentação e negociação entre aprendizes em uma atividade conjunta.",
+                author: "Pimentel et al. (2006)"
+            },
+            "Confiar": {
+                description: "Refere-se ao sentimento de segurança e confiança em pessoas, instituições ou situações. Na LX, pode envolver confiança nos pares, na TDIC, no professor e no processo de aprendizagem.",
+                author: "Plutchik (1980)"
+            },
+            "Confortabilidade": {
+                description: "Refere-se ao bem-estar físico e emocional do aprendiz durante a utilização da TDIC.",
+                author: "Huang et al. (2019)"
+            },
+            "Conscienciosidade": {
+                description: "Refere-se à tendência à organização, responsabilidade, autodisciplina e persistência na realização de objetivos.",
+                author: "McCrae e Costa (1999)"
+            },
+            "Coordenação": {
+                description: "Refere-se à gestão das pessoas, atividades e recursos envolvidos no trabalho conjunto, organizando tarefas e compromissos para apoiar a colaboração.",
+                author: "Pimentel et al. (2006)"
+            },
+            "Cooperação": {
+                description: "Refere-se à ação conjunta em um espaço compartilhado para produzir objetos, informações, decisões ou outros resultados da atividade colaborativa.",
+                author: "Pimentel et al. (2006)"
+            },
+            "Desejabilidade": {
+                description: "Refere-se à atratividade e ao engajamento em atividades mediadas por TDIC, considerando a percepção positiva e o envolvimento do aprendiz.",
+                author: "Huang et al. (2019), com base em Fredricks et al. (2004)"
+            },
+            "Extroversão": {
+                description: "Refere-se à tendência de buscar interação social, demonstrar entusiasmo, assertividade e elevados níveis de energia.",
+                author: "McCrae e Costa (1999)"
+            },
+            "Neuroticismo": {
+                description: "Refere-se à tendência à instabilidade emocional e à maior suscetibilidade a emoções negativas, como ansiedade, preocupação, insegurança, irritabilidade e estresse.",
+                author: "McCrae e Costa (1999)"
+            },
+            "Raiva": {
+                description: "É uma resposta emocional associada a obstáculos, injustiças ou violações de limites. Na LX, pode aparecer como frustração ou irritação durante a atividade.",
+                author: "Plutchik (1980)"
+            },
+            "Temer": {
+                description: "É uma resposta emocional a ameaças reais ou percebidas. Na LX, pode manifestar-se como apreensão, medo de julgamento ou ansiedade diante de novas TDIC e avaliações.",
+                author: "Plutchik (1980)"
+            },
+            "Usabilidade": {
+                description: "Refere-se à facilidade de uso e à capacidade de aprendizagem de uma TDIC educacional, considerando seu uso eficaz, eficiente e satisfatório.",
+                author: "Huang et al. (2019), considerando Nielsen (1994)"
+            },
+            "Valor": {
+                description: "É considerado o elemento central da LX e surge quando a TDIC educacional está alinhada às necessidades de aprendizagem do aprendiz.",
+                author: "Huang et al. (2019)"
+            }
+        };
+
+        const elementModal = document.getElementById('element-modal');
+        const elementModalTitle = document.getElementById('element-modal-title');
+        const elementModalDescription = document.getElementById('element-modal-description');
+        const elementModalAuthor = document.getElementById('element-modal-author');
+        const elementModalClose = document.getElementById('element-modal-close');
+        const elementModalBackdrop = document.getElementById('element-modal-backdrop');
+        let lastElementButton = null;
+
+        function openElementModal(button) {
+            const elementName = button.dataset.element;
+            const info = elementData[elementName];
+            if (!info) return;
+
+            lastElementButton = button;
+            elementModalTitle.textContent = elementName;
+            elementModalDescription.textContent = info.description;
+            elementModalAuthor.textContent = info.author;
+
+            elementModal.classList.remove('hidden');
+            elementModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            elementModalClose.focus();
+        }
+
+        function closeElementModal() {
+            elementModal.classList.add('hidden');
+            elementModal.classList.remove('flex');
+            document.body.style.overflow = '';
+
+            if (lastElementButton) {
+                lastElementButton.focus();
+            }
+        }
+
+        document.querySelectorAll('.element-tag').forEach(button => {
+            button.addEventListener('click', () => openElementModal(button));
+        });
+
+        elementModalClose.addEventListener('click', closeElementModal);
+        elementModalBackdrop.addEventListener('click', closeElementModal);
+
+        document.addEventListener('keydown', event => {
+            if (event.key === 'Escape' && !elementModal.classList.contains('hidden')) {
+                closeElementModal();
+            }
+        });
+
+
         const menuBtn = document.getElementById('menu-btn');
         const nav = document.getElementById('main-nav');
         menuBtn.addEventListener('click', () => nav.classList.toggle('nav-active'));
