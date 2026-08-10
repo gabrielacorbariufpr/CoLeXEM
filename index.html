@@ -214,7 +214,7 @@
       <p data-template-id="comp-subtitle" class="canva-text leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Em conjunto, os componentes permitem que a avaliação seja conduzida de forma sistemática e que seus resultados sejam convertidos em recomendações práticas.</p>
      </div>
      <div class="grid md:grid-cols-3 gap-6 mb-14"><!-- Normativas -->
-      <article data-template-id="comp-card-1" class="canva-card rounded-2xl p-8 border border-emerald-200" style="background: rgb(255, 255, 255);">
+      <article id="normativas-card" data-template-id="comp-card-1" class="canva-card rounded-2xl p-8 border border-emerald-200 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-lg" style="background: rgb(255, 255, 255);" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="normativas-modal">
        <div class="flex items-center justify-between mb-6">
         <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full">01</span>
        </div>
@@ -390,7 +390,145 @@
      </div>
      </div>
     </div>
-   </section><!-- 5W2H -->
+   </section>
+<!-- Modal das Normativas -->
+<div id="normativas-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-6"
+     role="dialog" aria-modal="true" aria-labelledby="normativas-modal-title">
+  <div id="normativas-modal-backdrop" class="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
+
+  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-5xl max-h-[88vh] overflow-hidden flex flex-col">
+    <div class="flex items-start justify-between gap-4 p-6 md:p-8 border-b border-gray-200">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Componente 01</span>
+        <h2 id="normativas-modal-title" class="heading-font text-2xl md:text-3xl font-bold text-emerald-950 mt-2">
+          Normativas do CoLeXEeM
+        </h2>
+        <p class="text-gray-600 leading-relaxed mt-3 max-w-3xl">
+          As normativas orientam o avaliador na preparação e caracterização do contexto da atividade colaborativa e da avaliação da LX.
+        </p>
+      </div>
+
+      <button id="normativas-modal-close" type="button" aria-label="Fechar normativas"
+              class="shrink-0 w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition">
+        <i data-lucide="x" style="width:22px;height:22px;"></i>
+      </button>
+    </div>
+
+    <div class="overflow-y-auto p-6 md:p-8 space-y-8">
+
+      <section>
+        <h3 class="font-bold text-lg text-emerald-950 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3 mb-3">
+          Categoria A – Contexto da atividade colaborativa
+        </h3>
+        <div class="space-y-3">
+          <article class="border border-gray-200 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-800 mb-2">N1. Caracterização da atividade colaborativa</h4>
+            <p class="text-gray-600 leading-relaxed">Identificar o objetivo, a disciplina, a duração (uma aula, metade do semestre, todo o semestre e entre outros), a modalidade (presencial, híbrida ou online), o tipo (resolução de problemas, projeto, estudo de caso, discussão e entre outros) e o conteúdo.</p>
+          </article>
+          <article class="border border-gray-200 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-800 mb-2">N2. Momento da avaliação</h4>
+            <p class="text-gray-600 leading-relaxed">Identificar o momento em que ocorrerá a avaliação, podendo ser durante ou após a atividade colaborativa.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="font-bold text-lg text-emerald-950 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3 mb-3">
+          Categoria B – Estratégia pedagógica
+        </h3>
+        <div class="space-y-3">
+          <article class="border border-gray-200 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-800 mb-2">N3. Estratégia de aprendizagem</h4>
+            <p class="text-gray-600 leading-relaxed">Registrar se houve uso de alguma estratégia fora da formação de grupos, como PBL, sala de aula invertida e entre outras.</p>
+          </article>
+          <article class="border border-gray-200 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-800 mb-2">N4. Objetivos</h4>
+            <p class="text-gray-600 leading-relaxed">Definir o objetivo do grupo e objetivos individuais (como o ganho de conhecimento, habilidades e entre outros) para todos os integrantes do grupo (finalizar a atividade).</p>
+          </article>
+          <article class="border border-gray-200 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-800 mb-2">N5. Feedback</h4>
+            <p class="text-gray-600 leading-relaxed">Planejar momentos para apresentar feedback durante o desenvolvimento da atividade colaborativa.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="font-bold text-lg text-emerald-950 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3 mb-3">
+          Categoria C – Organização dos grupos
+        </h3>
+        <div class="space-y-3">
+          <article class="border border-gray-200 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-800 mb-2">N6. Teorias para a formação dos grupos</h4>
+            <p class="text-gray-600 leading-relaxed">Definir e registrar se foram utilizadas teorias de aprendizagem para apoiar a formação dos grupos. Ex.: Peer Tutorial Instruction, Anchored Instructions, Jigsaw e entre outras.</p>
+          </article>
+
+          <article class="border border-gray-200 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-800 mb-2">N7. Estratégia para formação dos grupos</h4>
+            <p class="text-gray-600 leading-relaxed">Definir e registrar as diferentes configurações utilizadas na formação dos grupos, como: aleatória (sem qualquer critério de seleção), autosseleção (os aprendizes selecionam com quem gostariam de trabalhar), determinação do professor (utilizando algum critério específico) ou teoria (utilizando uma teoria de aprendizagem).</p>
+          </article>
+
+          <article class="md:ml-6 border border-emerald-100 border-l-4 border-l-emerald-300 rounded-xl p-4 bg-emerald-50/30">
+            <h4 class="font-bold text-emerald-800 mb-2">N7.1. Fatores utilizados para a formação dos grupos</h4>
+            <p class="text-gray-600 leading-relaxed">Definir e registrar quais elementos foram considerados na formação dos grupos, como: nível de conhecimento (uma medida que indica o grau de compreensão e domínio de um determinado assunto ou área de conhecimento), habilidades (podem ser definidas a partir do saber fazer, como a comunicação), traços de personalidade (como extroversão, introversão e outros) e não se aplica.</p>
+          </article>
+
+          <article class="md:ml-6 border border-emerald-100 border-l-4 border-l-emerald-300 rounded-xl p-4 bg-emerald-50/30">
+            <h4 class="font-bold text-emerald-800 mb-2">N7.2. Diversidade dos grupos</h4>
+            <p class="text-gray-600 leading-relaxed">Definir e registrar se os grupos são: homogêneo (quando há aprendizes com fatores em comum), heterogêneo (quando há indivíduos com fatores distintos) ou misto (quando ocorre combinação entre fatores que levam em conta a heterogeneidade e fatores que levam em conta a homogeneidade).</p>
+          </article>
+
+          <article class="md:ml-6 border border-emerald-100 border-l-4 border-l-emerald-300 rounded-xl p-4 bg-emerald-50/30">
+            <h4 class="font-bold text-emerald-800 mb-2">N7.3. Estrutura e propósito do grupo</h4>
+            <p class="text-gray-600 leading-relaxed">Definir e registrar como os grupos podem ser classificados em termos de sua estrutura e propósito: informal (caracterizado pelo agrupamento rápido e aleatório dos aprendizes, e usado para o desenvolvimento de atividades de curta duração), formal (empregam técnicas mais rebuscadas para formar os grupos que irão em atividades mais complexas), base (formar uma comunidade de aprendizes que trabalham em diversas tarefas ao longo de um período), outros (apresentar outro tipo de formação) e não se aplica.</p>
+          </article>
+
+          <article class="md:ml-6 border border-emerald-100 border-l-4 border-l-emerald-300 rounded-xl p-4 bg-emerald-50/30">
+            <h4 class="font-bold text-emerald-800 mb-2">N7.4. Número de membros</h4>
+            <p class="text-gray-600 leading-relaxed">Definir e registrar o número de membros por grupos, como: duplas, trios, quartetos e assim por diante.</p>
+          </article>
+
+          <article class="md:ml-6 border border-emerald-100 border-l-4 border-l-emerald-300 rounded-xl p-4 bg-emerald-50/30">
+            <h4 class="font-bold text-emerald-800 mb-2">N7.5. Definição de papéis</h4>
+            <p class="text-gray-600 leading-relaxed">Definir previamente os papéis dos participantes (como líder, integrante ativo, integrante passivo, tutor, tutorado, facilitador ou relator), especificando suas responsabilidades durante a atividade ou não se aplica.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="font-bold text-lg text-emerald-950 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3 mb-3">
+          Categoria D – Ecossistema tecnológico
+        </h3>
+        <div class="space-y-3">
+          <article class="border border-gray-200 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-800 mb-2">N8. Dispositivos utilizados</h4>
+            <p class="text-gray-600 leading-relaxed">Registrar os equipamentos que poderão ser utilizados, como computador, tablet, smartphone e entre outros.</p>
+          </article>
+          <article class="border border-gray-200 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-800 mb-2">N8. TDIC utilizadas</h4>
+            <p class="text-gray-600 leading-relaxed">Registrar quais TDIC poderão apoiar a Colaboração. Ex. Overleaf, Drive, MEC RED, Trello, Notion, Whatsapp, Telegram, entre outras.</p>
+          </article>
+          <article class="border border-gray-200 rounded-xl p-4">
+            <h4 class="font-bold text-emerald-800 mb-2">N9. Papel das TDIC</h4>
+            <p class="text-gray-600 leading-relaxed">Além de registrar quais ferramentas foram utilizadas, registrar para qual finalidade. Como Whatsapp para a comunicação, Trello para a coordenação e Overleaf para a cooperação.</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h3 class="font-bold text-lg text-emerald-950 bg-emerald-50 border border-emerald-100 rounded-xl px-4 py-3 mb-3">
+          Categoria E – Planejamento da avaliação e Melhorias
+        </h3>
+        <article class="border border-gray-200 rounded-xl p-4">
+          <h4 class="font-bold text-emerald-800 mb-2">N12. Objetivo da avaliação</h4>
+          <p class="text-gray-600 leading-relaxed">Avaliar a LX vivenciada na atividade colaborativa, por meio de um questionário estruturado; e subsidiar a melhoria da LX a partir das normativas e diretrizes destinadas aos avaliadores.</p>
+        </article>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- 5W2H -->
    <section id="5w2h" data-template-id="w5h2-section" class="canva-section py-20" style="background: rgb(10, 31, 21);">
     <div class="max-w-6xl mx-auto px-6"><span data-template-id="section-5-label" class="canva-text text-xs font-semibold uppercase tracking-widest block mb-6" style="color: rgb(110, 231, 183); font-weight: 400; font-style: normal; font-size: 16px;">05 · Estruturação</span>
      <div class="text-center max-w-2xl mx-auto mb-14">
@@ -649,6 +787,44 @@
             }
         });
 
+
+
+        // Modal das Normativas
+        const normativasCard = document.getElementById('normativas-card');
+        const normativasModal = document.getElementById('normativas-modal');
+        const normativasModalClose = document.getElementById('normativas-modal-close');
+        const normativasModalBackdrop = document.getElementById('normativas-modal-backdrop');
+
+        function openNormativasModal() {
+            normativasModal.classList.remove('hidden');
+            normativasModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            normativasModalClose.focus();
+        }
+
+        function closeNormativasModal() {
+            normativasModal.classList.add('hidden');
+            normativasModal.classList.remove('flex');
+            document.body.style.overflow = '';
+            normativasCard.focus();
+        }
+
+        normativasCard.addEventListener('click', openNormativasModal);
+        normativasCard.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                openNormativasModal();
+            }
+        });
+
+        normativasModalClose.addEventListener('click', closeNormativasModal);
+        normativasModalBackdrop.addEventListener('click', closeNormativasModal);
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !normativasModal.classList.contains('hidden')) {
+                closeNormativasModal();
+            }
+        });
 
         const menuBtn = document.getElementById('menu-btn');
         const nav = document.getElementById('main-nav');
