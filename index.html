@@ -109,7 +109,7 @@
        <span class="w-1.5 h-4 bg-white rounded-full"></span><span class="w-1.5 h-3 bg-white/70 rounded-full mt-1"></span><span class="w-1.5 h-5 bg-white/50 rounded-full"></span>
       </div>
      </div><strong class="text-emerald-900 font-bold text-lg">CoLeXEeM</strong> </a> <button id="menu-btn" type="button" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Abrir menu"> <span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span> </button>
-    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-64 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-6 p-8 md:p-0 z-50" aria-label="Navegação principal"><a href="#sobre" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">O Método</a> <a href="#objetivo" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Objetivo</a> <a href="#composicao" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Composição</a> <a href="#camada-tdic" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Sugestões de TDIC</a> <a href="#como-usar" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Como usar</a>
+    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-64 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-6 p-8 md:p-0 z-50" aria-label="Navegação principal"><a href="#sobre" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">O Método</a> <a href="#objetivo" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Objetivo</a> <a href="#composicao" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Composição</a> <a href="#camada-tdic" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Camada de TDIC</a> <a href="#como-usar" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Como usar</a>
     </nav>
    </div>
   </header>
@@ -429,7 +429,7 @@
       <div>
         <span class="text-xs font-bold uppercase tracking-wider text-sky-700">Componente 02</span>
         <h2 id="questionario-modal-title" class="heading-font text-xl md:text-2xl font-bold text-emerald-950 mt-1">Formulário de Avaliação da LX</h2>
-        <p class="text-sm text-gray-600 mt-1">Responda às sentenças considerando a atividade colaborativa e as TDIC utilizadas.</p>
+        <p class="text-sm text-gray-600 mt-1">Responda às sentenças considerando a atividade colaborativa e as TDIC utilizadas. Todos os elementos são apresentados nesta página.</p>
       </div>
       <div class="flex items-center gap-2 shrink-0">
         <a href="questionário.pdf" download class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-sky-200 text-sky-800 font-semibold hover:bg-sky-50 transition" aria-label="Baixar versão do questionário em PDF">
@@ -441,7 +441,15 @@
       </div>
     </div>
     <div class="border-b border-gray-100 px-5 md:px-6 py-3 bg-gray-50">
-      <div class="flex items-center justify-between gap-4 text-xs text-gray-600 mb-2"><span id="questionario-progress-text">0 de 77 sentenças respondidas</span><span id="questionario-progress-percent" class="font-bold text-sky-700">0%</span></div>
+      <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-gray-600 mb-2">
+        <span id="questionario-progress-text">0 de 77 sentenças respondidas</span>
+        <div class="flex items-center gap-3">
+          <span id="questionario-save-status" class="inline-flex items-center gap-1.5 text-emerald-700 font-semibold" aria-live="polite">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Salvo automaticamente
+          </span>
+          <span id="questionario-progress-percent" class="font-bold text-sky-700">0%</span>
+        </div>
+      </div>
       <div class="h-2 bg-gray-200 rounded-full overflow-hidden"><div id="questionario-progress-bar" class="h-full bg-sky-600 rounded-full transition-all duration-300" style="width:0%"></div></div>
     </div>
     <div id="questionario-scroll" class="flex-1 overflow-y-auto bg-gray-50/60">
@@ -460,10 +468,10 @@
         </section>
         <div class="bg-sky-50 border border-sky-100 rounded-2xl p-5"><h3 class="font-bold text-sky-950 mb-2">Escala de resposta</h3><p class="text-sm text-sky-900 leading-relaxed">1 = Discordo totalmente · 2 = Discordo fortemente · 3 = Discordo parcialmente · 4 = Não concordo nem discordo · 5 = Concordo parcialmente · 6 = Concordo fortemente · 7 = Concordo totalmente.</p></div>
         <div id="questionario-sections" class="space-y-5"></div>
-        <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">Nesta versão, as respostas são processadas somente no navegador e não são enviadas a um servidor.</div><div class="flex gap-2 shrink-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="chart-no-axes-column-increasing" style="width:18px;height:18px;"></i> Avaliar resultados</button></div></div>
+        <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">As respostas são salvas automaticamente neste navegador. Elas não são enviadas a um servidor.</div><div class="flex gap-2 shrink-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="chart-no-axes-column-increasing" style="width:18px;height:18px;"></i> Avaliar resultados</button></div></div>
       </form>
       <section id="questionario-resultados" class="hidden max-w-6xl mx-auto p-5 md:p-8 space-y-6">
-        <div class="bg-white border border-gray-200 rounded-2xl p-6"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resultados da avaliação</span><h3 class="heading-font text-2xl font-bold text-emerald-950 mt-1">Painel por elemento</h3><p class="text-gray-600 mt-2 max-w-3xl">O painel calcula a média das sentenças de cada elemento. Elementos avaliativos são classificados quanto à necessidade de melhoria; traços e emoções são apresentados pela intensidade observada.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button><button type="button" id="questionario-csv" class="px-4 py-2.5 rounded-xl border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-50 transition inline-flex items-center gap-2"><i data-lucide="file-down" style="width:18px;height:18px;"></i> Baixar CSV</button><button type="button" id="questionario-imprimir" class="px-4 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center gap-2"><i data-lucide="printer" style="width:18px;height:18px;"></i> Imprimir relatório</button></div></div></div>
+        <div class="bg-white border border-gray-200 rounded-2xl p-6"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resultados da avaliação</span><h3 class="heading-font text-2xl font-bold text-emerald-950 mt-1">Painel por elemento</h3><p class="text-gray-600 mt-2 max-w-3xl">O painel calcula a média das sentenças de cada elemento respeitando a escala utilizada no instrumento: Likert de 7 pontos ou SAM de 9 pontos. Os resultados são interpretados conforme o tipo de elemento.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button><button type="button" id="questionario-csv" class="px-4 py-2.5 rounded-xl border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-50 transition inline-flex items-center gap-2"><i data-lucide="file-down" style="width:18px;height:18px;"></i> Baixar CSV</button><button type="button" id="questionario-json" class="px-4 py-2.5 rounded-xl border border-sky-200 text-sky-800 font-semibold hover:bg-sky-50 transition inline-flex items-center gap-2"><i data-lucide="braces" style="width:18px;height:18px;"></i> Baixar JSON</button><button type="button" id="questionario-imprimir" class="px-4 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center gap-2"><i data-lucide="printer" style="width:18px;height:18px;"></i> Imprimir relatório</button></div></div></div>
         <div id="resultado-prioridades" class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-5"></div>
         <div id="resultado-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         <div class="bg-emerald-950 text-emerald-50 rounded-2xl p-6"><h4 class="font-bold text-lg mb-2">Próxima etapa do CoLeXEeM</h4><p class="text-sm leading-relaxed text-emerald-100">Os elementos que exigem atenção são destacados automaticamente. O vínculo entre cada resultado e as diretrizes específicas do método será feito a partir da matriz de diretrizes do CoLeXEeM, evitando associar recomendações que ainda não estejam definidas formalmente.</p></div>
@@ -473,10 +481,10 @@
 </div>
 
 
-<!-- Sugestões de TDIC -->
+<!-- Camada de TDIC -->
 <section id="camada-tdic" class="py-20 bg-white">
   <div class="max-w-6xl mx-auto px-6">
-    <span class="text-xs font-semibold uppercase tracking-widest block mb-6" style="color: rgb(107, 114, 128); font-size: 16px;">04 · Sugestões de TDIC</span>
+    <span class="text-xs font-semibold uppercase tracking-widest block mb-6" style="color: rgb(107, 114, 128); font-size: 16px;">04 · Camada de TDIC</span>
 
     <div class="text-center max-w-3xl mx-auto mb-12">
       <p class="text-sm font-semibold uppercase tracking-wider mb-3" style="color: rgb(6, 95, 70); font-size: 13px;">Tecnologias para apoiar a colaboração</p>
@@ -590,7 +598,7 @@
    </section>
   </main>
   <footer data-template-id="footer-section" class="canva-footer py-10 text-center" style="background: rgb(10, 31, 21);"><strong data-template-id="footer-brand" class="canva-text block text-lg mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">CoLeXEeM</strong> <span data-template-id="footer-tagline" class="canva-text block text-sm mb-3" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Collaborative Learner eXperience Evaluation and redesign Method</span>
-   <p data-template-id="footer-note" class="canva-text text-xs" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Proposta acadêmica para avaliação e redesign da LX no contexto colaborativo mediado por TDIC.</p>
+   <p data-template-id="footer-note" class="canva-text text-xs" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Proposta acadêmica para avaliação e melhoria da Learner eXperience no contexto colaborativo.</p>
   </footer>
   <script src="/_sdk/c229d146679821d6.editing_sdk.js" integrity="sha512-umX8A9h8eJWRPB7xE7gh7Ngl1Y7fHpiaFvRwc6mxacvabfaLB/fImp68nlFMPDFjFbXCyl4OWAaW63aecWWnEA=="></script>
   <script>
@@ -815,51 +823,655 @@
         setupPdfModal('normativas-card', 'normativas-modal', 'normativas-modal-close', 'normativas-modal-backdrop');
 
 
-        // Questionário interativo e cálculo dos resultados
+
+        // Questionário interativo: Likert de 7 pontos + SAM de 9 pontos
         const questionarioData = [
-          {name:'Abertura', type:'trait', items:['Senti-me motivado(a) a explorar novas ideias para resolver as tarefas durante a atividade colaborativa utilizando as TDIC.','Senti-me à vontade para propor soluções diferentes das inicialmente previstas durante a atividade colaborativa utilizando as TDIC.']},
-          {name:'Adaptabilidade', type:'positive', items:['As TDIC utilizadas adaptaram-se às minhas necessidades durante a atividade colaborativa.','As TDIC permitiram que eu participasse da atividade colaborativa de acordo com meu próprio ritmo de aprendizagem.','As TDIC atenderam às minhas preferências para realizar as atividades colaborativas.','As TDIC ofereceram flexibilidade para que eu contribuísse com meu grupo da maneira mais adequada para mim.','As TDIC adaptaram-se ao contexto em que realizei a atividade colaborativa.']},
-          {name:'Alegria', type:'positiveEmotion', items:['Senti alegria ao participar das atividades do grupo durante a atividade colaborativa utilizando as TDIC.','Senti satisfação ao colaborar com meus colegas utilizando as TDIC.','Utilizar as TDIC tornou a atividade colaborativa agradável para mim.']},
-          {name:'Amabilidade', type:'trait', items:['Procurei colaborar de forma respeitosa com meus colegas durante a atividade colaborativa utilizando as TDIC.','Demonstrei disposição para ajudar meus colegas quando necessário durante a atividade colaborativa utilizando as TDIC.','Procurei compreender as dificuldades dos meus colegas durante a atividade colaborativa utilizando as TDIC.','Tratei meus colegas com cordialidade, mesmo quando haviam opiniões diferentes durante a atividade colaborativa utilizando as TDIC.','Senti-me disposto(a) a apoiar meus colegas durante a realização das tarefas durante a atividade colaborativa utilizando as TDIC.']},
-          {name:'Comunicação', type:'positive', items:['As TDIC facilitaram a comunicação entre os integrantes do meu grupo durante a atividade colaborativa.','As TDIC permitiram que meu grupo discutisse ideias e diferentes pontos de vista com facilidade.','As TDIC favoreceram a negociação de decisões entre os integrantes do grupo.','As diferentes formas de comunicação disponíveis nas TDIC (texto, áudio, imagens e vídeo) atenderam às necessidades do meu grupo.','As TDIC facilitaram a construção de acordos e compromissos entre os integrantes do grupo.','As TDIC utilizadas favoreceram o compartilhamento de informações e recursos importantes para o grupo.']},
-          {name:'Confortabilidade', type:'positive', items:['Senti-me à vontade ao utilizar as TDIC durante a atividade colaborativa.','Utilizar as TDIC durante a atividade colaborativa me deixou tranquilo(a), sem causar desconforto ou ansiedade.','Senti-me confortável para interagir com meus colegas por meio das TDIC.','O ambiente em que utilizei as TDIC favoreceu minha participação na atividade colaborativa.']},
-          {name:'Confiança', type:'positiveEmotion', items:['Senti confiança para realizar minhas tarefas durante a atividade colaborativa e utilizando as TDIC.','Senti confiança nas informações compartilhadas pelos integrantes do meu grupo por meio das TDIC.','Senti confiança para interagir com meus colegas utilizando as TDIC.','Confiei que as TDIC apoiariam meu grupo no desenvolvimento da atividade colaborativa.']},
-          {name:'Consciência', type:'trait', items:['Mantive minhas atividades organizadas durante a atividade colaborativa utilizando as TDIC.','Procurei cumprir minhas responsabilidades dentro do prazo estabelecido durante a atividade colaborativa utilizando as TDIC.','Realizei minhas tarefas com atenção aos detalhes durante a atividade colaborativa utilizando as TDIC.','Procurei planejar minhas ações antes de executá-las durante a atividade colaborativa utilizando as TDIC.','Procurei realizar minhas tarefas com cuidado e precisão durante a atividade colaborativa utilizando as TDIC.']},
-          {name:'Cooperação', type:'positive', items:['As TDIC permitiram que meu grupo produzisse conjuntamente os resultados da atividade colaborativa.','As TDIC facilitaram a construção coletiva dos materiais ou artefatos produzidos pelo grupo.','As TDIC permitiram visualizar facilmente as contribuições realizadas pelos integrantes do grupo.','As TDIC facilitaram o registro e o mapeamento das contribuições realizadas durante a atividade colaborativa.']},
-          {name:'Coordenação', type:'positive', items:['As TDIC facilitaram a organização das tarefas entre os integrantes do meu grupo durante a realização da atividade colaborativa.','As TDIC facilitaram a definição das responsabilidades de cada integrante durante a atividade colaborativa.','As TDIC ajudaram meu grupo a acompanhar o andamento das atividades realizadas pelos integrantes.','As TDIC ajudaram meu grupo a identificar quem estava disponível para colaborar durante a atividade colaborativa.','As TDIC facilitaram a negociação e a reorganização das tarefas quando ocorreram mudanças ou imprevistos.']},
-          {name:'Desejabilidade', type:'positive', items:['Gostei de utilizar as TDIC durante a realização da atividade colaborativa.','As TDIC despertaram meu interesse em participar ativamente das atividades do grupo.','As TDIC me mantiveram atento(a) e concentrado(a) durante a atividade colaborativa.','As TDIC me incentivaram a dedicar esforço para realizar as atividades colaborativas.']},
-          {name:'Interesse', type:'positiveEmotion', items:['Senti interesse em continuar realizando as atividades propostas durante a atividade colaborativa utilizando as TDIC.','Fiquei curioso(a) para acompanhar o desenvolvimento das próximas etapas da atividade colaborativa.','Tive expectativa positiva em relação aos resultados que meu grupo poderia alcançar.','Utilizar as TDIC despertou meu interesse em explorar novos recursos durante a atividade colaborativa.','Durante a atividade colaborativa utilizando as TDIC, mantive-me atento(a) ao que aconteceria nas próximas etapas da atividade.']},
-          {name:'Extroversão', type:'trait', items:['Busquei ter interações mais reservadas com meus colegas durante a atividade colaborativa utilizando as TDIC.','Comuniquei minhas ideias com facilidade durante a atividade colaborativa utilizando as TDIC.','Tive alta impulsividade para expressar minhas ideias aos integrantes do grupo durante a atividade colaborativa utilizando as TDIC.']},
-          {name:'Raiva', type:'negative', items:['Senti frustração quando surgiram dificuldades durante a atividade colaborativa utilizando as TDIC.','Fiquei com raiva quando as TDIC dificultaram o andamento da atividade colaborativa.','Senti irritação quando ocorreram problemas que prejudicaram a colaboração do grupo.','Algumas situações ocorridas durante o uso das TDIC provocaram sentimentos de indignação ou raiva.']},
-          {name:'Medo', type:'negative', items:['Senti receio de cometer erros durante a atividade colaborativa utilizando as TDIC.','Senti ansiedade ao utilizar as TDIC durante a atividade colaborativa.','Tive receio de que minhas contribuições fossem avaliadas negativamente pelos colegas.','Utilizar as TDIC me deixou inseguro(a) durante alguns momentos da atividade.','Senti medo de que minhas dificuldades durante a atividade comprometessem meu desempenho.']},
-          {name:'Neuroticismo', type:'negative', items:['Fiquei nervoso(a) diante das dificuldades encontradas durante a atividade colaborativa utilizando as TDIC.','Tive dificuldade para manter a calma quando surgiram problemas no trabalho em grupo utilizando as TDIC.']},
-          {name:'Usabilidade', type:'positive', items:['Aprendi a utilizar as TDIC necessárias para a atividade colaborativa com facilidade.','Consegui realizar minhas tarefas rapidamente utilizando as TDIC durante a atividade colaborativa.','Foi fácil lembrar como utilizar as funcionalidades das TDIC sempre que precisei delas durante a atividade colaborativa.','Quando encontrei dificuldades ao utilizar as TDIC, consegui resolvê-las facilmente.','Fiquei satisfeito(a) com a facilidade de uso das TDIC durante a atividade colaborativa.']},
-          {name:'Valor', type:'positive', items:['O uso das TDIC contribuiu para minha melhor compreensão sobre o conteúdo trabalhado em grupo.','As TDIC agregaram valor às discussões e às decisões realizadas pelo meu grupo.','O uso das TDIC tornou a aprendizagem colaborativa mais relevante para mim.','Considero que as TDIC utilizadas contribuíram para que o grupo alcançasse os objetivos da atividade colaborativa.','Se esta atividade fosse realizada sem as TDIC utilizadas, acredito que a aprendizagem do grupo seria prejudicada.','Eu escolheria utilizar essas mesmas TDIC novamente em futuras atividades colaborativas de aprendizagem.']}
+          {name:'Abertura', type:'trait', scale:'likert7', items:['Senti-me motivado(a) a explorar novas ideias para resolver as tarefas durante a atividade colaborativa utilizando as TDIC.','Senti-me à vontade para propor soluções diferentes das inicialmente previstas durante a atividade colaborativa utilizando as TDIC.']},
+          {name:'Adaptabilidade', type:'positive', scale:'likert7', items:['As TDIC utilizadas adaptaram-se às minhas necessidades durante a atividade colaborativa.','As TDIC permitiram que eu participasse da atividade colaborativa de acordo com meu próprio ritmo de aprendizagem.','As TDIC atenderam às minhas preferências para realizar as atividades colaborativas.','As TDIC ofereceram flexibilidade para que eu contribuísse com meu grupo da maneira mais adequada para mim.','As TDIC adaptaram-se ao contexto em que realizei a atividade colaborativa.']},
+          {name:'Alegria', type:'positive', scale:'sam9', items:['Senti alegria ao participar das atividades do grupo durante a atividade colaborativa utilizando as TDIC.','Senti satisfação ao colaborar com meus colegas utilizando as TDIC.','Utilizar as TDIC tornou a atividade colaborativa agradável para mim.']},
+          {name:'Amabilidade', type:'trait', scale:'likert7', items:['Procurei colaborar de forma respeitosa com meus colegas durante a atividade colaborativa utilizando as TDIC.','Demonstrei disposição para ajudar meus colegas quando necessário durante a atividade colaborativa utilizando as TDIC.','Procurei compreender as dificuldades dos meus colegas durante a atividade colaborativa utilizando as TDIC.','Tratei meus colegas com cordialidade, mesmo quando haviam opiniões diferentes durante a atividade colaborativa utilizando as TDIC.','Senti-me disposto(a) a apoiar meus colegas durante a realização das tarefas durante a atividade colaborativa utilizando as TDIC.']},
+          {name:'Comunicação', type:'positive', scale:'likert7', items:['As TDIC facilitaram a comunicação entre os integrantes do meu grupo durante a atividade colaborativa.','As TDIC permitiram que meu grupo discutisse ideias e diferentes pontos de vista com facilidade.','As TDIC favoreceram a negociação de decisões entre os integrantes do grupo.','As diferentes formas de comunicação disponíveis nas TDIC (texto, áudio, imagens e vídeo) atenderam às necessidades do meu grupo.','As TDIC facilitaram a construção de acordos e compromissos entre os integrantes do grupo.','As TDIC utilizadas favoreceram o compartilhamento de informações e recursos importantes para o grupo.']},
+          {name:'Confortabilidade', type:'positive', scale:'likert7', items:['Senti-me à vontade ao utilizar as TDIC durante a atividade colaborativa.','Utilizar as TDIC durante a atividade colaborativa me deixou tranquilo(a), sem causar desconforto ou ansiedade.','Senti-me confortável para interagir com meus colegas por meio das TDIC.','O ambiente em que utilizei as TDIC favoreceu minha participação na atividade colaborativa.']},
+          {name:'Confiança', type:'positive', scale:'sam9', items:['Senti confiança para realizar minhas tarefas durante a atividade colaborativa e utilizando as TDIC.','Senti confiança nas informações compartilhadas pelos integrantes do meu grupo por meio das TDIC.','Senti confiança para interagir com meus colegas utilizando as TDIC.','Confiei que as TDIC apoiariam meu grupo no desenvolvimento da atividade colaborativa.']},
+          {name:'Consciência', type:'trait', scale:'likert7', items:['Mantive minhas atividades organizadas durante a atividade colaborativa utilizando as TDIC.','Procurei cumprir minhas responsabilidades dentro do prazo estabelecido durante a atividade colaborativa utilizando as TDIC.','Realizei minhas tarefas com atenção aos detalhes durante a atividade colaborativa utilizando as TDIC.','Procurei planejar minhas ações antes de executá-las durante a atividade colaborativa utilizando as TDIC.','Procurei realizar minhas tarefas com cuidado e precisão durante a atividade colaborativa utilizando as TDIC.']},
+          {name:'Cooperação', type:'positive', scale:'likert7', items:['As TDIC permitiram que meu grupo produzisse conjuntamente os resultados da atividade colaborativa.','As TDIC facilitaram a construção coletiva dos materiais ou artefatos produzidos pelo grupo.','As TDIC permitiram visualizar facilmente as contribuições realizadas pelos integrantes do grupo.','As TDIC facilitaram o registro e o mapeamento das contribuições realizadas durante a atividade colaborativa.']},
+          {name:'Coordenação', type:'positive', scale:'likert7', items:['As TDIC facilitaram a organização das tarefas entre os integrantes do meu grupo durante a realização da atividade colaborativa.','As TDIC facilitaram a definição das responsabilidades de cada integrante durante a atividade colaborativa.','As TDIC ajudaram meu grupo a acompanhar o andamento das atividades realizadas pelos integrantes.','As TDIC ajudaram meu grupo a identificar quem estava disponível para colaborar durante a atividade colaborativa.','As TDIC facilitaram a negociação e a reorganização das tarefas quando ocorreram mudanças ou imprevistos.']},
+          {name:'Desejabilidade', type:'positive', scale:'sam9', items:['Gostei de utilizar as TDIC durante a realização da atividade colaborativa.','As TDIC despertaram meu interesse em participar ativamente das atividades do grupo.','As TDIC me mantiveram atento(a) e concentrado(a) durante a atividade colaborativa.','As TDIC me incentivaram a dedicar esforço para realizar as atividades colaborativas.']},
+          {name:'Interesse', type:'positive', scale:'sam9', items:['Senti interesse em continuar realizando as atividades propostas durante a atividade colaborativa utilizando as TDIC.','Fiquei curioso(a) para acompanhar o desenvolvimento das próximas etapas da atividade colaborativa.','Tive expectativa positiva em relação aos resultados que meu grupo poderia alcançar.','Utilizar as TDIC despertou meu interesse em explorar novos recursos durante a atividade colaborativa.','Durante a atividade colaborativa utilizando as TDIC, mantive-me atento(a) ao que aconteceria nas próximas etapas da atividade.']},
+          {name:'Extroversão', type:'trait', scale:'likert7', items:['Busquei ter interações mais reservadas com meus colegas durante a atividade colaborativa utilizando as TDIC.','Comuniquei minhas ideias com facilidade durante a atividade colaborativa utilizando as TDIC.','Tive alta impulsividade para expressar minhas ideias aos integrantes do grupo durante a atividade colaborativa utilizando as TDIC.']},
+          {name:'Raiva', type:'negative', scale:'sam9', items:['Senti frustração quando surgiram dificuldades durante a atividade colaborativa utilizando as TDIC.','Fiquei com raiva quando as TDIC dificultaram o andamento da atividade colaborativa.','Senti irritação quando ocorreram problemas que prejudicaram a colaboração do grupo.','Algumas situações ocorridas durante o uso das TDIC provocaram sentimentos de indignação ou raiva.']},
+          {name:'Medo', type:'negative', scale:'sam9', items:['Senti receio de cometer erros durante a atividade colaborativa utilizando as TDIC.','Senti ansiedade ao utilizar as TDIC durante a atividade colaborativa.','Tive receio de que minhas contribuições fossem avaliadas negativamente pelos colegas.','Utilizar as TDIC me deixou inseguro(a) durante alguns momentos da atividade.','Senti medo de que minhas dificuldades durante a atividade comprometessem meu desempenho.']},
+          {name:'Neuroticismo', type:'negative', scale:'likert7', items:['Fiquei nervoso(a) diante das dificuldades encontradas durante a atividade colaborativa utilizando as TDIC.','Tive dificuldade para manter a calma quando surgiram problemas no trabalho em grupo utilizando as TDIC.']},
+          {name:'Usabilidade', type:'positive', scale:'likert7', items:['Aprendi a utilizar as TDIC necessárias para a atividade colaborativa com facilidade.','Consegui realizar minhas tarefas rapidamente utilizando as TDIC durante a atividade colaborativa.','Foi fácil lembrar como utilizar as funcionalidades das TDIC sempre que precisei delas durante a atividade colaborativa.','Quando encontrei dificuldades ao utilizar as TDIC, consegui resolvê-las facilmente.','Fiquei satisfeito(a) com a facilidade de uso das TDIC durante a atividade colaborativa.']},
+          {name:'Valor', type:'positive', scale:'likert7', items:['O uso das TDIC contribuiu para minha melhor compreensão sobre o conteúdo trabalhado em grupo.','As TDIC agregaram valor às discussões e às decisões realizadas pelo meu grupo.','O uso das TDIC tornou a aprendizagem colaborativa mais relevante para mim.','Considero que as TDIC utilizadas contribuíram para que o grupo alcançasse os objetivos da atividade colaborativa.','Se esta atividade fosse realizada sem as TDIC utilizadas, acredito que a aprendizagem do grupo seria prejudicada.','Eu escolheria utilizar essas mesmas TDIC novamente em futuras atividades colaborativas de aprendizagem.']}
         ];
-        const scaleLabels=['Discordo totalmente','Discordo fortemente','Discordo parcialmente','Não concordo nem discordo','Concordo parcialmente','Concordo fortemente','Concordo totalmente'];
-        const questionnaireTotalItems=questionarioData.reduce((n,e)=>n+e.items.length,0);
-        const questionarioModal=document.getElementById('questionario-modal'), questionarioCard=document.getElementById('questionario-card'), questionarioClose=document.getElementById('questionario-modal-close'), questionarioBackdrop=document.getElementById('questionario-modal-backdrop'), questionarioForm=document.getElementById('questionario-form'), questionarioSections=document.getElementById('questionario-sections'), questionarioResultados=document.getElementById('questionario-resultados'), questionarioScroll=document.getElementById('questionario-scroll');
-        let lastCalculatedResults=[];
-        function safeId(text){return text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-zA-Z0-9]+/g,'-').replace(/^-|-$/g,'').toLowerCase();}
-        function renderQuestionnaire(){
-          questionarioSections.innerHTML=questionarioData.map((element,ei)=>{const questions=element.items.map((item,ii)=>{const q=`q_${ei}_${ii}`; const radios=scaleLabels.map((label,idx)=>`<label class="group flex flex-col items-center gap-1 cursor-pointer min-w-[48px]" title="${label}"><input type="radio" name="${q}" value="${idx+1}" class="sr-only peer question-radio" required><span class="w-9 h-9 rounded-lg border border-gray-300 bg-white flex items-center justify-center text-sm font-bold text-gray-500 peer-checked:bg-sky-700 peer-checked:text-white peer-checked:border-sky-700 group-hover:border-sky-400 transition">${idx+1}</span></label>`).join(''); return `<div class="py-5 ${ii?'border-t border-gray-100':''}"><p class="text-gray-800 leading-relaxed mb-4"><span class="font-bold text-emerald-800 mr-1">${ii+1}.</span>${item}</p><div class="overflow-x-auto pb-1"><div class="flex items-start gap-2 md:gap-3 min-w-[420px]">${radios}</div><div class="flex justify-between text-[10px] text-gray-400 mt-2 min-w-[420px]"><span>Discordo totalmente</span><span>Neutro</span><span>Concordo totalmente</span></div></div></div>`;}).join(''); return `<section class="bg-white border border-gray-200 rounded-2xl overflow-hidden" data-question-element="${safeId(element.name)}"><button type="button" class="question-section-toggle w-full p-5 md:p-6 flex items-center justify-between gap-4 text-left hover:bg-gray-50 transition" aria-expanded="${ei===0?'true':'false'}"><div class="flex items-center gap-3"><span class="w-9 h-9 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">${String(ei+1).padStart(2,'0')}</span><div><h3 class="heading-font font-bold text-lg text-emerald-950">${element.name}</h3><p class="text-xs text-gray-500">${element.items.length} sentenças</p></div></div><i data-lucide="chevron-down" class="question-chevron transition-transform ${ei===0?'rotate-180':''}" style="width:20px;height:20px;"></i></button><div class="question-section-body ${ei===0?'':'hidden'} border-t border-gray-100 px-5 md:px-6">${questions}<label class="block py-5 border-t border-gray-100 text-sm font-semibold text-gray-700">Você gostaria de relatar um feedback sobre sua experiência?<textarea name="feedback_${ei}" rows="3" class="mt-2 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal resize-y focus:outline-none focus:ring-2 focus:ring-sky-500" placeholder="Feedback opcional"></textarea></label></div></section>`;}).join('');
-          document.querySelectorAll('.question-section-toggle').forEach(t=>t.addEventListener('click',()=>{const b=t.nextElementSibling,e=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!e));b.classList.toggle('hidden',e);t.querySelector('.question-chevron')?.classList.toggle('rotate-180',!e);}));
-          document.querySelectorAll('.question-radio').forEach(r=>r.addEventListener('change',updateQuestionnaireProgress)); lucide.createIcons();
+
+        const scaleLabels = ['Discordo totalmente','Discordo fortemente','Discordo parcialmente','Não concordo nem discordo','Concordo parcialmente','Concordo fortemente','Concordo totalmente'];
+        const samIcons = [
+          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAAyCAIAAACGf48vAAAIIElEQVR42u1YS0/bShSO5+V4HDtxHCchwXIRAlUFKtqKXatKVdU/0EV/YjddV12xLSsqUVqkSl0gSCBACHn5Eb/u4ujOtUKawNXdXAkvEI7tmW/O+c53vhlpPB7n/g8Xyv1PrgegD0AfgD4AfQD6APQB6APQB6D3ucicZ2ma5nK5fr/fbrd934+iCGM89VT6+xK3fxpNPII3s+8nSTIjhAhRSsvlcrFY5JyThUvpdrt7e3uj0SgMQ4xxmqZiJvgHIYQQEj8C7oXrz76ZJAn8KJYET1VVXV1dffLkyQKgURSFYXh0dPTp06der+f7PiEki0kAnTn93YFmUcKVJEmSJLqu7+zscM7r9fo8oHEcB0HQ7/dd17Vtu1KpVKtVjHEcx7Do7AQw8dSsghJz+CCGggXncjlKqSzLh4eHJycnnU6n1+ulaUr+tGhJkgBoEASKojx79mxjY6PZbFJKIVNpmsZxLPBlo7gQ3NQtvI8xhv8ZY4wxwzB2d3d93x+Px38Emh0FIQRcWVtbsyxLURRCyGQyCcMwjuOZdbBwzNt1gxCSZRkhFEURrN80zXK5fHV1BbfkLuPKsmwYhmEYxWKRECJJEiEkDEMYdP7nc9RA/AgDMsZgLuCDruucc4QQxIIsJBBwYDKZJEkihvZ9H9jjui6Ulwit4FwWR7bCBLkh15IkYYwVRanVapxzSinEQjAQuEvukqb070t83O129/f3Ly8vfd+HGGQjlCRJFEWiriGzgoKCwWIBk8mEELK+vu44TrVahfez30qStBjoVNZgppOTky9fvkwmE0qprusQBoASx3EYhmEYgsRgjDHGAFSECsYJwxCSfnp6OhqNOp0OQqhWq2XlWXxFFjJsSoNAtiRJsm17bW2t2Wyapnl5efnr169+v+95Xj6fN02z0WiUy2VN04ASGOPhcHh2dnZ+fn55eZnL5TRNazabjuM0Go1v3759/foVajQb72wmyX1rFlSJEGLb9osXLxqNBue8UqlcX1+7rjsYDBRFqVarjx8/rtfrnHPB19FoRCn1PK/dbmOMOeePHj1aX183DCNN06urK2h+WRkB6i8uppmpF4KiKEo+n6eUIoTCMPz9+/fR0dHZ2ZlhGBjjRqNRq9VEG4NBWq3Wz58/9/f3KaXD4XB5ebler5dKpTAMFUUJgmDKS2TzSe6ufFOdU5Avl8spimLbdpIkpmlCTjVNm6owjLFpmo7jTCYTjLFt2+VymRACXBJDzVS3xe5pZo8B9ghlzuVypVLp3bt3vu+HYYgQ4pyrqgoORnwly/L29vb6+vp4PAa9LBQKUCigEmK0e9i8KVWaQgy8yeYUY6zruqZp2U4z1fQJIYQQRVFKpVKWVNmiEc35tiEkd68h8X0cx3Ecg7yJFyilWZG/3fEhswghSPftHjFTZMSjxcYZRmeMwUySJOXzeVVVpzD5vn9+fn56euq6LmOsVCotLy8bhgHrSdPUdd1Wq3V1ddXr9WRZLpVKjUajUChomiYmkmUZOr5IgsjtPPeUTVySJHEcR1EkekyW+0mSeJ63t7f38ePHTqdjGMbGxsaHDx80TaOUgrW9uLj4/Pnz3t7e9+/fDcPY2dl5//79ysoKAJ1qfsKXAYXuakqiKOp2u91uV5ZlmLXT6URRJPIC1eB53ng8hrbkeV4Yhlm2+L7f7/cHg4HrupRS13VheyM8mu/7Z2dn7Xa7VCoxxjzP8zxPZH9eMYFdkCRpMBj8+PHDdd1arZbL5YIguLi4UBRFaArwwXGcly9f9vv9QqHgOI5pmvC5qLbNzU3GmOM4nPO1tbVqtZrP54Vl7vV6FxcXSZJUq1VN0w4ODlqtlizLkJMF7glYAllDCEFLDIIAMIHaA4k551tbW5VKZTweg+21LEuQjFJqWdarV6+2trYGgwHgtiyLUirMx/Hx8cHBwe7ubj6fZ4x1u90kSZ4+fZrP5xf0erAaq6urb968GQ6HYRhSSqMo8n1f0zRCSFak0jRVVdW27TAMGWOKogCIf4SQEF3XwdpCjIUzgkE4541Go1KpgDeP45hzvrm5ubKygjGeBxQSZ9v227dvBZ8mk8lkMrm+vlYURUg0zKeqqqqqc8wyFLUoZCFPsGAwMRsbG9DVJEninNu2vbS0tCCiCKE4jjVN297ezufz4JfjOIad1+np6dQ2V5QtlFEQBL7vc84xxkEQwMphPyReBubANsGyLNu2X79+jRAKggA8WqFQgApezFFd13VdFz8GQcAYsyyr0+lMuWBhlEDLbm5uWq2WqqqEENd1i8VitVqFKGaVSBxAcM6XlpYqlQrMe4+TktvKL0kSODHP82YaK4iQULF2u314eNjr9UzTfP78OdSi2CKL1INYwoYHjjmEmIi/9/ajMAfsP2ceHAA9GGNg23zfHwwGxWLR9/0gCGCdjDGxI7jtkWeG4B42T0gBNPrbZgcifXJyMhwOFUUBCmqaFsdxsVgcjUbHx8ee58Vx3Gw2xYZWfCuso1jAvYFOJVd4nCmqjcfj8/PzTqcDWwBKKXSBpaUlkMY0TT3PGw6HoB7VapVSCio2FdH7nebNSf3MvdRwOGy321EUybLMGOOcM8bK5TIEDA4sZFkOguDm5gZ27qJuhMf7z4CKOs0ek8BtEASqqjqOI44SQLeFf03TtF6vI4Q6nY7rulEUgTYD6WEl/+Z8dA5WaHpTZwqKoliWVSgUsocIt4UmTdNKpeJ5nmhd4hhizjHgvwEKrIdTDWACgDZNE3Y/Yo92+2QKdIdzzjkHSQeIsiwDj/80418d9Naunv9degAAAABJRU5ErkJggg==',
+          'data:image/png;base64,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',
+          'data:image/png;base64,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',
+          'data:image/png;base64,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',
+          'data:image/png;base64,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'
+        ];
+
+        const QUESTIONARIO_STORAGE_KEY = 'colexeem-questionario-v2';
+        const questionnaireTotalItems = questionarioData.reduce((n,e)=>n+e.items.length,0);
+
+        const questionarioModal = document.getElementById('questionario-modal');
+        const questionarioCard = document.getElementById('questionario-card');
+        const questionarioClose = document.getElementById('questionario-modal-close');
+        const questionarioBackdrop = document.getElementById('questionario-modal-backdrop');
+        const questionarioForm = document.getElementById('questionario-form');
+        const questionarioSections = document.getElementById('questionario-sections');
+        const questionarioResultados = document.getElementById('questionario-resultados');
+        const questionarioScroll = document.getElementById('questionario-scroll');
+        const saveStatus = document.getElementById('questionario-save-status');
+
+        let currentQuestionElement = 0;
+        let lastCalculatedResults = [];
+        let saveTimer = null;
+
+        function emptyQuestionnaireState() {
+          return {
+            version: 2,
+            participant: {},
+            answers: {},
+            feedbacks: {},
+            currentElement: 0,
+            updatedAt: null
+          };
         }
-        function updateQuestionnaireProgress(){const answered=new Set([...document.querySelectorAll('.question-radio:checked')].map(r=>r.name)).size,pct=Math.round(answered/questionnaireTotalItems*100);document.getElementById('questionario-progress-text').textContent=`${answered} de ${questionnaireTotalItems} sentenças respondidas`;document.getElementById('questionario-progress-percent').textContent=`${pct}%`;document.getElementById('questionario-progress-bar').style.width=`${pct}%`;}
-        function openQuestionnaire(){questionarioModal.classList.remove('hidden');questionarioModal.classList.add('flex');document.body.style.overflow='hidden';questionarioClose.focus();}
-        function closeQuestionnaire(){questionarioModal.classList.add('hidden');questionarioModal.classList.remove('flex');document.body.style.overflow='';questionarioCard.focus();}
-        questionarioCard.addEventListener('click',openQuestionnaire);questionarioCard.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openQuestionnaire();}});questionarioClose.addEventListener('click',closeQuestionnaire);questionarioBackdrop.addEventListener('click',closeQuestionnaire);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!questionarioModal.classList.contains('hidden'))closeQuestionnaire();});
-        function interpretResult(type,mean){if(type==='positive'){if(mean<=3)return{label:'Necessita melhoria',priority:true,tone:'rose',note:'Percepção predominantemente desfavorável neste elemento.'};if(mean<5)return{label:'Atenção',priority:true,tone:'amber',note:'Resultado intermediário; recomenda-se observar as sentenças com menor avaliação.'};return{label:'Satisfatório',priority:false,tone:'emerald',note:'Percepção predominantemente favorável neste elemento.'};}if(type==='negative'){if(mean>=5)return{label:'Alta presença',priority:true,tone:'rose',note:'A emoção ou característica negativa apareceu com intensidade elevada.'};if(mean>3)return{label:'Presença moderada',priority:true,tone:'amber',note:'Há sinais intermediários que merecem análise pelo avaliador.'};return{label:'Baixa presença',priority:false,tone:'emerald',note:'A emoção ou característica negativa apareceu com baixa intensidade.'};}if(mean<3)return{label:'Baixa manifestação',priority:false,tone:'sky',note:'Baixa manifestação nas sentenças deste elemento.'};if(mean<5)return{label:'Manifestação moderada',priority:false,tone:'sky',note:'Manifestação intermediária nas sentenças deste elemento.'};return{label:'Alta manifestação',priority:false,tone:'sky',note:'Alta manifestação nas sentenças deste elemento.'};}
-        function getQuestionnaireResults(){return questionarioData.map((element,ei)=>{const values=element.items.map((_,ii)=>Number(questionarioForm.querySelector(`input[name="q_${ei}_${ii}"]:checked`)?.value)),mean=values.reduce((a,b)=>a+b,0)/values.length;return{...element,mean,values,feedback:questionarioForm.elements[`feedback_${ei}`]?.value||'',interpretation:interpretResult(element.type,mean)};});}
-        function toneClasses(tone){return{rose:['bg-rose-50','border-rose-200','text-rose-800'],amber:['bg-amber-50','border-amber-200','text-amber-800'],emerald:['bg-emerald-50','border-emerald-200','text-emerald-800'],sky:['bg-sky-50','border-sky-200','text-sky-800']}[tone]||['bg-sky-50','border-sky-200','text-sky-800'];}
-        function renderResults(results){lastCalculatedResults=results;document.getElementById('resultado-grid').innerHTML=results.map(r=>{const[bg,border,txt]=toneClasses(r.interpretation.tone);return`<article class="bg-white border border-gray-200 rounded-2xl p-5"><div class="flex items-start justify-between gap-3 mb-4"><h4 class="heading-font font-bold text-lg text-emerald-950">${r.name}</h4><span class="text-xs font-bold px-2.5 py-1 rounded-full border ${bg} ${border} ${txt}">${r.interpretation.label}</span></div><div class="flex items-end gap-2 mb-3"><strong class="text-3xl text-emerald-950">${r.mean.toFixed(2)}</strong><span class="text-sm text-gray-400 pb-1">/ 7</span></div><div class="h-2 bg-gray-100 rounded-full overflow-hidden mb-3"><div class="h-full bg-emerald-600 rounded-full" style="width:${r.mean/7*100}%"></div></div><p class="text-sm text-gray-600 leading-relaxed">${r.interpretation.note}</p>${r.interpretation.priority?'<p class="text-xs font-bold text-amber-800 mt-3">Prioridade para consulta às diretrizes</p>':''}</article>`;}).join('');const ps=results.filter(r=>r.interpretation.priority),box=document.getElementById('resultado-prioridades');if(ps.length){box.classList.remove('hidden');box.innerHTML=`<h4 class="font-bold text-amber-950 mb-2">Elementos prioritários para análise</h4><p class="text-sm text-amber-900 leading-relaxed">${ps.map(r=>r.name).join(', ')}. Esses elementos devem ser considerados primeiro na consulta às diretrizes do CoLeXEeM.</p>`;}else box.classList.add('hidden');questionarioForm.classList.add('hidden');questionarioResultados.classList.remove('hidden');questionarioScroll.scrollTop=0;lucide.createIcons();}
-        questionarioForm.addEventListener('submit',event=>{event.preventDefault();if(!questionarioForm.checkValidity()){questionarioForm.reportValidity();const first=questionarioForm.querySelector('.question-radio:invalid');if(first){const sec=first.closest('.question-section-body');sec?.classList.remove('hidden');sec?.previousElementSibling?.setAttribute('aria-expanded','true');first.closest('div.py-5')?.scrollIntoView({behavior:'smooth',block:'center'});}return;}renderResults(getQuestionnaireResults());});
-        document.getElementById('questionario-voltar').addEventListener('click',()=>{questionarioResultados.classList.add('hidden');questionarioForm.classList.remove('hidden');questionarioScroll.scrollTop=0;});
-        document.getElementById('questionario-limpar').addEventListener('click',()=>{if(confirm('Deseja limpar todas as respostas do questionário?')){questionarioForm.reset();updateQuestionnaireProgress();}});
+
+        function loadQuestionnaireState() {
+          try {
+            const raw = localStorage.getItem(QUESTIONARIO_STORAGE_KEY);
+            if (!raw) return emptyQuestionnaireState();
+            const parsed = JSON.parse(raw);
+            return {
+              ...emptyQuestionnaireState(),
+              ...parsed,
+              participant: parsed.participant || {},
+              answers: parsed.answers || {},
+              feedbacks: parsed.feedbacks || {}
+            };
+          } catch (error) {
+            console.warn('Não foi possível recuperar as respostas salvas:', error);
+            return emptyQuestionnaireState();
+          }
+        }
+
+        let questionnaireState = loadQuestionnaireState();
+
+        function setSaveStatus(text, pending=false) {
+          if (!saveStatus) return;
+          saveStatus.innerHTML = `<span class="w-2 h-2 rounded-full ${pending ? 'bg-amber-400' : 'bg-emerald-500'}"></span> ${text}`;
+          saveStatus.classList.toggle('text-amber-700', pending);
+          saveStatus.classList.toggle('text-emerald-700', !pending);
+        }
+
+        function persistQuestionnaireState() {
+          questionnaireState.updatedAt = new Date().toISOString();
+          try {
+            localStorage.setItem(QUESTIONARIO_STORAGE_KEY, JSON.stringify(questionnaireState));
+            setSaveStatus('Salvo automaticamente');
+          } catch (error) {
+            console.warn('Não foi possível salvar as respostas:', error);
+            setSaveStatus('Não foi possível salvar', true);
+          }
+        }
+
+        function scheduleSave() {
+          setSaveStatus('Salvando...', true);
+          clearTimeout(saveTimer);
+          saveTimer = setTimeout(persistQuestionnaireState, 120);
+        }
+
+        function collectParticipantState() {
+          ['nome','idade','curso','genero','disciplina','atividade','integrantes'].forEach(name => {
+            const field = questionarioForm.elements[name];
+            if (field) questionnaireState.participant[name] = field.value;
+          });
+        }
+
+        function restoreParticipantState() {
+          Object.entries(questionnaireState.participant || {}).forEach(([name,value]) => {
+            const field = questionarioForm.elements[name];
+            if (field) field.value = value ?? '';
+          });
+        }
+
+        function renderLikertScale(qName) {
+          return `
+            <div class="overflow-x-auto pb-2">
+              <div class="grid grid-cols-7 gap-2 min-w-[650px]" role="radiogroup" aria-label="Escala Likert de 7 pontos">
+                ${scaleLabels.map((label,idx)=>`
+                  <div class="text-center">
+                    <span class="block text-[10px] leading-tight text-gray-500 min-h-[30px] mb-2">${label}</span>
+                    <button
+                      type="button"
+                      class="answer-option mx-auto w-10 h-10 rounded-lg border border-gray-300 bg-white flex items-center justify-center text-sm font-bold text-gray-600 hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"
+                      data-question="${qName}"
+                      data-value="${idx+1}"
+                      aria-pressed="false"
+                      aria-label="${label}">
+                      ${idx+1}
+                    </button>
+                  </div>
+                `).join('')}
+              </div>
+            </div>`;
+        }
+
+        function renderSamScale(qName) {
+          const iconForPosition = {1:0,3:1,5:2,7:3,9:4};
+          return `
+            <div class="overflow-x-auto pb-2">
+              <div class="grid grid-cols-9 gap-2 min-w-[620px] items-end" role="radiogroup" aria-label="Escala SAM de 9 pontos">
+                ${Array.from({length:9},(_,i)=>{
+                  const value=i+1;
+                  const iconIndex=iconForPosition[value];
+                  return `
+                    <div class="text-center">
+                      <span class="h-12 flex items-end justify-center mb-1">
+                        ${iconIndex !== undefined ? `<img src="${samIcons[iconIndex]}" alt="Representação visual SAM - ponto ${value}" class="h-11 w-auto object-contain" draggable="false">` : ''}
+                      </span>
+                      <button
+                        type="button"
+                        class="answer-option mx-auto w-10 h-10 rounded border border-gray-400 bg-white flex items-center justify-center text-sm font-bold text-gray-600 hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"
+                        data-question="${qName}"
+                        data-value="${value}"
+                        aria-pressed="false"
+                        aria-label="Ponto ${value} da escala SAM">
+                        ${value}
+                      </button>
+                    </div>`;
+                }).join('')}
+              </div>
+              <p class="text-xs text-gray-500 mt-2">Escala SAM de 9 pontos. Selecione um dos nove pontos; as figuras correspondem às âncoras visuais do instrumento.</p>
+            </div>`;
+        }
+
+        function renderQuestionnaire() {
+          // Todos os elementos são exibidos em uma única página.
+          questionarioSections.innerHTML = questionarioData.map((element,ei)=>{
+            const questions = element.items.map((item,ii)=>{
+              const q=`q_${ei}_${ii}`;
+              const scale = element.scale === 'sam9' ? renderSamScale(q) : renderLikertScale(q);
+              return `
+                <div class="question-item py-5 ${ii?'border-t border-gray-100':''}" 
+                     data-question-name="${q}"
+                     data-element-index="${ei}"
+                     data-item-index="${ii}">
+                  <p class="text-gray-800 leading-relaxed mb-4">
+                    <span class="font-bold text-emerald-800 mr-1">${ii+1}.</span>${item}
+                  </p>
+                  ${scale}
+                </div>`;
+            }).join('');
+
+            return `
+              <section class="question-element-page bg-white border border-gray-200 rounded-2xl overflow-hidden"
+                       data-question-index="${ei}">
+                <div class="p-5 md:p-6 border-b border-gray-100 bg-gray-50/70">
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div class="flex items-center gap-3">
+                      <span class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">
+                        ${String(ei+1).padStart(2,'0')}
+                      </span>
+                      <div>
+                        <h3 class="heading-font font-bold text-xl text-emerald-950">${element.name}</h3>
+                        <p class="text-xs text-gray-500">
+                          ${element.items.length} sentenças · ${element.scale==='sam9'?'Escala SAM (9 pontos)':'Escala Likert (7 pontos)'}
+                        </p>
+                      </div>
+                    </div>
+                    <span class="text-xs font-bold text-sky-700 bg-sky-50 border border-sky-100 px-3 py-1.5 rounded-full">
+                      Elemento ${ei+1} de ${questionarioData.length}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="px-5 md:px-6">
+                  ${questions}
+
+                  <label class="block py-5 border-t border-gray-100 text-sm font-semibold text-gray-700">
+                    Você gostaria de relatar um feedback sobre sua experiência?
+                    <textarea name="feedback_${ei}" rows="3"
+                      class="mt-2 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal resize-y focus:outline-none focus:ring-2 focus:ring-sky-500"
+                      placeholder="Feedback opcional"></textarea>
+                  </label>
+                </div>
+              </section>`;
+          }).join('');
+
+          restoreStateIntoDom();
+          lucide.createIcons();
+        }
+
+        function markAnswerButton(button) {
+          const question = button.dataset.question;
+          questionarioForm.querySelectorAll(`.answer-option[data-question="${question}"]`).forEach(option => {
+            option.classList.remove('bg-sky-700','text-white','border-sky-700');
+            option.classList.add('bg-white','text-gray-600');
+            option.setAttribute('aria-pressed','false');
+          });
+
+          button.classList.remove('bg-white','text-gray-600');
+          button.classList.add('bg-sky-700','text-white','border-sky-700');
+          button.setAttribute('aria-pressed','true');
+        }
+
+        function restoreStateIntoDom() {
+          restoreParticipantState();
+
+          questionarioForm.querySelectorAll('.answer-option').forEach(button => {
+            button.classList.remove('bg-sky-700','text-white','border-sky-700');
+            button.classList.add('bg-white','text-gray-600');
+            button.setAttribute('aria-pressed','false');
+          });
+
+          Object.entries(questionnaireState.answers || {}).forEach(([name,value]) => {
+            const button = questionarioForm.querySelector(`.answer-option[data-question="${name}"][data-value="${value}"]`);
+            if (button) markAnswerButton(button);
+          });
+
+          Object.entries(questionnaireState.feedbacks || {}).forEach(([name,value]) => {
+            const field = questionarioForm.elements[name];
+            if (field) field.value = value ?? '';
+          });
+
+          const restoredIndex = Number(questionnaireState.currentElement);
+          currentQuestionElement = Number.isInteger(restoredIndex) && restoredIndex >= 0 && restoredIndex < questionarioData.length ? restoredIndex : 0;
+          updateQuestionnaireProgress();
+        }
+
+        function showQuestionElement(index) {
+          // Mantido apenas para compatibilidade com o estado salvo.
+          // Nenhum elemento é ocultado: todos permanecem visíveis.
+          if (!Number.isInteger(index) || index < 0 || index >= questionarioData.length) return;
+          currentQuestionElement = index;
+          questionnaireState.currentElement = index;
+          scheduleSave();
+
+          const section = questionarioSections.querySelector(`[data-question-index="${index}"]`);
+          if (section) {
+            section.scrollIntoView({behavior:'smooth', block:'start'});
+          }
+        }
+
+        function updateQuestionnaireProgress() {
+          const answered = Object.keys(questionnaireState.answers || {}).length;
+          const pct = questionnaireTotalItems ? Math.round(answered/questionnaireTotalItems*100) : 0;
+          document.getElementById('questionario-progress-text').textContent = `${answered} de ${questionnaireTotalItems} sentenças respondidas`;
+          document.getElementById('questionario-progress-percent').textContent = `${pct}%`;
+          document.getElementById('questionario-progress-bar').style.width = `${pct}%`;
+        }
+
+        // Um único listener delegado: responder apenas atualiza o estado.
+        // Não há input oculto e o questionário não é reconstruído.
+        questionarioForm.addEventListener('click', event => {
+          const button = event.target.closest('.answer-option');
+          if (!button) return;
+
+          event.preventDefault();
+
+          // Preserva exatamente a posição atual da rolagem do modal.
+          const previousScrollTop = questionarioScroll.scrollTop;
+
+          const question = button.dataset.question;
+          const value = Number(button.dataset.value);
+
+          questionnaireState.answers[question] = value;
+          markAnswerButton(button);
+
+          const answeredItem = questionarioForm.querySelector(`[data-question-name="${question}"]`);
+          if (answeredItem) {
+            answeredItem.classList.remove('bg-rose-50','ring-2','ring-rose-300','rounded-xl','px-3');
+          }
+
+          updateQuestionnaireProgress();
+          scheduleSave();
+
+          if (document.getElementById('questionario-pendencias')) {
+            const remaining = getUnansweredQuestions();
+            if (remaining.length) showMissingQuestions(remaining);
+            else clearMissingHighlights();
+          }
+
+          // Garante que o clique jamais desloque a tela.
+          requestAnimationFrame(() => {
+            questionarioScroll.scrollTop = previousScrollTop;
+          });
+        });
+
+        questionarioForm.addEventListener('change', event => {
+          const target = event.target;
+          if (!target.matches('input[name], textarea[name]')) return;
+
+          if (target.name.startsWith('feedback_')) {
+            questionnaireState.feedbacks[target.name] = target.value;
+          } else {
+            collectParticipantState();
+          }
+          scheduleSave();
+        });
+
+        questionarioForm.addEventListener('input', event => {
+          const target = event.target;
+          if (!target.matches('input[name], textarea[name]')) return;
+
+          if (target.name.startsWith('feedback_')) {
+            questionnaireState.feedbacks[target.name] = target.value;
+          } else {
+            collectParticipantState();
+          }
+          scheduleSave();
+        });
+
+        function openQuestionnaire() {
+          questionarioModal.classList.remove('hidden');
+          questionarioModal.classList.add('flex');
+          document.body.style.overflow='hidden';
+          restoreStateIntoDom();
+          questionarioScroll.scrollTop = 0;
+          questionarioClose.focus();
+        }
+
+        function closeQuestionnaire() {
+          collectParticipantState();
+          persistQuestionnaireState();
+          questionarioModal.classList.add('hidden');
+          questionarioModal.classList.remove('flex');
+          document.body.style.overflow='';
+          questionarioCard.focus();
+        }
+
+        questionarioCard.addEventListener('click',openQuestionnaire);
+        questionarioCard.addEventListener('keydown',e=>{
+          if(e.key==='Enter'||e.key===' '){e.preventDefault();openQuestionnaire();}
+        });
+        questionarioClose.addEventListener('click',closeQuestionnaire);
+        questionarioBackdrop.addEventListener('click',closeQuestionnaire);
+        document.addEventListener('keydown',e=>{
+          if(e.key==='Escape'&&!questionarioModal.classList.contains('hidden')) closeQuestionnaire();
+        });
+
+        function interpretResult(element,mean) {
+          const sam = element.scale === 'sam9';
+          if(element.type==='positive') {
+            if(sam) {
+              if(mean<=3) return {label:'Necessita melhoria',priority:true,tone:'rose',note:'Resultado baixo na escala SAM para este elemento.'};
+              if(mean<=6) return {label:'Atenção',priority:true,tone:'amber',note:'Resultado intermediário na escala SAM; recomenda-se analisar as sentenças individualmente.'};
+              return {label:'Satisfatório',priority:false,tone:'emerald',note:'Resultado alto na escala SAM para este elemento.'};
+            }
+            if(mean<=3) return {label:'Necessita melhoria',priority:true,tone:'rose',note:'Percepção predominantemente desfavorável neste elemento.'};
+            if(mean<5) return {label:'Atenção',priority:true,tone:'amber',note:'Resultado intermediário; recomenda-se observar as sentenças com menor avaliação.'};
+            return {label:'Satisfatório',priority:false,tone:'emerald',note:'Percepção predominantemente favorável neste elemento.'};
+          }
+
+          if(element.type==='negative') {
+            if(sam) {
+              if(mean>=7) return {label:'Alta presença',priority:true,tone:'rose',note:'A emoção negativa apresentou intensidade elevada na escala SAM.'};
+              if(mean>=4) return {label:'Presença moderada',priority:true,tone:'amber',note:'A emoção negativa apresentou intensidade intermediária na escala SAM.'};
+              return {label:'Baixa presença',priority:false,tone:'emerald',note:'A emoção negativa apresentou baixa intensidade na escala SAM.'};
+            }
+            if(mean>=5) return {label:'Alta presença',priority:true,tone:'rose',note:'A característica negativa apareceu com intensidade elevada.'};
+            if(mean>3) return {label:'Presença moderada',priority:true,tone:'amber',note:'Há sinais intermediários que merecem análise pelo avaliador.'};
+            return {label:'Baixa presença',priority:false,tone:'emerald',note:'A característica negativa apareceu com baixa intensidade.'};
+          }
+
+          if(mean<3) return {label:'Baixa manifestação',priority:false,tone:'sky',note:'Baixa manifestação nas sentenças deste elemento.'};
+          if(mean<5) return {label:'Manifestação moderada',priority:false,tone:'sky',note:'Manifestação intermediária nas sentenças deste elemento.'};
+          return {label:'Alta manifestação',priority:false,tone:'sky',note:'Alta manifestação nas sentenças deste elemento.'};
+        }
+
+        function getUnansweredQuestions() {
+          const missing = [];
+          for (let ei = 0; ei < questionarioData.length; ei++) {
+            for (let ii = 0; ii < questionarioData[ei].items.length; ii++) {
+              const key = `q_${ei}_${ii}`;
+              if (questionnaireState.answers[key] === undefined) {
+                missing.push({
+                  ei,
+                  ii,
+                  key,
+                  element: questionarioData[ei].name,
+                  number: ii + 1,
+                  text: questionarioData[ei].items[ii]
+                });
+              }
+            }
+          }
+          return missing;
+        }
+
+        function clearMissingHighlights() {
+          questionarioForm.querySelectorAll('.question-item').forEach(item => {
+            item.classList.remove('bg-rose-50','ring-2','ring-rose-300','rounded-xl','px-3');
+          });
+          document.getElementById('questionario-pendencias')?.remove();
+        }
+
+        function showMissingQuestions(missing) {
+          clearMissingHighlights();
+          if (!missing.length) return;
+
+          const panel = document.createElement('div');
+          panel.id = 'questionario-pendencias';
+          panel.className = 'bg-rose-50 border border-rose-200 rounded-2xl p-5 mb-6';
+          panel.innerHTML = `
+            <div class="flex items-start gap-3">
+              <div class="w-10 h-10 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center shrink-0 font-bold">!</div>
+              <div class="min-w-0">
+                <h3 class="font-bold text-rose-950 mb-2">
+                  ${missing.length} ${missing.length === 1 ? 'sentença não respondida' : 'sentenças não respondidas'}
+                </h3>
+                <p class="text-sm text-rose-900 mb-3">
+                  Responda aos campos abaixo antes de gerar os resultados.
+                </p>
+                <div class="space-y-2 max-h-52 overflow-y-auto pr-2">
+                  ${missing.map((m,index)=>`
+                    <button type="button"
+                            class="missing-question-link w-full text-left text-sm bg-white border border-rose-200 rounded-lg px-3 py-2 hover:bg-rose-100 transition"
+                            data-question="${m.key}">
+                      <strong>${m.element} — questão ${m.number}</strong><br>
+                      <span class="text-gray-600">${m.text}</span>
+                    </button>
+                  `).join('')}
+                </div>
+              </div>
+            </div>`;
+
+          const firstElement = questionarioSections.querySelector('.question-element-page');
+          questionarioSections.insertBefore(panel, firstElement);
+
+          missing.forEach(m => {
+            const item = questionarioForm.querySelector(`[data-question-name="${m.key}"]`);
+            if (item) {
+              item.classList.add('bg-rose-50','ring-2','ring-rose-300','rounded-xl','px-3');
+            }
+          });
+
+          panel.querySelectorAll('.missing-question-link').forEach(button => {
+            button.addEventListener('click', () => {
+              const target = questionarioForm.querySelector(`[data-question-name="${button.dataset.question}"]`);
+              target?.scrollIntoView({behavior:'smooth', block:'center'});
+            });
+          });
+
+          const firstTarget = questionarioForm.querySelector(`[data-question-name="${missing[0].key}"]`);
+          setTimeout(() => {
+            firstTarget?.scrollIntoView({behavior:'smooth', block:'center'});
+          }, 100);
+        }
+
+        function getQuestionnaireResults() {
+          return questionarioData.map((element,ei)=>{
+            const values = element.items.map((_,ii)=>Number(questionnaireState.answers[`q_${ei}_${ii}`]));
+            const mean = values.reduce((a,b)=>a+b,0)/values.length;
+            return {
+              ...element,
+              max: element.scale==='sam9'?9:7,
+              mean,
+              values,
+              feedback: questionnaireState.feedbacks[`feedback_${ei}`] || '',
+              interpretation: interpretResult(element,mean)
+            };
+          });
+        }
+
+        function toneClasses(tone) {
+          return {
+            rose:['bg-rose-50','border-rose-200','text-rose-800'],
+            amber:['bg-amber-50','border-amber-200','text-amber-800'],
+            emerald:['bg-emerald-50','border-emerald-200','text-emerald-800'],
+            sky:['bg-sky-50','border-sky-200','text-sky-800']
+          }[tone]||['bg-sky-50','border-sky-200','text-sky-800'];
+        }
+
+        function renderResults(results) {
+          lastCalculatedResults=results;
+          document.getElementById('resultado-grid').innerHTML=results.map(r=>{
+            const[bg,border,txt]=toneClasses(r.interpretation.tone);
+            return `<article class="bg-white border border-gray-200 rounded-2xl p-5">
+              <div class="flex items-start justify-between gap-3 mb-4">
+                <div>
+                  <h4 class="heading-font font-bold text-lg text-emerald-950">${r.name}</h4>
+                  <span class="text-[11px] text-gray-400">${r.scale==='sam9'?'SAM · 9 pontos':'Likert · 7 pontos'}</span>
+                </div>
+                <span class="text-xs font-bold px-2.5 py-1 rounded-full border ${bg} ${border} ${txt}">${r.interpretation.label}</span>
+              </div>
+              <div class="flex items-end gap-2 mb-3">
+                <strong class="text-3xl text-emerald-950">${r.mean.toFixed(2)}</strong>
+                <span class="text-sm text-gray-400 pb-1">/ ${r.max}</span>
+              </div>
+              <div class="h-2 bg-gray-100 rounded-full overflow-hidden mb-3">
+                <div class="h-full bg-emerald-600 rounded-full" style="width:${r.mean/r.max*100}%"></div>
+              </div>
+              <p class="text-sm text-gray-600 leading-relaxed">${r.interpretation.note}</p>
+              ${r.interpretation.priority?'<p class="text-xs font-bold text-amber-800 mt-3">Prioridade para consulta às diretrizes</p>':''}
+            </article>`;
+          }).join('');
+
+          const priorities=results.filter(r=>r.interpretation.priority);
+          const box=document.getElementById('resultado-prioridades');
+          if(priorities.length) {
+            box.classList.remove('hidden');
+            box.innerHTML=`<h4 class="font-bold text-amber-950 mb-2">Elementos prioritários para análise</h4><p class="text-sm text-amber-900 leading-relaxed">${priorities.map(r=>r.name).join(', ')}. Esses elementos devem ser considerados primeiro na consulta às diretrizes do CoLeXEeM.</p>`;
+          } else {
+            box.classList.add('hidden');
+          }
+
+          questionarioForm.classList.add('hidden');
+          questionarioResultados.classList.remove('hidden');
+          questionarioScroll.scrollTop=0;
+          lucide.createIcons();
+        }
+
+        questionarioForm.addEventListener('submit',event=>{
+          event.preventDefault();
+          collectParticipantState();
+          persistQuestionnaireState();
+
+          const missing = getUnansweredQuestions();
+
+          if (missing.length) {
+            showMissingQuestions(missing);
+            return;
+          }
+
+          clearMissingHighlights();
+          renderResults(getQuestionnaireResults());
+        });
+
+        document.getElementById('questionario-voltar').addEventListener('click',()=>{
+          questionarioResultados.classList.add('hidden');
+          questionarioForm.classList.remove('hidden');
+          questionarioScroll.scrollTop = 0;
+        });
+
+        document.getElementById('questionario-limpar').addEventListener('click',()=>{
+          if(confirm('Deseja limpar todas as respostas salvas deste questionário?')) {
+            localStorage.removeItem(QUESTIONARIO_STORAGE_KEY);
+            questionnaireState = emptyQuestionnaireState();
+            currentQuestionElement = 0;
+            questionarioForm.reset();
+            clearMissingHighlights();
+            questionarioForm.querySelectorAll('.answer-option').forEach(button => {
+              button.classList.remove('bg-sky-700','text-white','border-sky-700');
+              button.classList.add('bg-white','text-gray-600');
+              button.setAttribute('aria-pressed','false');
+            });
+            questionarioResultados.classList.add('hidden');
+            questionarioForm.classList.remove('hidden');
+            questionarioScroll.scrollTop = 0;
+            updateQuestionnaireProgress();
+            setSaveStatus('Respostas removidas');
+          }
+        });
+
         document.getElementById('questionario-imprimir').addEventListener('click',()=>window.print());
-        document.getElementById('questionario-csv').addEventListener('click',()=>{if(!lastCalculatedResults.length)return;const participant=new FormData(questionarioForm),rows=[['Elemento','Média','Interpretação','Prioridade','Feedback']];lastCalculatedResults.forEach(r=>rows.push([r.name,r.mean.toFixed(2),r.interpretation.label,r.interpretation.priority?'Sim':'Não',r.feedback]));rows.push([]);rows.push(['Nome',participant.get('nome')||'']);rows.push(['Curso',participant.get('curso')||'']);rows.push(['Disciplina',participant.get('disciplina')||'']);rows.push(['Atividade',participant.get('atividade')||'']);const csv=rows.map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(';')).join('\n'),blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='resultado_colexeem.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);});
-        renderQuestionnaire();updateQuestionnaireProgress();
+
+        document.getElementById('questionario-csv').addEventListener('click',()=>{
+          if(!lastCalculatedResults.length)return;
+          const rows=[['Elemento','Escala','Média','Máximo','Interpretação','Prioridade','Feedback']];
+          lastCalculatedResults.forEach(r=>rows.push([
+            r.name,
+            r.scale==='sam9'?'SAM 9 pontos':'Likert 7 pontos',
+            r.mean.toFixed(2),
+            r.max,
+            r.interpretation.label,
+            r.interpretation.priority?'Sim':'Não',
+            r.feedback
+          ]));
+          rows.push([]);
+          Object.entries(questionnaireState.participant).forEach(([k,v])=>rows.push([k,v||'']));
+          const csv=rows.map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(';')).join('\n');
+          const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
+          const url=URL.createObjectURL(blob);
+          const a=document.createElement('a');
+          a.href=url;
+          a.download='resultado_colexeem.csv';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        });
+
+        document.getElementById('questionario-json')?.addEventListener('click',()=>{
+          collectParticipantState();
+          persistQuestionnaireState();
+          const exportData = {
+            instrumento: 'CoLeXEeM - Formulário de Avaliação da LX',
+            version: 2,
+            participant: questionnaireState.participant,
+            answers: questionnaireState.answers,
+            feedbacks: questionnaireState.feedbacks,
+            currentElement: questionnaireState.currentElement,
+            updatedAt: questionnaireState.updatedAt,
+            results: lastCalculatedResults.map(r=>({
+              elemento:r.name,
+              escala:r.scale,
+              media:Number(r.mean.toFixed(2)),
+              maximo:r.max,
+              interpretacao:r.interpretation.label
+            }))
+          };
+          const blob=new Blob([JSON.stringify(exportData,null,2)],{type:'application/json;charset=utf-8;'});
+          const url=URL.createObjectURL(blob);
+          const a=document.createElement('a');
+          a.href=url;
+          a.download='respostas_colexeem.json';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        });
+
+        renderQuestionnaire();
+        updateQuestionnaireProgress();
+
 
         const menuBtn = document.getElementById('menu-btn');
         const nav = document.getElementById('main-nav');
