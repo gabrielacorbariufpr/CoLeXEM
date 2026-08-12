@@ -77,7 +77,8 @@
     </style>
   <script src="/_sdk/0e8d3a91e1c6f495.data_sdk.js" type="text/javascript" integrity="sha512-c00oDoGjsMgluCLLEyVl3suwEkgjOGGplVFbsilUoBg4aMKNmsL3mwsc9r0dPn95qiSZyjBousQXgROkAW7p/w=="></script>
   <script src="/_sdk/0861142411a705b3.resizing_sdk.js" type="text/javascript" integrity="sha512-X0bLjaYj1Xt+fgqHIQTnngXBdDu6ba0g9OkC2AJGmKo8tGdT7I9t7nHNyXupUMHk4uOTomIlcija41NaartwJQ=="></script>
- </head>
+   <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+</head>
  <body data-template-id="__page-root" class="w-full min-h-screen" style="background: rgb(248, 250, 249);">
   <!-- Barra de acessibilidade -->
   <div id="accessibility-bar" class="accessibility-bar fixed top-0 left-0 w-full z-[60]">
@@ -471,7 +472,11 @@
         <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">As respostas são salvas automaticamente neste navegador. Elas não são enviadas a um servidor.</div><div class="flex gap-2 shrink-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="chart-no-axes-column-increasing" style="width:18px;height:18px;"></i> Avaliar resultados</button></div></div>
       </form>
       <section id="questionario-resultados" class="hidden max-w-6xl mx-auto p-5 md:p-8 space-y-6">
-        <div class="bg-white border border-gray-200 rounded-2xl p-6"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resultados da avaliação</span><h3 class="heading-font text-2xl font-bold text-emerald-950 mt-1">Painel por elemento</h3><p class="text-gray-600 mt-2 max-w-3xl">O painel calcula a média das sentenças de cada elemento respeitando a escala utilizada no instrumento: Likert de 7 pontos ou SAM de 9 pontos. Os resultados são interpretados conforme o tipo de elemento.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button><button type="button" id="questionario-csv" class="px-4 py-2.5 rounded-xl border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-50 transition inline-flex items-center gap-2"><i data-lucide="file-down" style="width:18px;height:18px;"></i> Baixar CSV</button><button type="button" id="questionario-json" class="px-4 py-2.5 rounded-xl border border-sky-200 text-sky-800 font-semibold hover:bg-sky-50 transition inline-flex items-center gap-2"><i data-lucide="braces" style="width:18px;height:18px;"></i> Baixar JSON</button><button type="button" id="questionario-imprimir" class="px-4 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center gap-2"><i data-lucide="printer" style="width:18px;height:18px;"></i> Imprimir relatório</button></div></div></div>
+        <div class="bg-white border border-gray-200 rounded-2xl p-6"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resultados da avaliação</span><h3 class="heading-font text-2xl font-bold text-emerald-950 mt-1">Painel por elemento</h3><p class="text-gray-600 mt-2 max-w-3xl">O painel calcula a média das sentenças de cada elemento respeitando a escala utilizada no instrumento: Likert de 7 pontos ou SAM de 9 pontos. Os resultados são interpretados conforme o tipo de elemento.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button>
+<button type="button" id="questionario-csv" class="px-4 py-2.5 rounded-xl border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-50 transition inline-flex items-center gap-2"><i data-lucide="file-down" style="width:18px;height:18px;"></i> Baixar CSV</button>
+<button type="button" id="questionario-json" class="px-4 py-2.5 rounded-xl border border-sky-200 text-sky-800 font-semibold hover:bg-sky-50 transition inline-flex items-center gap-2"><i data-lucide="braces" style="width:18px;height:18px;"></i> Baixar JSON</button>
+<button type="button" id="questionario-pdf" class="px-4 py-2.5 rounded-xl border border-rose-200 text-rose-800 font-semibold hover:bg-rose-50 transition inline-flex items-center gap-2"><i data-lucide="file-text" style="width:18px;height:18px;"></i> Baixar PDF</button>
+<button type="button" id="questionario-imprimir" class="px-4 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center gap-2"><i data-lucide="printer" style="width:18px;height:18px;"></i> Imprimir relatório</button></div></div></div>
         <div id="resultado-prioridades" class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-5"></div>
         <div id="resultado-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
         <div class="bg-emerald-950 text-emerald-50 rounded-2xl p-6"><h4 class="font-bold text-lg mb-2">Próxima etapa do CoLeXEeM</h4><p class="text-sm leading-relaxed text-emerald-100">Os elementos que exigem atenção são destacados automaticamente. O vínculo entre cada resultado e as diretrizes específicas do método será feito a partir da matriz de diretrizes do CoLeXEeM, evitando associar recomendações que ainda não estejam definidas formalmente.</p></div>
@@ -1411,7 +1416,7 @@
           }
         });
 
-        document.getElementById('questionario-imprimir').addEventListener('click',()=>window.print());
+        
 
         document.getElementById('questionario-csv').addEventListener('click',()=>{
           if(!lastCalculatedResults.length)return;
@@ -1439,34 +1444,292 @@
           URL.revokeObjectURL(url);
         });
 
-        document.getElementById('questionario-json')?.addEventListener('click',()=>{
+        function buildJsonExport() {
           collectParticipantState();
           persistQuestionnaireState();
-          const exportData = {
+
+          const consolidacao = lastCalculatedResults.map(r => ({
+            elemento: r.name,
+            escala: r.scale === 'sam9' ? 'SAM - 9 pontos' : 'Likert - 7 pontos',
+            media: Number(r.mean.toFixed(2)),
+            maximo: r.max,
+            interpretacao: r.interpretation.label,
+            prioridade: r.interpretation.priority ? 'Sim' : 'Não'
+          }));
+
+          const todasRespostas = questionarioData.map((element, ei) => ({
+            elemento: element.name,
+            escala: element.scale === 'sam9' ? 'SAM - 9 pontos' : 'Likert - 7 pontos',
+            respostas: element.items.map((text, ii) => ({
+              questao: ii + 1,
+              sentenca: text,
+              resposta: questionnaireState.answers[`q_${ei}_${ii}`] ?? null
+            })),
+            feedback: questionnaireState.feedbacks[`feedback_${ei}`] || ''
+          }));
+
+          return {
             instrumento: 'CoLeXEeM - Formulário de Avaliação da LX',
-            version: 2,
-            participant: questionnaireState.participant,
-            answers: questionnaireState.answers,
-            feedbacks: questionnaireState.feedbacks,
-            currentElement: questionnaireState.currentElement,
-            updatedAt: questionnaireState.updatedAt,
-            results: lastCalculatedResults.map(r=>({
-              elemento:r.name,
-              escala:r.scale,
-              media:Number(r.mean.toFixed(2)),
-              maximo:r.max,
-              interpretacao:r.interpretation.label
-            }))
+            versao: 3,
+            ultima_atualizacao: questionnaireState.updatedAt,
+            participante: questionnaireState.participant,
+            todas_as_respostas: todasRespostas,
+            consolidacao_da_avaliacao: consolidacao
           };
-          const blob=new Blob([JSON.stringify(exportData,null,2)],{type:'application/json;charset=utf-8;'});
-          const url=URL.createObjectURL(blob);
-          const a=document.createElement('a');
-          a.href=url;
-          a.download='respostas_colexeem.json';
+        }
+
+        document.getElementById('questionario-json')?.addEventListener('click',()=>{
+          const exportData = buildJsonExport();
+          const blob = new Blob([JSON.stringify(exportData, null, 2)], {type:'application/json;charset=utf-8;'});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'avaliacao_colexeem.json';
           document.body.appendChild(a);
           a.click();
           a.remove();
           URL.revokeObjectURL(url);
+        });
+
+
+        const relatorioModal = document.getElementById('relatorio-modal');
+        const relatorioClose = document.getElementById('relatorio-modal-close');
+        const relatorioBackdrop = document.getElementById('relatorio-modal-backdrop');
+        const relatorioCancelar = document.getElementById('relatorio-cancelar');
+        const relatorioConfirmar = document.getElementById('relatorio-confirmar');
+        let relatorioAcao = null;
+
+        function openRelatorioModal(acao) {
+          relatorioAcao = acao;
+          relatorioModal.classList.remove('hidden');
+          relatorioModal.classList.add('flex');
+          relatorioClose.focus();
+        }
+
+        function closeRelatorioModal() {
+          relatorioModal.classList.add('hidden');
+          relatorioModal.classList.remove('flex');
+          relatorioAcao = null;
+        }
+
+        relatorioClose?.addEventListener('click', closeRelatorioModal);
+        relatorioBackdrop?.addEventListener('click', closeRelatorioModal);
+        relatorioCancelar?.addEventListener('click', closeRelatorioModal);
+
+        document.getElementById('questionario-imprimir')?.addEventListener('click', () => openRelatorioModal('imprimir'));
+        document.getElementById('questionario-pdf')?.addEventListener('click', () => openRelatorioModal('pdf'));
+
+        function getSelectedReportType() {
+          return document.querySelector('input[name="relatorio-tipo"]:checked')?.value || 'consolidacao';
+        }
+
+        function buildConsolidatedHtml() {
+          const participant = questionnaireState.participant || {};
+          const rows = lastCalculatedResults.map(r => `
+            <tr>
+              <td>${r.name}</td>
+              <td>${r.scale === 'sam9' ? 'SAM - 9 pontos' : 'Likert - 7 pontos'}</td>
+              <td>${r.mean.toFixed(2)} / ${r.max}</td>
+              <td>${r.interpretation.label}</td>
+              <td>${r.interpretation.priority ? 'Sim' : 'Não'}</td>
+            </tr>`).join('');
+
+          return `
+            <h1>CoLeXEeM - Relatório de Avaliação da LX</h1>
+            <p><strong>Tipo:</strong> Consolidação da avaliação</p>
+            <p><strong>Participante:</strong> ${participant.nome || 'Não informado'} ·
+               <strong>Curso:</strong> ${participant.curso || 'Não informado'} ·
+               <strong>Disciplina:</strong> ${participant.disciplina || 'Não informado'} ·
+               <strong>Atividade:</strong> ${participant.atividade || 'Não informada'}</p>
+            <h2>Consolidação por elemento</h2>
+            <table>
+              <thead><tr><th>Elemento</th><th>Escala</th><th>Resultado</th><th>Interpretação</th><th>Prioridade</th></tr></thead>
+              <tbody>${rows}</tbody>
+            </table>`;
+        }
+
+        function buildCompleteHtml() {
+          const participant = questionnaireState.participant || {};
+          const details = questionarioData.map((element, ei) => {
+            const result = lastCalculatedResults[ei];
+            const questions = element.items.map((text, ii) => `
+              <tr>
+                <td>${ii + 1}</td>
+                <td>${text}</td>
+                <td>${questionnaireState.answers[`q_${ei}_${ii}`] ?? '-'}</td>
+              </tr>`).join('');
+
+            return `
+              <h2>${element.name}</h2>
+              <p><strong>Escala:</strong> ${element.scale === 'sam9' ? 'SAM - 9 pontos' : 'Likert - 7 pontos'} ·
+                 <strong>Média:</strong> ${result.mean.toFixed(2)} / ${result.max} ·
+                 <strong>Interpretação:</strong> ${result.interpretation.label}</p>
+              <table>
+                <thead><tr><th>Questão</th><th>Sentença</th><th>Resposta</th></tr></thead>
+                <tbody>${questions}</tbody>
+              </table>
+              <p><strong>Feedback:</strong> ${questionnaireState.feedbacks[`feedback_${ei}`] || 'Não informado'}</p>`;
+          }).join('');
+
+          return `
+            <h1>CoLeXEeM - Relatório de Avaliação da LX</h1>
+            <p><strong>Tipo:</strong> Todas as respostas</p>
+            <h2>Caracterização do participante</h2>
+            <p>
+              <strong>Nome:</strong> ${participant.nome || 'Não informado'}<br>
+              <strong>Idade:</strong> ${participant.idade || 'Não informada'}<br>
+              <strong>Curso:</strong> ${participant.curso || 'Não informado'}<br>
+              <strong>Gênero:</strong> ${participant.genero || 'Não informado'}<br>
+              <strong>Disciplina:</strong> ${participant.disciplina || 'Não informada'}<br>
+              <strong>Atividade:</strong> ${participant.atividade || 'Não informada'}<br>
+              <strong>Integrantes:</strong> ${participant.integrantes || 'Não informados'}
+            </p>
+            ${details}`;
+        }
+
+        function getReportHtml(tipo) {
+          return tipo === 'completo' ? buildCompleteHtml() : buildConsolidatedHtml();
+        }
+
+        function printReport(tipo) {
+          const content = getReportHtml(tipo);
+          const w = window.open('', '_blank');
+          if (!w) {
+            alert('O navegador bloqueou a janela de impressão. Permita pop-ups para este site.');
+            return;
+          }
+
+          w.document.write(`
+            <!doctype html>
+            <html lang="pt-BR">
+            <head>
+              <meta charset="UTF-8">
+              <title>Relatório CoLeXEeM</title>
+              <style>
+                body{font-family:Arial,sans-serif;color:#1f2937;margin:32px;line-height:1.45}
+                h1{color:#064e3b;font-size:24px;margin-bottom:8px}
+                h2{color:#065f46;font-size:18px;margin-top:28px}
+                table{width:100%;border-collapse:collapse;margin:12px 0 20px}
+                th,td{border:1px solid #d1d5db;padding:8px;text-align:left;vertical-align:top;font-size:12px}
+                th{background:#ecfdf5}
+                p{font-size:13px}
+                @media print{body{margin:14mm} h2{break-after:avoid} table{break-inside:auto} tr{break-inside:avoid}}
+              </style>
+            </head>
+            <body>${content}</body>
+            </html>`);
+          w.document.close();
+          w.focus();
+          setTimeout(() => w.print(), 300);
+        }
+
+        function cleanText(text) {
+          return String(text ?? '')
+            .replace(/[–—]/g, '-')
+            .replace(/[“”]/g, '"')
+            .replace(/[‘’]/g, "'");
+        }
+
+        function addWrappedText(doc, text, x, y, maxWidth, lineHeight=5) {
+          const lines = doc.splitTextToSize(cleanText(text), maxWidth);
+          const pageHeight = doc.internal.pageSize.getHeight();
+          lines.forEach(line => {
+            if (y > pageHeight - 16) {
+              doc.addPage();
+              y = 18;
+            }
+            doc.text(line, x, y);
+            y += lineHeight;
+          });
+          return y;
+        }
+
+        function downloadPdfReport(tipo) {
+          if (!window.jspdf || !window.jspdf.jsPDF) {
+            alert('Não foi possível carregar o gerador de PDF. Verifique sua conexão com a internet.');
+            return;
+          }
+
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF({unit:'mm', format:'a4'});
+          const pageWidth = doc.internal.pageSize.getWidth();
+          const margin = 15;
+          const width = pageWidth - margin * 2;
+          let y = 18;
+
+          doc.setFont('helvetica','bold');
+          doc.setFontSize(16);
+          doc.text('CoLeXEeM - Relatorio de Avaliacao da LX', margin, y);
+          y += 9;
+
+          doc.setFont('helvetica','normal');
+          doc.setFontSize(10);
+          y = addWrappedText(doc,
+            tipo === 'completo' ? 'Tipo: Todas as respostas' : 'Tipo: Consolidacao da avaliacao',
+            margin, y, width, 5
+          );
+          y += 3;
+
+          const participant = questionnaireState.participant || {};
+          if (tipo === 'completo') {
+            const participantText =
+              `Participante: ${participant.nome || 'Nao informado'} | Idade: ${participant.idade || 'Nao informada'} | ` +
+              `Curso: ${participant.curso || 'Nao informado'} | Genero: ${participant.genero || 'Nao informado'} | ` +
+              `Disciplina: ${participant.disciplina || 'Nao informada'} | Atividade: ${participant.atividade || 'Nao informada'} | ` +
+              `Integrantes: ${participant.integrantes || 'Nao informados'}`;
+            y = addWrappedText(doc, participantText, margin, y, width, 5);
+            y += 5;
+          }
+
+          lastCalculatedResults.forEach((r, ei) => {
+            if (y > 265) {
+              doc.addPage();
+              y = 18;
+            }
+
+            doc.setFont('helvetica','bold');
+            doc.setFontSize(12);
+            doc.text(cleanText(r.name), margin, y);
+            y += 6;
+
+            doc.setFont('helvetica','normal');
+            doc.setFontSize(9);
+            y = addWrappedText(doc,
+              `Escala: ${r.scale === 'sam9' ? 'SAM - 9 pontos' : 'Likert - 7 pontos'} | ` +
+              `Media: ${r.mean.toFixed(2)} / ${r.max} | Interpretacao: ${r.interpretation.label} | ` +
+              `Prioridade: ${r.interpretation.priority ? 'Sim' : 'Nao'}`,
+              margin, y, width, 4.5
+            );
+
+            if (tipo === 'completo') {
+              y += 2;
+              questionarioData[ei].items.forEach((text, ii) => {
+                const answer = questionnaireState.answers[`q_${ei}_${ii}`] ?? '-';
+                y = addWrappedText(doc, `${ii+1}. ${text} [Resposta: ${answer}]`, margin+2, y, width-2, 4.3);
+                y += 1;
+              });
+
+              const feedback = questionnaireState.feedbacks[`feedback_${ei}`] || 'Nao informado';
+              y = addWrappedText(doc, `Feedback: ${feedback}`, margin+2, y+1, width-2, 4.3);
+            }
+
+            y += 6;
+          });
+
+          const filename = tipo === 'completo'
+            ? 'colexeem_relatorio_todas_respostas.pdf'
+            : 'colexeem_relatorio_consolidacao.pdf';
+
+          doc.save(filename);
+        }
+
+        relatorioConfirmar?.addEventListener('click', () => {
+          const tipo = getSelectedReportType();
+          const acao = relatorioAcao;
+          closeRelatorioModal();
+
+          if (acao === 'imprimir') printReport(tipo);
+          if (acao === 'pdf') downloadPdfReport(tipo);
         });
 
         renderQuestionnaire();
