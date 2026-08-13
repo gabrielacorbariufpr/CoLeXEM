@@ -171,3 +171,58 @@ navigation.querySelectorAll("a").forEach((link) => {
     menuButton.setAttribute("aria-expanded", "false");
   });
 });
+
+<script>
+const resultadoCalculoInfo =
+  document.getElementById('resultado-calculo-info');
+
+const resultadoCalculoModal =
+  document.getElementById('resultado-calculo-modal');
+
+const resultadoCalculoClose =
+  document.getElementById('resultado-calculo-close');
+
+const resultadoCalculoBackdrop =
+  document.getElementById('resultado-calculo-backdrop');
+
+
+function openResultadoCalculo() {
+  resultadoCalculoModal.classList.remove('hidden');
+  resultadoCalculoModal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+
+  lucide.createIcons();
+}
+
+
+function closeResultadoCalculo() {
+  resultadoCalculoModal.classList.add('hidden');
+  resultadoCalculoModal.classList.remove('flex');
+  document.body.style.overflow = '';
+}
+
+
+resultadoCalculoInfo?.addEventListener(
+  'click',
+  openResultadoCalculo
+);
+
+resultadoCalculoClose?.addEventListener(
+  'click',
+  closeResultadoCalculo
+);
+
+resultadoCalculoBackdrop?.addEventListener(
+  'click',
+  closeResultadoCalculo
+);
+
+document.addEventListener('keydown', event => {
+  if (
+    event.key === 'Escape' &&
+    !resultadoCalculoModal.classList.contains('hidden')
+  ) {
+    closeResultadoCalculo();
+  }
+});
+</script>
