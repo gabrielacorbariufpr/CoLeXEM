@@ -1,5 +1,3 @@
-<script>
-
 const elementData = {
 
   "Abertura": {
@@ -95,6 +93,10 @@ const elementData = {
 };
 
 
+// ======================================================
+// MODAL DOS ELEMENTOS
+// ======================================================
+
 const modal = document.getElementById("element-modal");
 const modalTitle = document.getElementById("element-modal-title");
 const modalDescription = document.getElementById("element-modal-description");
@@ -102,7 +104,6 @@ const modalAuthor = document.getElementById("element-modal-author");
 
 const closeModal = document.getElementById("element-modal-close");
 const modalBackdrop = document.getElementById("element-modal-backdrop");
-
 
 document.querySelectorAll(".element-tag").forEach(button => {
 
@@ -122,7 +123,7 @@ document.querySelectorAll(".element-tag").forEach(button => {
 
     document.body.style.overflow = "hidden";
 
-    closeModal.focus();
+    closeModal?.focus();
 
   });
 
@@ -130,6 +131,8 @@ document.querySelectorAll(".element-tag").forEach(button => {
 
 
 function hideElementModal() {
+
+  if (!modal) return;
 
   modal.classList.add("hidden");
   modal.classList.remove("flex");
@@ -139,90 +142,143 @@ function hideElementModal() {
 }
 
 
-closeModal.addEventListener("click", hideElementModal);
+closeModal?.addEventListener("click", hideElementModal);
 
-modalBackdrop.addEventListener("click", hideElementModal);
+modalBackdrop?.addEventListener("click", hideElementModal);
 
 
 document.addEventListener("keydown", event => {
 
-  if (event.key === "Escape" && !modal.classList.contains("hidden")) {
+  if (
+    event.key === "Escape" &&
+    modal &&
+    !modal.classList.contains("hidden")
+  ) {
     hideElementModal();
   }
 
 });
 
 
-lucide.createIcons();
-
-</script>
+// ======================================================
+// MENU
+// ======================================================
 
 const menuButton = document.querySelector(".menu-toggle");
 const navigation = document.querySelector(".navigation");
 
-menuButton.addEventListener("click", () => {
-  const isOpen = navigation.classList.toggle("open");
-  menuButton.setAttribute("aria-expanded", String(isOpen));
-});
+if (menuButton && navigation) {
 
-navigation.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    navigation.classList.remove("open");
-    menuButton.setAttribute("aria-expanded", "false");
+  menuButton.addEventListener("click", () => {
+
+    const isOpen = navigation.classList.toggle("open");
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      String(isOpen)
+    );
+
   });
-});
 
-<script>
+
+  navigation.querySelectorAll("a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+      navigation.classList.remove("open");
+
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+    });
+
+  });
+
+}
+
+
+// ======================================================
+// MODAL — COMO OS RESULTADOS SÃO CALCULADOS
+// ======================================================
+
 const resultadoCalculoInfo =
-  document.getElementById('resultado-calculo-info');
+  document.getElementById("resultado-calculo-info");
 
 const resultadoCalculoModal =
-  document.getElementById('resultado-calculo-modal');
+  document.getElementById("resultado-calculo-modal");
 
 const resultadoCalculoClose =
-  document.getElementById('resultado-calculo-close');
+  document.getElementById("resultado-calculo-close");
 
 const resultadoCalculoBackdrop =
-  document.getElementById('resultado-calculo-backdrop');
+  document.getElementById("resultado-calculo-backdrop");
 
 
 function openResultadoCalculo() {
-  resultadoCalculoModal.classList.remove('hidden');
-  resultadoCalculoModal.classList.add('flex');
-  document.body.style.overflow = 'hidden';
 
-  lucide.createIcons();
+  if (!resultadoCalculoModal) return;
+
+  resultadoCalculoModal.classList.remove("hidden");
+  resultadoCalculoModal.classList.add("flex");
+
+  document.body.style.overflow = "hidden";
+
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+  }
+
 }
 
 
 function closeResultadoCalculo() {
-  resultadoCalculoModal.classList.add('hidden');
-  resultadoCalculoModal.classList.remove('flex');
-  document.body.style.overflow = '';
+
+  if (!resultadoCalculoModal) return;
+
+  resultadoCalculoModal.classList.add("hidden");
+  resultadoCalculoModal.classList.remove("flex");
+
+  document.body.style.overflow = "";
+
 }
 
 
 resultadoCalculoInfo?.addEventListener(
-  'click',
+  "click",
   openResultadoCalculo
 );
 
 resultadoCalculoClose?.addEventListener(
-  'click',
+  "click",
   closeResultadoCalculo
 );
 
 resultadoCalculoBackdrop?.addEventListener(
-  'click',
+  "click",
   closeResultadoCalculo
 );
 
-document.addEventListener('keydown', event => {
+
+document.addEventListener("keydown", event => {
+
   if (
-    event.key === 'Escape' &&
-    !resultadoCalculoModal.classList.contains('hidden')
+    event.key === "Escape" &&
+    resultadoCalculoModal &&
+    !resultadoCalculoModal.classList.contains("hidden")
   ) {
+
     closeResultadoCalculo();
+
   }
+
 });
-</script>
+
+
+// ======================================================
+// ÍCONES
+// ======================================================
+
+if (typeof lucide !== "undefined") {
+  lucide.createIcons();
+}
