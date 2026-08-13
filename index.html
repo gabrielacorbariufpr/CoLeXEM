@@ -482,7 +482,195 @@
       </form>
       <section id="questionario-resultados" class="hidden max-w-6xl mx-auto p-5 md:p-8 space-y-6">
         <div class="bg-white border border-gray-200 rounded-2xl p-6"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resultados da avaliação</span><div class="flex items-center gap-2 mt-1">
+<!-- Informações sobre o cálculo dos resultados -->
+<div id="resultado-calculo-modal"
+     class="fixed inset-0 z-[150] hidden items-center justify-center p-4"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="resultado-calculo-title">
 
+  <div id="resultado-calculo-backdrop"
+       class="absolute inset-0 bg-black/50 backdrop-blur-sm">
+  </div>
+
+  <div class="relative bg-white rounded-2xl shadow-2xl
+              w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 md:p-8">
+
+    <button id="resultado-calculo-close"
+            type="button"
+            class="absolute top-4 right-4 w-9 h-9 rounded-full
+                   flex items-center justify-center text-gray-500
+                   hover:bg-gray-100"
+            aria-label="Fechar">
+
+      <i data-lucide="x"
+         style="width:20px;height:20px;"></i>
+
+    </button>
+
+    <div class="w-11 h-11 rounded-full bg-sky-100
+                flex items-center justify-center mb-5">
+
+      <i data-lucide="calculator"
+         style="width:22px;height:22px;color:#0369a1;"></i>
+
+    </div>
+
+    <span class="text-xs font-bold uppercase tracking-wider text-sky-700">
+      Interpretação dos resultados
+    </span>
+
+    <h3 id="resultado-calculo-title"
+        class="heading-font text-2xl font-bold text-emerald-950 mt-2 mb-3">
+      Como o resultado é calculado?
+    </h3>
+
+    <p class="text-gray-600 leading-relaxed mb-6">
+      O resultado de cada elemento é calculado separadamente.
+      O sistema soma as respostas atribuídas às sentenças pertencentes
+      ao elemento e divide o valor pela quantidade de sentenças respondidas,
+      obtendo a média aritmética.
+    </p>
+
+    <!-- Fórmula -->
+    <div class="rounded-xl bg-gray-50 border border-gray-200 p-5 mb-7 text-center">
+
+      <span class="text-sm font-semibold text-gray-500 block mb-2">
+        Cálculo
+      </span>
+
+      <div class="text-lg md:text-xl font-bold text-emerald-950">
+        Média do elemento =
+        Soma das respostas ÷ Número de sentenças do elemento
+      </div>
+
+    </div>
+
+
+    <!-- Likert -->
+    <div class="mb-7">
+
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-8 h-8 rounded-full bg-sky-100
+                     flex items-center justify-center font-bold text-sky-800">
+          7
+        </span>
+
+        <h4 class="font-bold text-emerald-950">
+          Escala Likert de 7 pontos
+        </h4>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-3">
+
+        <div class="rounded-xl border border-rose-200 bg-rose-50 p-4">
+          <strong class="text-rose-800 block">
+            Necessita melhoria
+          </strong>
+          <span class="text-sm text-rose-700">
+            1,00 a 3,00
+          </span>
+        </div>
+
+        <div class="rounded-xl border border-amber-200 bg-amber-50 p-4">
+          <strong class="text-amber-800 block">
+            Atenção
+          </strong>
+          <span class="text-sm text-amber-700">
+            acima de 3,00 e abaixo de 5,00
+          </span>
+        </div>
+
+        <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+          <strong class="text-emerald-800 block">
+            Satisfatório
+          </strong>
+          <span class="text-sm text-emerald-700">
+            5,00 a 7,00
+          </span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- SAM -->
+    <div class="mb-7">
+
+      <div class="flex items-center gap-2 mb-3">
+        <span class="w-8 h-8 rounded-full bg-purple-100
+                     flex items-center justify-center font-bold text-purple-800">
+          9
+        </span>
+
+        <h4 class="font-bold text-emerald-950">
+          Escala SAM de 9 pontos
+        </h4>
+      </div>
+
+      <div class="grid sm:grid-cols-3 gap-3">
+
+        <div class="rounded-xl border border-rose-200 bg-rose-50 p-4">
+          <strong class="text-rose-800 block">
+            Necessita melhoria
+          </strong>
+          <span class="text-sm text-rose-700">
+            1,00 a 3,00
+          </span>
+        </div>
+
+        <div class="rounded-xl border border-amber-200 bg-amber-50 p-4">
+          <strong class="text-amber-800 block">
+            Atenção
+          </strong>
+          <span class="text-sm text-amber-700">
+            acima de 3,00 a 6,00
+          </span>
+        </div>
+
+        <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+          <strong class="text-emerald-800 block">
+            Satisfatório
+          </strong>
+          <span class="text-sm text-emerald-700">
+            acima de 6,00 a 9,00
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Elementos negativos -->
+    <div class="rounded-xl border border-amber-200 bg-amber-50 p-5">
+
+      <div class="flex gap-3 items-start">
+
+        <i data-lucide="triangle-alert"
+           class="shrink-0 mt-0.5"
+           style="width:20px;height:20px;color:#92400e;"></i>
+
+        <div>
+          <h4 class="font-bold text-amber-950 mb-1">
+            Elementos com sentido negativo
+          </h4>
+
+          <p class="text-sm leading-relaxed text-amber-900">
+            Para elementos que representam aspectos negativos da experiência,
+            a interpretação é inversa. Quanto maior a média, maior a presença
+            do aspecto negativo e, consequentemente, maior a necessidade de
+            melhoria.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+          
   <h3 class="heading-font text-2xl font-bold text-emerald-950">
     Painel por elemento
   </h3>
