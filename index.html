@@ -481,7 +481,26 @@
         <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">As respostas são salvas automaticamente neste navegador. Elas não são enviadas a um servidor.</div><div class="flex gap-2 shrink-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="chart-no-axes-column-increasing" style="width:18px;height:18px;"></i> Avaliar resultados</button></div></div>
       </form>
       <section id="questionario-resultados" class="hidden max-w-6xl mx-auto p-5 md:p-8 space-y-6">
-        <div class="bg-white border border-gray-200 rounded-2xl p-6"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resultados da avaliação</span><h3 class="heading-font text-2xl font-bold text-emerald-950 mt-1">Painel por elemento</h3><p class="text-gray-600 mt-2 max-w-3xl">O painel calcula a média das sentenças de cada elemento respeitando a escala utilizada no instrumento: Likert de 7 pontos ou SAM de 9 pontos. Os resultados são interpretados conforme o tipo de elemento.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button>
+        <div class="bg-white border border-gray-200 rounded-2xl p-6"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resultados da avaliação</span><div class="flex items-center gap-2 mt-1">
+
+  <h3 class="heading-font text-2xl font-bold text-emerald-950">
+    Painel por elemento
+  </h3>
+
+  <button
+    type="button"
+    id="resultado-calculo-info"
+    class="w-8 h-8 rounded-full flex items-center justify-center
+           text-sky-700 hover:bg-sky-50 transition"
+    aria-label="Como os resultados são calculados?"
+    title="Como os resultados são calculados?">
+
+    <i data-lucide="info"
+       style="width:19px;height:19px;"></i>
+
+  </button>
+
+</div><p class="text-gray-600 mt-2 max-w-3xl">O painel calcula a média das sentenças de cada elemento respeitando a escala utilizada no instrumento: Likert de 7 pontos ou SAM de 9 pontos. Os resultados são interpretados conforme o tipo de elemento.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button>
 <button type="button" id="questionario-csv" class="px-4 py-2.5 rounded-xl border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-50 transition inline-flex items-center gap-2"><i data-lucide="file-down" style="width:18px;height:18px;"></i> Baixar CSV</button>
 <button type="button" id="questionario-json" class="px-4 py-2.5 rounded-xl border border-sky-200 text-sky-800 font-semibold hover:bg-sky-50 transition inline-flex items-center gap-2"><i data-lucide="braces" style="width:18px;height:18px;"></i> Baixar JSON</button>
 <button type="button" id="questionario-pdf" class="px-4 py-2.5 rounded-xl border border-rose-200 text-rose-800 font-semibold hover:bg-rose-50 transition inline-flex items-center gap-2"><i data-lucide="file-text" style="width:18px;height:18px;"></i> Baixar PDF</button></div></div></div>
@@ -1552,34 +1571,191 @@
           if(e.key==='Escape'&&!questionarioModal.classList.contains('hidden')) closeQuestionnaire();
         });
 
-        function interpretResult(element,mean) {
-          const sam = element.scale === 'sam9';
-          if(element.type==='positive') {
-            if(sam) {
-              if(mean<=3) return {label:'Necessita melhoria',priority:true,tone:'rose',note:'Resultado baixo na escala SAM para este elemento.'};
-              if(mean<=6) return {label:'Atenção',priority:true,tone:'amber',note:'Resultado intermediário na escala SAM; recomenda-se analisar as sentenças individualmente.'};
-              return {label:'Satisfatório',priority:false,tone:'emerald',note:'Resultado alto na escala SAM para este elemento.'};
-            }
-            if(mean<=3) return {label:'Necessita melhoria',priority:true,tone:'rose',note:'Percepção predominantemente desfavorável neste elemento.'};
-            if(mean<5) return {label:'Atenção',priority:true,tone:'amber',note:'Resultado intermediário; recomenda-se observar as sentenças com menor avaliação.'};
-            return {label:'Satisfatório',priority:false,tone:'emerald',note:'Percepção predominantemente favorável neste elemento.'};
-          }
+        <script>
+function interpretResult(element, mean) {
+  const sam = element.scale === 'sam9';
 
-          if(element.type==='negative') {
-            if(sam) {
-              if(mean>=7) return {label:'Alta presença',priority:true,tone:'rose',note:'A emoção negativa apresentou intensidade elevada na escala SAM.'};
-              if(mean>=4) return {label:'Presença moderada',priority:true,tone:'amber',note:'A emoção negativa apresentou intensidade intermediária na escala SAM.'};
-              return {label:'Baixa presença',priority:false,tone:'emerald',note:'A emoção negativa apresentou baixa intensidade na escala SAM.'};
-            }
-            if(mean>=5) return {label:'Alta presença',priority:true,tone:'rose',note:'A característica negativa apareceu com intensidade elevada.'};
-            if(mean>3) return {label:'Presença moderada',priority:true,tone:'amber',note:'Há sinais intermediários que merecem análise pelo avaliador.'};
-            return {label:'Baixa presença',priority:false,tone:'emerald',note:'A característica negativa apareceu com baixa intensidade.'};
-          }
+  /*
+   * ELEMENTOS POSITIVOS
+   * Quanto maior a média, melhor o resultado.
+   */
+  if (element.type === 'positive') {
 
-          if(mean<3) return {label:'Baixa manifestação',priority:false,tone:'sky',note:'Baixa manifestação nas sentenças deste elemento.'};
-          if(mean<5) return {label:'Manifestação moderada',priority:false,tone:'sky',note:'Manifestação intermediária nas sentenças deste elemento.'};
-          return {label:'Alta manifestação',priority:false,tone:'sky',note:'Alta manifestação nas sentenças deste elemento.'};
-        }
+    // SAM - 9 pontos
+    if (sam) {
+      if (mean <= 3) {
+        return {
+          label: 'Necessita melhoria',
+          priority: true,
+          tone: 'rose',
+          note: 'O resultado indica uma percepção desfavorável neste elemento.'
+        };
+      }
+
+      if (mean <= 6) {
+        return {
+          label: 'Atenção',
+          priority: true,
+          tone: 'amber',
+          note: 'O resultado indica uma percepção intermediária neste elemento.'
+        };
+      }
+
+      return {
+        label: 'Satisfatório',
+        priority: false,
+        tone: 'emerald',
+        note: 'O resultado indica uma percepção favorável neste elemento.'
+      };
+    }
+
+    // Likert - 7 pontos
+    if (mean <= 3) {
+      return {
+        label: 'Necessita melhoria',
+        priority: true,
+        tone: 'rose',
+        note: 'O resultado indica uma percepção desfavorável neste elemento.'
+      };
+    }
+
+    if (mean < 5) {
+      return {
+        label: 'Atenção',
+        priority: true,
+        tone: 'amber',
+        note: 'O resultado indica uma percepção intermediária neste elemento.'
+      };
+    }
+
+    return {
+      label: 'Satisfatório',
+      priority: false,
+      tone: 'emerald',
+      note: 'O resultado indica uma percepção favorável neste elemento.'
+    };
+  }
+
+
+  /*
+   * ELEMENTOS NEGATIVOS
+   * Quanto menor a média, melhor o resultado.
+   */
+  if (element.type === 'negative') {
+
+    // SAM - 9 pontos
+    if (sam) {
+      if (mean >= 7) {
+        return {
+          label: 'Necessita melhoria',
+          priority: true,
+          tone: 'rose',
+          note: 'O resultado indica elevada manifestação de um aspecto negativo.'
+        };
+      }
+
+      if (mean >= 4) {
+        return {
+          label: 'Atenção',
+          priority: true,
+          tone: 'amber',
+          note: 'O resultado indica manifestação intermediária de um aspecto negativo.'
+        };
+      }
+
+      return {
+        label: 'Satisfatório',
+        priority: false,
+        tone: 'emerald',
+        note: 'O resultado indica baixa manifestação de um aspecto negativo.'
+      };
+    }
+
+    // Likert - 7 pontos
+    if (mean >= 5) {
+      return {
+        label: 'Necessita melhoria',
+        priority: true,
+        tone: 'rose',
+        note: 'O resultado indica elevada manifestação de um aspecto negativo.'
+      };
+    }
+
+    if (mean > 3) {
+      return {
+        label: 'Atenção',
+        priority: true,
+        tone: 'amber',
+        note: 'O resultado indica manifestação intermediária de um aspecto negativo.'
+      };
+    }
+
+    return {
+      label: 'Satisfatório',
+      priority: false,
+      tone: 'emerald',
+      note: 'O resultado indica baixa manifestação de um aspecto negativo.'
+    };
+  }
+
+
+  /*
+   * DEMAIS ELEMENTOS
+   * Mantém a mesma padronização visual.
+   */
+  if (sam) {
+    if (mean <= 3) {
+      return {
+        label: 'Necessita melhoria',
+        priority: true,
+        tone: 'rose',
+        note: 'O resultado encontra-se na faixa inferior da escala.'
+      };
+    }
+
+    if (mean <= 6) {
+      return {
+        label: 'Atenção',
+        priority: true,
+        tone: 'amber',
+        note: 'O resultado encontra-se na faixa intermediária da escala.'
+      };
+    }
+
+    return {
+      label: 'Satisfatório',
+      priority: false,
+      tone: 'emerald',
+      note: 'O resultado encontra-se na faixa superior da escala.'
+    };
+  }
+
+  if (mean <= 3) {
+    return {
+      label: 'Necessita melhoria',
+      priority: true,
+      tone: 'rose',
+      note: 'O resultado encontra-se na faixa inferior da escala.'
+    };
+  }
+
+  if (mean < 5) {
+    return {
+      label: 'Atenção',
+      priority: true,
+      tone: 'amber',
+      note: 'O resultado encontra-se na faixa intermediária da escala.'
+    };
+  }
+
+  return {
+    label: 'Satisfatório',
+    priority: false,
+    tone: 'emerald',
+    note: 'O resultado encontra-se na faixa superior da escala.'
+  };
+}
+</script>
 
         function getUnansweredQuestions() {
           const missing = [];
