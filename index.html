@@ -249,7 +249,12 @@
        <p class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-2">Analise e melhore</p><p data-template-id="comp-card-3-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Apoiam a interpretação dos resultados e orientam ações para promover melhorias na LX em atividades colaborativas futuras.</p><div class="mt-5 pt-4 border-t border-amber-100 text-amber-800 font-bold text-sm inline-flex items-center gap-2">Consultar diretrizes <i data-lucide="arrow-right" style="width:16px;height:16px"></i></div>
       </article>
      </div><!-- Elements tags -->
-     <div data-template-id="elements-box" class="canva-card rounded-2xl p-8 text-center" style="background: rgb(248, 250, 249);"><span data-template-id="elements-label" class="canva-text text-xs font-bold uppercase tracking-wider block mb-2" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Elementos avaliados</span>
+     <div data-template-id="elements-box" class="canva-card rounded-2xl p-8 text-center" style="background: rgb(248, 250, 249);"><div class="flex items-center justify-center gap-2 mb-2">
+  <span data-template-id="elements-label" class="canva-text text-xs font-bold uppercase tracking-wider" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Elementos avaliados</span>
+  <button id="elements-references-btn" type="button" aria-label="Consultar referências dos elementos avaliados" aria-haspopup="dialog" aria-controls="elements-references-modal" title="Referências dos elementos" class="w-7 h-7 rounded-full inline-flex items-center justify-center border border-emerald-300 bg-white text-emerald-800 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2">
+    <span aria-hidden="true" class="font-serif font-bold text-sm">i</span>
+  </button>
+</div>
       <p data-template-id="elements-desc" class="canva-text text-sm mb-5" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">O Formulário de Avaliação da LX considera elementos da LX que impactam o trabalho colaborativo.</p>
 <div class="flex flex-wrap justify-center gap-3">
   <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
@@ -273,9 +278,9 @@
     Amabilidade
   </button>
   <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
-    data-element="Antecipação"
+    data-element="Interesse"
     style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-size: 16px;">
-    Antecipação
+    Interesse
   </button>
   <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
     data-element="Comunicação"
@@ -283,9 +288,9 @@
     Comunicação
   </button>
   <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
-    data-element="Confiar"
+    data-element="Confiança"
     style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-size: 16px;">
-    Confiar
+    Confiança
   </button>
   <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
     data-element="Confortabilidade"
@@ -293,9 +298,9 @@
     Confortabilidade
   </button>
   <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
-    data-element="Conscienciosidade"
+    data-element="Consciência"
     style="background: rgb(243, 232, 255); color: rgb(88, 28, 135); font-size: 16px;">
-    Conscienciosidade
+    Consciência
   </button>
   <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
     data-element="Coordenação"
@@ -328,9 +333,9 @@
     Raiva
   </button>
   <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
-    data-element="Temer"
+    data-element="Medo"
     style="background: rgb(255, 251, 235); color: rgb(146, 64, 14); font-size: 16px;">
-    Temer
+    Medo
   </button>
   <button type="button" class="element-tag canva-tag px-4 py-2 rounded-full text-sm font-medium cursor-pointer transition-transform hover:scale-105"
     data-element="Usabilidade"
@@ -342,6 +347,27 @@
     style="background: rgb(236, 253, 245); color: rgb(6, 95, 70); font-size: 16px;">
     Valor
   </button>
+</div>
+<!-- Modal de referências dos elementos -->
+<div id="elements-references-modal" class="fixed inset-0 z-[101] hidden items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="elements-references-title">
+  <div id="elements-references-backdrop" class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-2xl p-7 md:p-8 max-h-[85vh] overflow-y-auto">
+    <button id="elements-references-close" type="button" aria-label="Fechar referências" class="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 transition">
+      <span aria-hidden="true" class="text-xl leading-none">×</span>
+    </button>
+    <div class="w-11 h-11 rounded-full bg-emerald-100 flex items-center justify-center mb-5"><span aria-hidden="true" class="font-serif font-bold text-emerald-800">i</span></div>
+    <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Fundamentação teórica</span>
+    <h3 id="elements-references-title" class="heading-font text-2xl font-bold text-emerald-950 mt-2 mb-3">Referências dos elementos avaliados</h3>
+    <p class="text-sm text-gray-600 mb-5">Os elementos utilizados no Formulário de Avaliação da LX são fundamentados nas seguintes referências:</p>
+    <ul class="space-y-3 text-sm text-gray-700">
+      <li class="rounded-xl border border-gray-200 p-4"><strong>McCrae e Costa (1999)</strong> — Abertura, Amabilidade, Consciência, Extroversão e Neuroticismo.</li>
+      <li class="rounded-xl border border-gray-200 p-4"><strong>Huang et al. (2019)</strong> — Adaptabilidade, Confortabilidade, Desejabilidade, Usabilidade e Valor.</li>
+      <li class="rounded-xl border border-gray-200 p-4"><strong>Plutchik (1980)</strong> — Alegria, Confiança, Interesse, Medo e Raiva.</li>
+      <li class="rounded-xl border border-gray-200 p-4"><strong>Pimentel et al. (2006)</strong> — Comunicação, Coordenação e Cooperação.</li>
+      <li class="rounded-xl border border-gray-200 p-4"><strong>Fredricks et al. (2004)</strong> — fundamentação complementar da Desejabilidade por meio do engajamento.</li>
+      <li class="rounded-xl border border-gray-200 p-4"><strong>Nielsen (1994)</strong> — fundamentação complementar da Usabilidade.</li>
+    </ul>
+  </div>
 </div>
 <!-- Modal de informações dos elementos -->
 <div id="element-modal"
@@ -1234,6 +1260,30 @@
 
 
         // Informações dos elementos avaliados
+        const elementsReferencesModal = document.getElementById('elements-references-modal');
+        const elementsReferencesBtn = document.getElementById('elements-references-btn');
+        const elementsReferencesClose = document.getElementById('elements-references-close');
+        const elementsReferencesBackdrop = document.getElementById('elements-references-backdrop');
+
+        function openElementsReferences(){
+            elementsReferencesModal.classList.remove('hidden');
+            elementsReferencesModal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+            elementsReferencesClose.focus();
+        }
+        function closeElementsReferences(){
+            elementsReferencesModal.classList.add('hidden');
+            elementsReferencesModal.classList.remove('flex');
+            document.body.style.overflow = '';
+            elementsReferencesBtn.focus();
+        }
+        elementsReferencesBtn?.addEventListener('click', openElementsReferences);
+        elementsReferencesClose?.addEventListener('click', closeElementsReferences);
+        elementsReferencesBackdrop?.addEventListener('click', closeElementsReferences);
+        document.addEventListener('keydown', event => {
+            if(event.key === 'Escape' && elementsReferencesModal && !elementsReferencesModal.classList.contains('hidden')) closeElementsReferences();
+        });
+
         const elementData = {
             "Abertura": {
                 description: "Refere-se à tendência do indivíduo em ser curioso, imaginativo, criativo e receptivo a novas ideias, experiências e perspectivas. No contexto da LX, manifesta-se pelo interesse em explorar TDIC, experimentar diferentes estratégias de aprendizagem e buscar soluções criativas.",
@@ -1251,24 +1301,24 @@
                 description: "Refere-se à predisposição para agir de forma cooperativa, empática, altruísta e respeitosa nas relações interpessoais.",
                 author: "McCrae e Costa (1999)"
             },
-            "Antecipação": {
-                description: "É um estado emocional orientado para o futuro, relacionado à atenção ao que está por vir e às expectativas sobre resultados futuros.",
+            "Interesse": {
+                description: "É um estado voltado para o futuro, relacionado à atenção intensificada ao que está por vir. Em contextos de LX, manifesta-se como interesse em conteúdos futuros, expectativa quanto a resultados, atenção vigilante e esperança em relação às conquistas de aprendizagem.",
                 author: "Plutchik (1980)"
             },
             "Comunicação": {
                 description: "Refere-se à troca de mensagens, argumentação e negociação entre aprendizes em uma atividade conjunta.",
                 author: "Pimentel et al. (2006)"
             },
-            "Confiar": {
-                description: "Refere-se ao sentimento de segurança e confiança em pessoas, instituições ou situações. Na LX, pode envolver confiança nos pares, na TDIC, no professor e no processo de aprendizagem.",
+            "Confiança": {
+                description: "Refere-se ao sentimento de segurança e confiança em pessoas, instituições ou situações. Em contextos de LX, manifesta-se como confiança nos pares, na TDIC, no professor e no processo de aprendizagem.",
                 author: "Plutchik (1980)"
             },
             "Confortabilidade": {
                 description: "Refere-se ao bem-estar físico e emocional do aprendiz durante a utilização da TDIC.",
                 author: "Huang et al. (2019)"
             },
-            "Conscienciosidade": {
-                description: "Refere-se à tendência à organização, responsabilidade, autodisciplina e persistência na realização de objetivos.",
+            "Consciência": {
+                description: "Representa a tendência à organização, responsabilidade, autodisciplina e persistência na realização de objetivos. No contexto da LX, manifesta-se pelo planejamento das atividades, gerenciamento do tempo, dedicação, persistência e comprometimento com os objetivos educacionais.",
                 author: "McCrae e Costa (1999)"
             },
             "Coordenação": {
@@ -1295,8 +1345,8 @@
                 description: "É uma resposta emocional associada a obstáculos, injustiças ou violações de limites. Na LX, pode aparecer como frustração ou irritação durante a atividade.",
                 author: "Plutchik (1980)"
             },
-            "Temer": {
-                description: "É uma resposta emocional a ameaças reais ou percebidas. Na LX, pode manifestar-se como apreensão, medo de julgamento ou ansiedade diante de novas TDIC e avaliações.",
+            "Medo": {
+                description: "É uma resposta a ameaças reais ou percebidas. Em contextos de LX, manifesta-se frequentemente como ansiedade em relação ao desempenho, medo de julgamento, apreensão diante de novas TDIC e ansiedade em avaliações.",
                 author: "Plutchik (1980)"
             },
             "Usabilidade": {
