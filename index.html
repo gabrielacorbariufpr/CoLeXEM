@@ -526,10 +526,7 @@
     </h3>
 
     <p class="text-gray-600 leading-relaxed mb-6">
-      O resultado de cada elemento é calculado separadamente.
-      O sistema soma as respostas atribuídas às sentenças pertencentes
-      ao elemento e divide o valor pela quantidade de sentenças respondidas,
-      obtendo a média aritmética.
+      Cada sentença é apresentada individualmente no gráfico geral, de acordo com a resposta atribuída na escala Likert de 7 pontos. A lista de problemas considera o sentido do elemento para identificar respostas desfavoráveis.
     </p>
 
     <!-- Fórmula -->
@@ -540,8 +537,7 @@
       </span>
 
       <div class="text-lg md:text-xl font-bold text-emerald-950">
-        Média do elemento =
-        Soma das respostas ÷ Número de sentenças do elemento
+        Resposta da sentença = valor selecionado na escala Likert (1 a 7)
       </div>
 
     </div>
@@ -593,55 +589,6 @@
       </div>
     </div>
 
-
-    <!-- SAM -->
-    <div class="mb-7">
-
-      <div class="flex items-center gap-2 mb-3">
-        <span class="w-8 h-8 rounded-full bg-purple-100
-                     flex items-center justify-center font-bold text-purple-800">
-          9
-        </span>
-
-        <h4 class="font-bold text-emerald-950">
-          Escala SAM de 9 pontos
-        </h4>
-      </div>
-
-      <div class="grid sm:grid-cols-3 gap-3">
-
-        <div class="rounded-xl border border-rose-200 bg-rose-50 p-4">
-          <strong class="text-rose-800 block">
-            Necessita melhoria
-          </strong>
-          <span class="text-sm text-rose-700">
-            1,00 a 3,00
-          </span>
-        </div>
-
-        <div class="rounded-xl border border-amber-200 bg-amber-50 p-4">
-          <strong class="text-amber-800 block">
-            Atenção
-          </strong>
-          <span class="text-sm text-amber-700">
-            acima de 3,00 a 6,00
-          </span>
-        </div>
-
-        <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-          <strong class="text-emerald-800 block">
-            Satisfatório
-          </strong>
-          <span class="text-sm text-emerald-700">
-            acima de 6,00 a 9,00
-          </span>
-        </div>
-
-      </div>
-
-    </div>
-
-
     <!-- Elementos negativos -->
     <div class="rounded-xl border border-amber-200 bg-amber-50 p-5">
 
@@ -672,7 +619,7 @@
 </div>
           
   <h3 class="heading-font text-2xl font-bold text-emerald-950">
-    Painel por elemento
+    Gráfico geral das respostas
   </h3>
 
   <button
@@ -688,13 +635,36 @@
 
   </button>
 
-</div><p class="text-gray-600 mt-2 max-w-3xl">O painel calcula a média das sentenças de cada elemento respeitando a escala utilizada no instrumento: Likert de 7 pontos ou SAM de 9 pontos. Os resultados são interpretados conforme o tipo de elemento.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button>
+</div><p class="text-gray-600 mt-2 max-w-3xl">O gráfico apresenta cada sentença do questionário e a resposta atribuída na escala Likert de 7 pontos. Ao lado, a lista de problemas destaca as sentenças com respostas desfavoráveis que merecem atenção na análise.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button>
 <button type="button" id="questionario-csv" class="px-4 py-2.5 rounded-xl border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-50 transition inline-flex items-center gap-2"><i data-lucide="file-down" style="width:18px;height:18px;"></i> Baixar CSV</button>
 <button type="button" id="questionario-json" class="px-4 py-2.5 rounded-xl border border-sky-200 text-sky-800 font-semibold hover:bg-sky-50 transition inline-flex items-center gap-2"><i data-lucide="braces" style="width:18px;height:18px;"></i> Baixar JSON</button>
 <button type="button" id="questionario-pdf" class="px-4 py-2.5 rounded-xl border border-rose-200 text-rose-800 font-semibold hover:bg-rose-50 transition inline-flex items-center gap-2"><i data-lucide="file-text" style="width:18px;height:18px;"></i> Baixar PDF</button></div></div></div>
-        <div id="resultado-prioridades" class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-5"></div>
-        <div id="resultado-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-        <div class="bg-emerald-950 text-emerald-50 rounded-2xl p-6"><h4 class="font-bold text-lg mb-2">Próxima etapa do CoLeXEeM</h4><p class="text-sm leading-relaxed text-emerald-100">Os elementos que exigem atenção são destacados automaticamente. O vínculo entre cada resultado e as diretrizes específicas do método será feito a partir da matriz de diretrizes do CoLeXEeM, evitando associar recomendações que ainda não estejam definidas formalmente.</p></div>
+        <div class="grid lg:grid-cols-[minmax(0,1.7fr)_minmax(300px,0.8fr)] gap-6 items-start">
+          <div class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
+              <div>
+                <h4 class="heading-font font-bold text-lg text-emerald-950">Respostas por sentença</h4>
+                <p class="text-sm text-gray-500 mt-1">Cada barra representa a resposta selecionada, de 1 a 7.</p>
+              </div>
+              <span class="text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5">Likert · 7 pontos</span>
+            </div>
+            <div id="resultado-grafico-sentencas" class="space-y-5"></div>
+          </div>
+
+          <aside class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 lg:sticky lg:top-24">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center">
+                <i data-lucide="triangle-alert" style="width:20px;height:20px;"></i>
+              </span>
+              <div>
+                <h4 class="heading-font font-bold text-lg text-emerald-950">Problemas identificados</h4>
+                <p class="text-xs text-gray-500">Sentenças com respostas desfavoráveis.</p>
+              </div>
+            </div>
+            <div id="resultado-problemas" class="space-y-3"></div>
+          </aside>
+        </div>
+        <div class="bg-emerald-950 text-emerald-50 rounded-2xl p-6"><h4 class="font-bold text-lg mb-2">Próxima etapa do CoLeXEeM</h4><p class="text-sm leading-relaxed text-emerald-100">Utilize os problemas identificados nas sentenças como apoio para consultar as diretrizes do CoLeXEeM e planejar melhorias na atividade colaborativa.</p></div>
       </section>
     </div>
   </div>
@@ -1386,23 +1356,23 @@
 
 
 
-        // Questionário interativo: Likert de 7 pontos + SAM de 9 pontos
+        // Questionário interativo: escala Likert de 7 pontos
         const questionarioData = [
           {name:'Abertura', type:'trait', scale:'likert7', items:['Senti-me motivado(a) a explorar novas ideias para resolver as tarefas durante a atividade colaborativa utilizando as TDIC.','Senti-me à vontade para propor soluções diferentes das inicialmente previstas durante a atividade colaborativa utilizando as TDIC.']},
           {name:'Adaptabilidade', type:'positive', scale:'likert7', items:['As TDIC utilizadas adaptaram-se às minhas necessidades durante a atividade colaborativa.','As TDIC permitiram que eu participasse da atividade colaborativa de acordo com meu próprio ritmo de aprendizagem.','As TDIC atenderam às minhas preferências para realizar as atividades colaborativas.','As TDIC ofereceram flexibilidade para que eu contribuísse com meu grupo da maneira mais adequada para mim.','As TDIC adaptaram-se ao contexto em que realizei a atividade colaborativa.']},
-          {name:'Alegria', type:'positive', scale:'sam9', items:['Senti alegria ao participar das atividades do grupo durante a atividade colaborativa utilizando as TDIC.','Senti satisfação ao colaborar com meus colegas utilizando as TDIC.','Utilizar as TDIC tornou a atividade colaborativa agradável para mim.']},
+          {name:'Alegria', type:'positive', scale:'likert7', items:['Senti alegria ao participar das atividades do grupo durante a atividade colaborativa utilizando as TDIC.','Senti satisfação ao colaborar com meus colegas utilizando as TDIC.','Utilizar as TDIC tornou a atividade colaborativa agradável para mim.']},
           {name:'Amabilidade', type:'trait', scale:'likert7', items:['Procurei colaborar de forma respeitosa com meus colegas durante a atividade colaborativa utilizando as TDIC.','Demonstrei disposição para ajudar meus colegas quando necessário durante a atividade colaborativa utilizando as TDIC.','Procurei compreender as dificuldades dos meus colegas durante a atividade colaborativa utilizando as TDIC.','Tratei meus colegas com cordialidade, mesmo quando haviam opiniões diferentes durante a atividade colaborativa utilizando as TDIC.','Senti-me disposto(a) a apoiar meus colegas durante a realização das tarefas durante a atividade colaborativa utilizando as TDIC.']},
           {name:'Comunicação', type:'positive', scale:'likert7', items:['As TDIC facilitaram a comunicação entre os integrantes do meu grupo durante a atividade colaborativa.','As TDIC permitiram que meu grupo discutisse ideias e diferentes pontos de vista com facilidade.','As TDIC favoreceram a negociação de decisões entre os integrantes do grupo.','As diferentes formas de comunicação disponíveis nas TDIC (texto, áudio, imagens e vídeo) atenderam às necessidades do meu grupo.','As TDIC facilitaram a construção de acordos e compromissos entre os integrantes do grupo.','As TDIC utilizadas favoreceram o compartilhamento de informações e recursos importantes para o grupo.']},
           {name:'Confortabilidade', type:'positive', scale:'likert7', items:['Senti-me à vontade ao utilizar as TDIC durante a atividade colaborativa.','Utilizar as TDIC durante a atividade colaborativa me deixou tranquilo(a), sem causar desconforto ou ansiedade.','Senti-me confortável para interagir com meus colegas por meio das TDIC.','O ambiente em que utilizei as TDIC favoreceu minha participação na atividade colaborativa.']},
-          {name:'Confiança', type:'positive', scale:'sam9', items:['Senti confiança para realizar minhas tarefas durante a atividade colaborativa e utilizando as TDIC.','Senti confiança nas informações compartilhadas pelos integrantes do meu grupo por meio das TDIC.','Senti confiança para interagir com meus colegas utilizando as TDIC.','Confiei que as TDIC apoiariam meu grupo no desenvolvimento da atividade colaborativa.']},
+          {name:'Confiança', type:'positive', scale:'likert7', items:['Senti confiança para realizar minhas tarefas durante a atividade colaborativa e utilizando as TDIC.','Senti confiança nas informações compartilhadas pelos integrantes do meu grupo por meio das TDIC.','Senti confiança para interagir com meus colegas utilizando as TDIC.','Confiei que as TDIC apoiariam meu grupo no desenvolvimento da atividade colaborativa.']},
           {name:'Consciência', type:'trait', scale:'likert7', items:['Mantive minhas atividades organizadas durante a atividade colaborativa utilizando as TDIC.','Procurei cumprir minhas responsabilidades dentro do prazo estabelecido durante a atividade colaborativa utilizando as TDIC.','Realizei minhas tarefas com atenção aos detalhes durante a atividade colaborativa utilizando as TDIC.','Procurei planejar minhas ações antes de executá-las durante a atividade colaborativa utilizando as TDIC.','Procurei realizar minhas tarefas com cuidado e precisão durante a atividade colaborativa utilizando as TDIC.']},
           {name:'Cooperação', type:'positive', scale:'likert7', items:['As TDIC permitiram que meu grupo produzisse conjuntamente os resultados da atividade colaborativa.','As TDIC facilitaram a construção coletiva dos materiais ou artefatos produzidos pelo grupo.','As TDIC permitiram visualizar facilmente as contribuições realizadas pelos integrantes do grupo.','As TDIC facilitaram o registro e o mapeamento das contribuições realizadas durante a atividade colaborativa.']},
           {name:'Coordenação', type:'positive', scale:'likert7', items:['As TDIC facilitaram a organização das tarefas entre os integrantes do meu grupo durante a realização da atividade colaborativa.','As TDIC facilitaram a definição das responsabilidades de cada integrante durante a atividade colaborativa.','As TDIC ajudaram meu grupo a acompanhar o andamento das atividades realizadas pelos integrantes.','As TDIC ajudaram meu grupo a identificar quem estava disponível para colaborar durante a atividade colaborativa.','As TDIC facilitaram a negociação e a reorganização das tarefas quando ocorreram mudanças ou imprevistos.']},
-          {name:'Desejabilidade', type:'positive', scale:'sam9', items:['Gostei de utilizar as TDIC durante a realização da atividade colaborativa.','As TDIC despertaram meu interesse em participar ativamente das atividades do grupo.','As TDIC me mantiveram atento(a) e concentrado(a) durante a atividade colaborativa.','As TDIC me incentivaram a dedicar esforço para realizar as atividades colaborativas.']},
-          {name:'Interesse', type:'positive', scale:'sam9', items:['Senti interesse em continuar realizando as atividades propostas durante a atividade colaborativa utilizando as TDIC.','Fiquei curioso(a) para acompanhar o desenvolvimento das próximas etapas da atividade colaborativa.','Tive expectativa positiva em relação aos resultados que meu grupo poderia alcançar.','Utilizar as TDIC despertou meu interesse em explorar novos recursos durante a atividade colaborativa.','Durante a atividade colaborativa utilizando as TDIC, mantive-me atento(a) ao que aconteceria nas próximas etapas da atividade.']},
+          {name:'Desejabilidade', type:'positive', scale:'likert7', items:['Gostei de utilizar as TDIC durante a realização da atividade colaborativa.','As TDIC despertaram meu interesse em participar ativamente das atividades do grupo.','As TDIC me mantiveram atento(a) e concentrado(a) durante a atividade colaborativa.','As TDIC me incentivaram a dedicar esforço para realizar as atividades colaborativas.']},
+          {name:'Interesse', type:'positive', scale:'likert7', items:['Senti interesse em continuar realizando as atividades propostas durante a atividade colaborativa utilizando as TDIC.','Fiquei curioso(a) para acompanhar o desenvolvimento das próximas etapas da atividade colaborativa.','Tive expectativa positiva em relação aos resultados que meu grupo poderia alcançar.','Utilizar as TDIC despertou meu interesse em explorar novos recursos durante a atividade colaborativa.','Durante a atividade colaborativa utilizando as TDIC, mantive-me atento(a) ao que aconteceria nas próximas etapas da atividade.']},
           {name:'Extroversão', type:'trait', scale:'likert7', items:['Busquei ter interações mais reservadas com meus colegas durante a atividade colaborativa utilizando as TDIC.','Comuniquei minhas ideias com facilidade durante a atividade colaborativa utilizando as TDIC.','Tive alta impulsividade para expressar minhas ideias aos integrantes do grupo durante a atividade colaborativa utilizando as TDIC.']},
-          {name:'Raiva', type:'negative', scale:'sam9', items:['Senti frustração quando surgiram dificuldades durante a atividade colaborativa utilizando as TDIC.','Fiquei com raiva quando as TDIC dificultaram o andamento da atividade colaborativa.','Senti irritação quando ocorreram problemas que prejudicaram a colaboração do grupo.','Algumas situações ocorridas durante o uso das TDIC provocaram sentimentos de indignação ou raiva.']},
-          {name:'Medo', type:'negative', scale:'sam9', items:['Senti receio de cometer erros durante a atividade colaborativa utilizando as TDIC.','Senti ansiedade ao utilizar as TDIC durante a atividade colaborativa.','Tive receio de que minhas contribuições fossem avaliadas negativamente pelos colegas.','Utilizar as TDIC me deixou inseguro(a) durante alguns momentos da atividade.','Senti medo de que minhas dificuldades durante a atividade comprometessem meu desempenho.']},
+          {name:'Raiva', type:'negative', scale:'likert7', items:['Senti frustração quando surgiram dificuldades durante a atividade colaborativa utilizando as TDIC.','Fiquei com raiva quando as TDIC dificultaram o andamento da atividade colaborativa.','Senti irritação quando ocorreram problemas que prejudicaram a colaboração do grupo.','Algumas situações ocorridas durante o uso das TDIC provocaram sentimentos de indignação ou raiva.']},
+          {name:'Medo', type:'negative', scale:'likert7', items:['Senti receio de cometer erros durante a atividade colaborativa utilizando as TDIC.','Senti ansiedade ao utilizar as TDIC durante a atividade colaborativa.','Tive receio de que minhas contribuições fossem avaliadas negativamente pelos colegas.','Utilizar as TDIC me deixou inseguro(a) durante alguns momentos da atividade.','Senti medo de que minhas dificuldades durante a atividade comprometessem meu desempenho.']},
           {name:'Neuroticismo', type:'negative', scale:'likert7', items:['Fiquei nervoso(a) diante das dificuldades encontradas durante a atividade colaborativa utilizando as TDIC.','Tive dificuldade para manter a calma quando surgiram problemas no trabalho em grupo utilizando as TDIC.']},
           {name:'Usabilidade', type:'positive', scale:'likert7', items:['Aprendi a utilizar as TDIC necessárias para a atividade colaborativa com facilidade.','Consegui realizar minhas tarefas rapidamente utilizando as TDIC durante a atividade colaborativa.','Foi fácil lembrar como utilizar as funcionalidades das TDIC sempre que precisei delas durante a atividade colaborativa.','Quando encontrei dificuldades ao utilizar as TDIC, consegui resolvê-las facilmente.','Fiquei satisfeito(a) com a facilidade de uso das TDIC durante a atividade colaborativa.']},
           {name:'Valor', type:'positive', scale:'likert7', items:['O uso das TDIC contribuiu para minha melhor compreensão sobre o conteúdo trabalhado em grupo.','As TDIC agregaram valor às discussões e às decisões realizadas pelo meu grupo.','O uso das TDIC tornou a aprendizagem colaborativa mais relevante para mim.','Considero que as TDIC utilizadas contribuíram para que o grupo alcançasse os objetivos da atividade colaborativa.','Se esta atividade fosse realizada sem as TDIC utilizadas, acredito que a aprendizagem do grupo seria prejudicada.','Eu escolheria utilizar essas mesmas TDIC novamente em futuras atividades colaborativas de aprendizagem.']}
@@ -1525,41 +1495,12 @@
             </div>`;
         }
 
-        function renderSamScale(qName) {
-          const iconForPosition = {1:0,3:1,5:2,7:3,9:4};
-          return `
-            <div class="overflow-x-auto pb-2">
-              <div class="grid grid-cols-9 gap-2 min-w-[620px] items-end" role="radiogroup" aria-label="Escala SAM de 9 pontos">
-                ${Array.from({length:9},(_,i)=>{
-                  const value=i+1;
-                  const iconIndex=iconForPosition[value];
-                  return `
-                    <div class="text-center">
-                      <span class="h-12 flex items-end justify-center mb-1">
-                        ${iconIndex !== undefined ? `<img src="${samIcons[iconIndex]}" alt="Representação visual SAM - ponto ${value}" class="h-11 w-auto object-contain" draggable="false">` : ''}
-                      </span>
-                      <button
-                        type="button"
-                        class="answer-option mx-auto w-10 h-10 rounded border border-gray-400 bg-white flex items-center justify-center text-sm font-bold text-gray-600 hover:border-sky-400 focus:outline-none focus:ring-2 focus:ring-sky-500 transition"
-                        data-question="${qName}"
-                        data-value="${value}"
-                        aria-pressed="false"
-                        aria-label="Ponto ${value} da escala SAM">
-                        ${value}
-                      </button>
-                    </div>`;
-                }).join('')}
-              </div>
-              <p class="text-xs text-gray-500 mt-2">Escala SAM de 9 pontos. Selecione um dos nove pontos; as figuras correspondem às âncoras visuais do instrumento.</p>
-            </div>`;
-        }
-
         function renderQuestionnaire() {
           // Todos os elementos são exibidos em uma única página.
           questionarioSections.innerHTML = questionarioData.map((element,ei)=>{
             const questions = element.items.map((item,ii)=>{
               const q=`q_${ei}_${ii}`;
-              const scale = element.scale === 'sam9' ? renderSamScale(q) : renderLikertScale(q);
+              const scale = renderLikertScale(q);
               return `
                 <div class="question-item py-5 ${ii?'border-t border-gray-100':''}" 
                      data-question-name="${q}"
@@ -1584,7 +1525,7 @@
                       <div>
                         <h3 class="heading-font font-bold text-xl text-emerald-950">${element.name}</h3>
                         <p class="text-xs text-gray-500">
-                          ${element.items.length} sentenças · ${element.scale==='sam9'?'Escala SAM (9 pontos)':'Escala Likert (7 pontos)'}
+                          ${element.items.length} sentenças · Escala Likert (7 pontos)
                         </p>
                       </div>
                     </div>
@@ -1598,7 +1539,7 @@
                   ${questions}
 
                   <label class="block py-5 border-t border-gray-100 text-sm font-semibold text-gray-700">
-                    Você gostaria de relatar um feedback sobre sua experiência?
+                    Você gostaria de relatar um <em>feedback</em> sobre sua experiência sobre o elemento <strong>${element.name}</strong>?
                     <textarea name="feedback_${ei}" rows="3"
                       class="mt-2 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal resize-y focus:outline-none focus:ring-2 focus:ring-sky-500"
                       placeholder="Feedback opcional"></textarea>
@@ -1760,188 +1701,24 @@
         });
 
         function interpretResult(element, mean) {
-  const sam = element.scale === 'sam9';
+          if (element.type === 'negative') {
+            if (mean >= 5) {
+              return {label:'Necessita melhoria', priority:true, tone:'rose', note:'O resultado indica elevada manifestação de um aspecto negativo.'};
+            }
+            if (mean > 3) {
+              return {label:'Atenção', priority:true, tone:'amber', note:'O resultado indica manifestação intermediária de um aspecto negativo.'};
+            }
+            return {label:'Satisfatório', priority:false, tone:'emerald', note:'O resultado indica baixa manifestação de um aspecto negativo.'};
+          }
 
-  /*
-   * ELEMENTOS POSITIVOS
-   * Quanto maior a média, melhor o resultado.
-   */
-  if (element.type === 'positive') {
-
-    // SAM - 9 pontos
-    if (sam) {
-      if (mean <= 3) {
-        return {
-          label: 'Necessita melhoria',
-          priority: true,
-          tone: 'rose',
-          note: 'O resultado indica uma percepção desfavorável neste elemento.'
-        };
-      }
-
-      if (mean <= 6) {
-        return {
-          label: 'Atenção',
-          priority: true,
-          tone: 'amber',
-          note: 'O resultado indica uma percepção intermediária neste elemento.'
-        };
-      }
-
-      return {
-        label: 'Satisfatório',
-        priority: false,
-        tone: 'emerald',
-        note: 'O resultado indica uma percepção favorável neste elemento.'
-      };
-    }
-
-    // Likert - 7 pontos
-    if (mean <= 3) {
-      return {
-        label: 'Necessita melhoria',
-        priority: true,
-        tone: 'rose',
-        note: 'O resultado indica uma percepção desfavorável neste elemento.'
-      };
-    }
-
-    if (mean < 5) {
-      return {
-        label: 'Atenção',
-        priority: true,
-        tone: 'amber',
-        note: 'O resultado indica uma percepção intermediária neste elemento.'
-      };
-    }
-
-    return {
-      label: 'Satisfatório',
-      priority: false,
-      tone: 'emerald',
-      note: 'O resultado indica uma percepção favorável neste elemento.'
-    };
-  }
-
-
-  /*
-   * ELEMENTOS NEGATIVOS
-   * Quanto menor a média, melhor o resultado.
-   */
-  if (element.type === 'negative') {
-
-    // SAM - 9 pontos
-    if (sam) {
-      if (mean >= 7) {
-        return {
-          label: 'Necessita melhoria',
-          priority: true,
-          tone: 'rose',
-          note: 'O resultado indica elevada manifestação de um aspecto negativo.'
-        };
-      }
-
-      if (mean >= 4) {
-        return {
-          label: 'Atenção',
-          priority: true,
-          tone: 'amber',
-          note: 'O resultado indica manifestação intermediária de um aspecto negativo.'
-        };
-      }
-
-      return {
-        label: 'Satisfatório',
-        priority: false,
-        tone: 'emerald',
-        note: 'O resultado indica baixa manifestação de um aspecto negativo.'
-      };
-    }
-
-    // Likert - 7 pontos
-    if (mean >= 5) {
-      return {
-        label: 'Necessita melhoria',
-        priority: true,
-        tone: 'rose',
-        note: 'O resultado indica elevada manifestação de um aspecto negativo.'
-      };
-    }
-
-    if (mean > 3) {
-      return {
-        label: 'Atenção',
-        priority: true,
-        tone: 'amber',
-        note: 'O resultado indica manifestação intermediária de um aspecto negativo.'
-      };
-    }
-
-    return {
-      label: 'Satisfatório',
-      priority: false,
-      tone: 'emerald',
-      note: 'O resultado indica baixa manifestação de um aspecto negativo.'
-    };
-  }
-
-
-  /*
-   * DEMAIS ELEMENTOS
-   * Mantém a mesma padronização visual.
-   */
-  if (sam) {
-    if (mean <= 3) {
-      return {
-        label: 'Necessita melhoria',
-        priority: true,
-        tone: 'rose',
-        note: 'O resultado encontra-se na faixa inferior da escala.'
-      };
-    }
-
-    if (mean <= 6) {
-      return {
-        label: 'Atenção',
-        priority: true,
-        tone: 'amber',
-        note: 'O resultado encontra-se na faixa intermediária da escala.'
-      };
-    }
-
-    return {
-      label: 'Satisfatório',
-      priority: false,
-      tone: 'emerald',
-      note: 'O resultado encontra-se na faixa superior da escala.'
-    };
-  }
-
-  if (mean <= 3) {
-    return {
-      label: 'Necessita melhoria',
-      priority: true,
-      tone: 'rose',
-      note: 'O resultado encontra-se na faixa inferior da escala.'
-    };
-  }
-
-  if (mean < 5) {
-    return {
-      label: 'Atenção',
-      priority: true,
-      tone: 'amber',
-      note: 'O resultado encontra-se na faixa intermediária da escala.'
-    };
-  }
-
-  return {
-    label: 'Satisfatório',
-    priority: false,
-    tone: 'emerald',
-    note: 'O resultado encontra-se na faixa superior da escala.'
-  };
-}
+          if (mean <= 3) {
+            return {label:'Necessita melhoria', priority:true, tone:'rose', note:'O resultado indica uma percepção desfavorável neste elemento.'};
+          }
+          if (mean < 5) {
+            return {label:'Atenção', priority:true, tone:'amber', note:'O resultado indica uma percepção intermediária neste elemento.'};
+          }
+          return {label:'Satisfatório', priority:false, tone:'emerald', note:'O resultado indica uma percepção favorável neste elemento.'};
+        }
 
         const resultadoCalculoInfo =
           document.getElementById('resultado-calculo-info');
@@ -2068,7 +1845,7 @@
             const mean = values.reduce((a,b)=>a+b,0)/values.length;
             return {
               ...element,
-              max: element.scale==='sam9'?9:7,
+              max: 7,
               mean,
               values,
               feedback: questionnaireState.feedbacks[`feedback_${ei}`] || '',
@@ -2086,42 +1863,89 @@
           }[tone]||['bg-sky-50','border-sky-200','text-sky-800'];
         }
 
+        function escapeHtml(value) {
+          return String(value ?? '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+        }
+
+        function getSentenceResults() {
+          const sentences = [];
+          questionarioData.forEach((element, ei) => {
+            element.items.forEach((sentence, ii) => {
+              const value = Number(questionnaireState.answers[`q_${ei}_${ii}`]);
+              const isProblem = element.type === 'negative' ? value >= 5 : value <= 3;
+              sentences.push({
+                element: element.name,
+                type: element.type,
+                sentence,
+                sentenceNumber: ii + 1,
+                value,
+                isProblem
+              });
+            });
+          });
+          return sentences;
+        }
+
         function renderResults(results) {
-          lastCalculatedResults=results;
-          document.getElementById('resultado-grid').innerHTML=results.map(r=>{
-            const[bg,border,txt]=toneClasses(r.interpretation.tone);
-            return `<article class="bg-white border border-gray-200 rounded-2xl p-5">
-              <div class="flex items-start justify-between gap-3 mb-4">
-                <div>
-                  <h4 class="heading-font font-bold text-lg text-emerald-950">${r.name}</h4>
-                  <span class="text-[11px] text-gray-400">${r.scale==='sam9'?'SAM · 9 pontos':'Likert · 7 pontos'}</span>
+          lastCalculatedResults = results;
+          const sentences = getSentenceResults();
+          const graph = document.getElementById('resultado-grafico-sentencas');
+          const problemsBox = document.getElementById('resultado-problemas');
+
+          let currentElement = '';
+          graph.innerHTML = sentences.map((item) => {
+            const elementHeader = item.element !== currentElement
+              ? `<div class="pt-2 first:pt-0"><h5 class="font-bold text-emerald-950 text-sm uppercase tracking-wide">${escapeHtml(item.element)}</h5></div>`
+              : '';
+            currentElement = item.element;
+
+            const percentage = Math.max(0, Math.min(100, (item.value / 7) * 100));
+            const barClass = item.isProblem ? 'bg-rose-500' : (item.value === 4 ? 'bg-amber-400' : 'bg-emerald-600');
+
+            return `${elementHeader}
+              <article class="rounded-xl border ${item.isProblem ? 'border-rose-200 bg-rose-50/40' : 'border-gray-200 bg-white'} p-4">
+                <div class="flex items-start justify-between gap-4 mb-3">
+                  <p class="text-sm text-gray-700 leading-relaxed">
+                    <span class="font-bold text-emerald-800">${item.sentenceNumber}.</span>
+                    ${escapeHtml(item.sentence)}
+                  </p>
+                  <span class="shrink-0 min-w-9 h-9 px-2 rounded-lg flex items-center justify-center font-bold ${item.isProblem ? 'bg-rose-100 text-rose-800' : 'bg-gray-100 text-gray-700'}">${item.value}</span>
                 </div>
-                <span class="text-xs font-bold px-2.5 py-1 rounded-full border ${bg} ${border} ${txt}">${r.interpretation.label}</span>
-              </div>
-              <div class="flex items-end gap-2 mb-3">
-                <strong class="text-3xl text-emerald-950">${r.mean.toFixed(2)}</strong>
-                <span class="text-sm text-gray-400 pb-1">/ ${r.max}</span>
-              </div>
-              <div class="h-2 bg-gray-100 rounded-full overflow-hidden mb-3">
-                <div class="h-full bg-emerald-600 rounded-full" style="width:${r.mean/r.max*100}%"></div>
-              </div>
-              <p class="text-sm text-gray-600 leading-relaxed">${r.interpretation.note}</p>
-              ${r.interpretation.priority?'<p class="text-xs font-bold text-amber-800 mt-3">Prioridade para consulta às diretrizes</p>':''}
-            </article>`;
+                <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                  <div class="h-full ${barClass} rounded-full" style="width:${percentage}%"></div>
+                </div>
+                <div class="flex justify-between text-[10px] text-gray-400 mt-1.5"><span>1</span><span>4</span><span>7</span></div>
+              </article>`;
           }).join('');
 
-          const priorities=results.filter(r=>r.interpretation.priority);
-          const box=document.getElementById('resultado-prioridades');
-          if(priorities.length) {
-            box.classList.remove('hidden');
-            box.innerHTML=`<h4 class="font-bold text-amber-950 mb-2">Elementos prioritários para análise</h4><p class="text-sm text-amber-900 leading-relaxed">${priorities.map(r=>r.name).join(', ')}. Esses elementos devem ser considerados primeiro na consulta às diretrizes do CoLeXEeM.</p>`;
+          const problems = sentences.filter(item => item.isProblem);
+          if (problems.length) {
+            problemsBox.innerHTML = problems.map(item => `
+              <article class="rounded-xl border border-rose-200 bg-rose-50 p-4">
+                <div class="flex items-center justify-between gap-3 mb-2">
+                  <span class="text-xs font-bold uppercase tracking-wide text-rose-800">${escapeHtml(item.element)}</span>
+                  <span class="text-xs font-bold text-rose-800 bg-white border border-rose-200 rounded-full px-2.5 py-1">Resposta ${item.value}</span>
+                </div>
+                <p class="text-sm text-rose-950 leading-relaxed">${escapeHtml(item.sentence)}</p>
+              </article>`).join('');
           } else {
-            box.classList.add('hidden');
+            problemsBox.innerHTML = `
+              <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
+                <div class="flex items-start gap-3">
+                  <i data-lucide="circle-check" class="shrink-0 mt-0.5" style="width:19px;height:19px;color:#047857"></i>
+                  <p class="text-sm text-emerald-900 leading-relaxed">Nenhuma sentença apresentou resposta classificada como problema pelos critérios atuais.</p>
+                </div>
+              </div>`;
           }
 
           questionarioForm.classList.add('hidden');
           questionarioResultados.classList.remove('hidden');
-          questionarioScroll.scrollTop=0;
+          questionarioScroll.scrollTop = 0;
           lucide.createIcons();
         }
 
@@ -2170,55 +1994,29 @@
         
 
         document.getElementById('questionario-csv').addEventListener('click',()=>{
-          if(!lastCalculatedResults.length)return;
-
           collectParticipantState();
           persistQuestionnaireState();
-
-          const rows=[];
-
-          // 1) Caracterização do participante
-          rows.push(['CARACTERIZAÇÃO DO PARTICIPANTE']);
-          rows.push(['Campo','Valor']);
-          Object.entries(questionnaireState.participant).forEach(([k,v])=>rows.push([k,v||'']));
-          rows.push([]);
-
-          // 2) Todas as respostas de todas as sentenças
-          rows.push(['TODAS AS RESPOSTAS']);
-          rows.push(['Elemento','Escala','Questão','Sentença','Resposta','Feedback']);
-          questionarioData.forEach((element, ei)=>{
-            element.items.forEach((text, ii)=>{
+          const rows=[['Elemento','Sentença','Resposta','Escala','Problema','Feedback']];
+          questionarioData.forEach((element, ei) => {
+            element.items.forEach((sentence, ii) => {
+              const value = Number(questionnaireState.answers[`q_${ei}_${ii}`]);
+              const isProblem = element.type === 'negative' ? value >= 5 : value <= 3;
               rows.push([
                 element.name,
-                element.scale==='sam9'?'SAM - 9 pontos':'Likert - 7 pontos',
-                ii + 1,
-                text,
-                questionnaireState.answers[`q_${ei}_${ii}`] ?? '',
-                questionnaireState.feedbacks[`feedback_${ei}`] || ''
+                sentence,
+                value,
+                'Likert 7 pontos',
+                isProblem ? 'Sim' : 'Não',
+                ii === 0 ? (questionnaireState.feedbacks[`feedback_${ei}`] || '') : ''
               ]);
             });
           });
-          rows.push([]);
-
-          // 3) Consolidação da avaliação por elemento
-          rows.push(['CONSOLIDAÇÃO DA AVALIAÇÃO']);
-          rows.push(['Elemento','Escala','Média','Máximo','Interpretação','Prioridade','Feedback']);
-          lastCalculatedResults.forEach(r=>rows.push([
-            r.name,
-            r.scale==='sam9'?'SAM - 9 pontos':'Likert - 7 pontos',
-            r.mean.toFixed(2),
-            r.max,
-            r.interpretation.label,
-            r.interpretation.priority?'Sim':'Não',
-            r.feedback || ''
-          ]));
-
           const csv=rows.map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(';')).join('\n');
           const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'});
           const url=URL.createObjectURL(blob);
           const a=document.createElement('a');
           a.href=url;
-          a.download='avaliacao_colexeem_completa.csv';
+          a.download='resultado_colexeem.csv';
           document.body.appendChild(a);
           a.click();
           a.remove();
@@ -2231,7 +2029,7 @@
 
           const consolidacao = lastCalculatedResults.map(r => ({
             elemento: r.name,
-            escala: r.scale === 'sam9' ? 'SAM - 9 pontos' : 'Likert - 7 pontos',
+            escala: 'Likert - 7 pontos',
             media: Number(r.mean.toFixed(2)),
             maximo: r.max,
             interpretacao: r.interpretation.label,
@@ -2240,7 +2038,7 @@
 
           const todasRespostas = questionarioData.map((element, ei) => ({
             elemento: element.name,
-            escala: element.scale === 'sam9' ? 'SAM - 9 pontos' : 'Likert - 7 pontos',
+            escala: 'Likert - 7 pontos',
             respostas: element.items.map((text, ii) => ({
               questao: ii + 1,
               sentenca: text,
@@ -2249,13 +2047,22 @@
             feedback: questionnaireState.feedbacks[`feedback_${ei}`] || ''
           }));
 
+          const problemas = getSentenceResults()
+            .filter(item => item.isProblem)
+            .map(item => ({
+              elemento: item.element,
+              sentenca: item.sentence,
+              resposta: item.value
+            }));
+
           return {
             instrumento: 'CoLeXEeM - Formulário de Avaliação da LX',
-            versao: 3,
+            versao: 4,
             ultima_atualizacao: questionnaireState.updatedAt,
             participante: questionnaireState.participant,
             todas_as_respostas: todasRespostas,
-            consolidacao_da_avaliacao: consolidacao
+            problemas_identificados: problemas,
+            resumo_por_elemento: consolidacao
           };
         }
 
@@ -2336,7 +2143,7 @@
 
           doc.setFont('helvetica','normal');
           doc.setFontSize(10);
-          y = addWrappedText(doc, 'Conteudo: todas as respostas e consolidacao da avaliacao por elemento.', margin, y, width, 5);
+          y = addWrappedText(doc, 'Conteudo: todas as respostas, grafico geral por sentenca e problemas identificados.', margin, y, width, 5);
           y += 4;
 
           // Caracterização do participante
@@ -2372,7 +2179,7 @@
             doc.setFont('helvetica','normal');
             doc.setFontSize(8.5);
             y = addWrappedText(doc,
-              `Escala: ${element.scale === 'sam9' ? 'SAM - 9 pontos' : 'Likert - 7 pontos'} | ` +
+              `Escala: ${'Likert - 7 pontos'} | ` +
               `Media: ${result.mean.toFixed(2)} / ${result.max} | Interpretacao: ${result.interpretation.label}`,
               margin, y, width, 4.2
             );
@@ -2395,18 +2202,22 @@
             y += 5;
           });
 
-          // Consolidação
-          sectionTitle('Consolidacao da avaliacao por elemento');
+          // Problemas identificados por sentença
+          sectionTitle('Problemas identificados');
           doc.setFont('helvetica','normal');
           doc.setFontSize(9);
-          lastCalculatedResults.forEach(r => {
-            ensureSpace(11);
-            const line = `${r.name} | ${r.scale === 'sam9' ? 'SAM - 9 pontos' : 'Likert - 7 pontos'} | ` +
-              `Media: ${r.mean.toFixed(2)} / ${r.max} | ${r.interpretation.label} | ` +
-              `Prioridade: ${r.interpretation.priority ? 'Sim' : 'Nao'}`;
-            y = addWrappedText(doc, line, margin, y, width, 4.5);
-            y += 2;
-          });
+          const sentenceProblems = getSentenceResults().filter(item => item.isProblem);
+          if (sentenceProblems.length) {
+            sentenceProblems.forEach(item => {
+              ensureSpace(12);
+              y = addWrappedText(doc, `${item.element} | Resposta: ${item.value}`, margin, y, width, 4.5);
+              y = addWrappedText(doc, item.sentence, margin+3, y, width-3, 4.5);
+              y += 2;
+            });
+          } else {
+            y = addWrappedText(doc, 'Nenhuma sentenca apresentou resposta classificada como problema pelos criterios atuais.', margin, y, width, 4.5);
+            y += 3;
+          }
 
           doc.save('colexeem_avaliacao_completa.pdf');
         }
