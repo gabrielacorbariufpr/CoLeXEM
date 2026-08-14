@@ -614,7 +614,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
         <button id="diretrizes-modal-close" type="button" aria-label="Fechar diretrizes" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition"><i data-lucide="x" style="width:22px;height:22px;"></i></button>
       </div>
     </div>
-    <div class="flex-1 overflow-y-auto p-5 md:p-7 bg-amber-50/30">
+    <div id="diretrizes-scroll" class="flex-1 overflow-y-auto p-5 md:p-7 bg-amber-50/30">
       <div class="overflow-x-auto rounded-xl border border-amber-200 bg-white">
         <table class="w-full text-left border-collapse min-w-[850px]">
           <thead class="bg-amber-50"><tr><th class="p-4 border-b border-amber-200 w-20">ID</th><th class="p-4 border-b border-amber-200 w-[32%]">Diretriz</th><th class="p-4 border-b border-amber-200">Ações recomendadas</th></tr></thead>
@@ -3062,22 +3062,76 @@ const elementData = {
       const backToTop = document.getElementById('back-to-top');
       if (!backToTop) return;
 
+      const contexts = [
+        {
+          modal: document.getElementById('questionario-modal'),
+          scroll: document.getElementById('questionario-scroll'),
+          label: 'Voltar ao topo do formulário de avaliação da LX'
+        },
+        {
+          modal: document.getElementById('normativas-modal'),
+          scroll: document.getElementById('normativas-scroll'),
+          label: 'Voltar ao topo das normativas'
+        },
+        {
+          modal: document.getElementById('diretrizes-modal'),
+          scroll: document.getElementById('diretrizes-scroll'),
+          label: 'Voltar ao topo das diretrizes'
+        }
+      ];
+
+      const activeContext = () => {
+        return contexts.find(({ modal }) =>
+          modal && !modal.classList.contains('hidden')
+        ) || null;
+      };
+
+      const currentScrollTop = () => {
+        const context = activeContext();
+        return context ? (context.scroll?.scrollTop || 0) : window.scrollY;
+      };
+
       const updateBackToTop = () => {
-        const show = window.scrollY > 350;
+        const context = activeContext();
+        const show = currentScrollTop() > 250;
+
         backToTop.classList.toggle('hidden', !show);
         backToTop.classList.toggle('flex', show);
+
+        const label = context ? context.label : 'Voltar ao topo da página';
+        backToTop.setAttribute('aria-label', label);
+        backToTop.setAttribute('title', label);
+      };
+
+      const goToTop = () => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const behavior = reduceMotion ? 'auto' : 'smooth';
+        const context = activeContext();
+
+        if (context?.scroll) {
+          context.scroll.scrollTo({ top: 0, behavior });
+        } else {
+          window.scrollTo({ top: 0, behavior });
+        }
       };
 
       window.addEventListener('scroll', updateBackToTop, { passive: true });
-      updateBackToTop();
 
-      backToTop.addEventListener('click', () => {
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        window.scrollTo({
-          top: 0,
-          behavior: reduceMotion ? 'auto' : 'smooth'
+      contexts.forEach(({ scroll }) => {
+        scroll?.addEventListener('scroll', updateBackToTop, { passive: true });
+      });
+
+      // Reavalia o botão sempre que um modal é aberto ou fechado.
+      contexts.forEach(({ modal }) => {
+        if (!modal) return;
+        new MutationObserver(updateBackToTop).observe(modal, {
+          attributes: true,
+          attributeFilter: ['class']
         });
       });
+
+      backToTop.addEventListener('click', goToTop);
+      updateBackToTop();
     })();
   </script>
 
