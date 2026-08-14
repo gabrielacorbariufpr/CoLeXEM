@@ -200,7 +200,7 @@
        <h3 data-template-id="comp-card-2-title" class="canva-text heading-font font-bold mb-3" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Formulário de Avaliação da LX</h3>
        <p class="text-xs font-bold uppercase tracking-wider text-sky-700 mb-2">Avalie</p><p data-template-id="comp-card-2-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Permite coletar as percepções dos aprendizes sobre sua LX em atividades colaborativas mediadas por TDIC e calcular os resultados por elemento.</p><div class="mt-5 pt-4 border-t border-sky-100 text-sky-800 font-bold text-sm inline-flex items-center gap-2">Responder formulário <i data-lucide="arrow-right" style="width:16px;height:16px"></i></div>
       </article><!-- Diretrizes -->
-      <article id="diretrizes-card" data-template-id="comp-card-3" class="canva-card rounded-2xl p-8 border border-amber-200 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-lg" style="background: rgb(255, 255, 255);" role="button" tabindex="0" aria-label="Ver como aplicar as diretrizes" onclick="document.getElementById('como-usar').scrollIntoView({behavior:'smooth'})" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();document.getElementById('como-usar').scrollIntoView({behavior:'smooth'});}">
+      <article id="diretrizes-card" data-template-id="comp-card-3" class="canva-card rounded-2xl p-8 border border-amber-200 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-lg" style="background: rgb(255, 255, 255);" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="diretrizes-modal" aria-label="Consultar as diretrizes">
        <div class="flex items-center justify-between mb-6">
         <span class="text-xs font-bold text-amber-600 bg-amber-50 px-3 py-1 rounded-full">03</span>
        </div>
@@ -208,7 +208,7 @@
         <i data-lucide="lightbulb" style="width:24px;height:24px;color:#92400e"></i>
        </div>
        <h3 data-template-id="comp-card-3-title" class="canva-text heading-font font-bold mb-3" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Diretrizes</h3>
-       <p class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-2">Analise e melhore</p><p data-template-id="comp-card-3-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Apoiam a interpretação dos resultados e orientam ações para promover melhorias na LX em atividades colaborativas futuras.</p><div class="mt-5 pt-4 border-t border-amber-100 text-amber-800 font-bold text-sm inline-flex items-center gap-2">Ver como aplicar <i data-lucide="arrow-right" style="width:16px;height:16px"></i></div>
+       <p class="text-xs font-bold uppercase tracking-wider text-amber-700 mb-2">Analise e melhore</p><p data-template-id="comp-card-3-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Apoiam a interpretação dos resultados e orientam ações para promover melhorias na LX em atividades colaborativas futuras.</p><div class="mt-5 pt-4 border-t border-amber-100 text-amber-800 font-bold text-sm inline-flex items-center gap-2">Consultar diretrizes <i data-lucide="arrow-right" style="width:16px;height:16px"></i></div>
       </article>
      </div><!-- Elements tags -->
      <div data-template-id="elements-box" class="canva-card rounded-2xl p-8 text-center" style="background: rgb(248, 250, 249);"><span data-template-id="elements-label" class="canva-text text-xs font-bold uppercase tracking-wider block mb-2" style="color: rgb(6, 95, 70); font-weight: 700; font-style: normal; font-size: 16px;">Elementos avaliados</span>
@@ -426,6 +426,34 @@
     </div>
     <div class="flex-1 bg-gray-100 min-h-0">
       <iframe src="normativas.pdf" title="Normativas do CoLeXEeM" class="w-full h-full border-0"></iframe>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal das Diretrizes -->
+<div id="diretrizes-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-6" role="dialog" aria-modal="true" aria-labelledby="diretrizes-modal-title">
+  <div id="diretrizes-modal-backdrop" class="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
+  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-6xl h-[90vh] overflow-hidden flex flex-col">
+    <div class="flex items-center justify-between gap-4 px-5 py-4 md:px-6 border-b border-gray-200">
+      <div><span class="text-xs font-bold uppercase tracking-wider text-amber-700">Componente 03</span><h2 id="diretrizes-modal-title" class="heading-font text-xl md:text-2xl font-bold text-emerald-950 mt-1">Diretrizes do CoLeXEeM</h2><p class="text-sm text-gray-600 mt-1">Consulte as diretrizes de forma flexível, considerando os resultados da avaliação e o contexto da atividade colaborativa.</p></div>
+      <button id="diretrizes-modal-close" type="button" aria-label="Fechar diretrizes" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition"><i data-lucide="x" style="width:22px;height:22px;"></i></button>
+    </div>
+    <div class="flex-1 overflow-y-auto p-5 md:p-7 bg-amber-50/30">
+      <div class="overflow-x-auto rounded-xl border border-amber-200 bg-white">
+        <table class="w-full text-left border-collapse min-w-[850px]">
+          <thead class="bg-amber-50"><tr><th class="p-4 border-b border-amber-200 w-20">ID</th><th class="p-4 border-b border-amber-200 w-[32%]">Diretriz</th><th class="p-4 border-b border-amber-200">Ações recomendadas</th></tr></thead>
+          <tbody class="text-sm text-gray-700">
+            <tr><td class="p-4 border-b font-bold text-amber-800">D1</td><td class="p-4 border-b font-semibold text-emerald-950">Analisar os resultados da avaliação</td><td class="p-4 border-b">Analisar os resultados do questionário.</td></tr>
+            <tr><td class="p-4 border-b font-bold text-amber-800">D2</td><td class="p-4 border-b font-semibold text-emerald-950">Revisar o planejamento da atividade colaborativa</td><td class="p-4 border-b">Revisar os objetivos da atividade, alinhar o uso das TDIC às necessidades de aprendizagem, planejar tarefas que utilizem recursos colaborativos da TDIC e explicitar aos aprendizes a finalidade do seu uso.</td></tr>
+            <tr><td class="p-4 border-b font-bold text-amber-800">D3</td><td class="p-4 border-b font-semibold text-emerald-950">Reorganizar a estrutura dos grupos</td><td class="p-4 border-b">Revisar a estratégia de formação dos grupos, redefinir número de participantes, redistribuir tarefas, definir papéis e equilibrar responsabilidades.</td></tr>
+            <tr><td class="p-4 border-b font-bold text-amber-800">D4</td><td class="p-4 border-b font-semibold text-emerald-950">Fortalecer a mediação do professor durante a atividade</td><td class="p-4 border-b">Planejar momentos de acompanhamento, oferecer feedback contínuo, esclarecer dúvidas, reconhecer contribuições e estimular a participação dos grupos.</td></tr>
+            <tr><td class="p-4 border-b font-bold text-amber-800">D5</td><td class="p-4 border-b font-semibold text-emerald-950">Aprimorar a utilização das TDIC</td><td class="p-4 border-b">Apresentar previamente as funcionalidades das TDIC, disponibilizar orientações de uso, selecionar apenas recursos relevantes e simplificar o fluxo de interação da atividade.</td></tr>
+            <tr><td class="p-4 border-b font-bold text-amber-800">D6</td><td class="p-4 border-b font-semibold text-emerald-950">Estimular a comunicação e a construção colaborativa do conhecimento</td><td class="p-4 border-b">Incentivar discussões utilizando os recursos da TDIC, promover a tomada de decisão coletiva, registrar as contribuições dos integrantes e acompanhar a evolução das interações durante a atividade.</td></tr>
+            <tr><td class="p-4 font-bold text-amber-800">D7</td><td class="p-4 font-semibold text-emerald-950">Adequar a atividade às necessidades dos aprendizes</td><td class="p-4">Ajustar a duração da atividade, adequar sua complexidade, flexibilizar estratégias de aprendizagem, revisar os dispositivos previstos e adaptar o planejamento às características dos aprendizes.</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>
@@ -2237,4 +2265,7 @@
         });
     </script>
  
+<script>
+(function(){const m=document.getElementById('diretrizes-modal'),c=document.getElementById('diretrizes-modal-close'),b=document.getElementById('diretrizes-modal-backdrop'),card=document.getElementById('diretrizes-card');if(!m||!card)return;const open=()=>{m.classList.remove('hidden');m.classList.add('flex');document.body.style.overflow='hidden';c?.focus();};const close=()=>{m.classList.add('hidden');m.classList.remove('flex');document.body.style.overflow='';card.focus();};card.addEventListener('click',open);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});c?.addEventListener('click',close);b?.addEventListener('click',close);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!m.classList.contains('hidden'))close();});})();
+</script>
 </body></html>
