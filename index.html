@@ -2793,11 +2793,131 @@
     setStatus(`${rows.length} avaliação(ões) encontrada(s).`,'success');
     results.innerHTML=rows.map(row=>{const p=row.respostas?.participante||{};const m=metrics([row]);const elems=makeElementStats(m);const pri=prioritySentences(m);return `<article class="space-y-4"><div class="bg-white border border-gray-200 rounded-2xl p-5"><div class="flex flex-col md:flex-row justify-between gap-3"><div><span class="text-xs uppercase font-bold text-sky-700">Avaliação individual</span><h3 class="heading-font text-2xl font-bold text-emerald-950 mt-1">${esc(p.nome||'Participante')}</h3><p class="text-sm text-gray-500">${esc(p.disciplina||'')} ${p.atividade?'· '+esc(p.atividade):''}</p><p class="text-xs text-sky-700 font-bold mt-1">${esc(row.codigo_aplicacao||p.codigo_aplicacao||'Sem código')}</p></div><div class="text-sm text-gray-500">${new Date(row.data_registro).toLocaleString('pt-BR')}</div></div></div>${metricCards([row],m)}${summaryCharts(m,elems)}${prioritiesSection(pri)}${feedbackSection(m.feedbacks)}${allResponsesSection([row])}</article>`;}).join('');
   }
+
+  let dashboardClassRows = [];
+  let dashboardClassCode = '';
+
+  function downloadClassDashboardPdf(){
+    if(!dashboardClassRows.length){
+      setStatus('Primeiro consulte uma turma para gerar o PDF.','error');
+      return;
+    }
+    if(!window.jspdf || !window.jspdf.jsPDF){
+      alert('Não foi possível carregar o gerador de PDF. Verifique sua conexão com a internet.');
+      return;
+    }
+
+    const rows=dashboardClassRows;
+    const code=dashboardClassCode;
+    const m=metrics(rows);
+    const elems=makeElementStats(m);
+    const pri=prioritySentences(m);
+    const {jsPDF}=window.jspdf;
+    const doc=new jsPDF({unit:'mm',format:'a4'});
+    const margin=14, pageW=doc.internal.pageSize.getWidth(), pageH=doc.internal.pageSize.getHeight();
+    const width=pageW-margin*2;
+    let y=17;
+
+    const clean=t=>String(t??'')
+      .replace(/[–—]/g,'-').replace(/[“”]/g,'"').replace(/[‘’]/g,"'");
+    const ensure=(h=8)=>{ if(y>pageH-margin-h){ doc.addPage(); y=17; } };
+    const write=(value,size=9,bold=false,indent=0,space=1)=>{
+      doc.setFont('helvetica',bold?'bold':'normal');
+      doc.setFontSize(size);
+      const lines=doc.splitTextToSize(clean(value),width-indent);
+      lines.forEach(line=>{ensure(5);doc.text(line,margin+indent,y);y+=4.5;});
+      y+=space;
+    };
+    const heading=(value,size=12)=>{
+      ensure(10); y+=2; write(value,size,true,0,2);
+    };
+    const line=()=>{ensure(5);doc.setDrawColor(210);doc.line(margin,y,pageW-margin,y);y+=5;};
+
+    doc.setFont('helvetica','bold'); doc.setFontSize(17);
+    doc.text('CoLeXEeM - Dashboard da Turma',margin,y); y+=8;
+    write(`Codigo da turma/aplicacao: ${code}`,10,true);
+    write(`Gerado em: ${new Date().toLocaleString('pt-BR')}`,8,false);
+    line();
+
+    heading('Sintese geral',12);
+    const adequate=m.answers.filter(a=>!a.isProblem).length;
+    const problems=m.answers.filter(a=>a.isProblem).length;
+    const total=m.answers.length;
+    const adequacy=total?Math.round(adequate/total*100):0;
+    write(`Respondentes: ${rows.length}`,10,true);
+    write(`Respostas analisadas: ${total}`);
+    write(`Respostas adequadas: ${adequate}`);
+    write(`Respostas que requerem analise: ${problems}`);
+    write(`Indice de adequacao: ${adequacy}%`);
+    write(`Feedbacks qualitativos registrados: ${m.feedbacks.length}`);
+
+    heading('Problemas por elemento',12);
+    elems.filter(e=>e.problems>0).sort((a,b)=>b.pct-a.pct).forEach(e=>{
+      write(`${e.name}: ${e.pct}% (${e.problems} de ${e.total} respostas)`,9,false,0,0.5);
+    });
+    if(!elems.some(e=>e.problems>0)) write('Nenhum problema identificado.');
+
+    heading('Problemas prioritarios por sentenca',12);
+    if(!pri.length) write('Nenhuma sentenca problematica identificada.');
+    pri.forEach((x,i)=>{
+      ensure(14);
+      write(`${i+1}. ${x.element} - ${x.pct}%`,9,true,0,0);
+      write(x.sentence,8,false,3,0);
+      write(`${x.problems} de ${x.total} resposta(s) requerem analise.`,8,false,3,1);
+    });
+
+    heading('Feedbacks qualitativos',12);
+    if(!m.feedbacks.length){
+      write('Nenhum feedback aberto foi registrado.');
+    }else{
+      const by={};
+      m.feedbacks.forEach(f=>{(by[f.element]??=[]).push(f);});
+      Object.entries(by).forEach(([el,items])=>{
+        ensure(10); write(el,10,true,0,1);
+        items.forEach(f=>{
+          write(`${f.name}: ${f.text}`,8,false,3,1);
+        });
+      });
+    }
+
+    heading('Todas as respostas dos alunos',12);
+    rows.forEach((row,ri)=>{
+      const p=row.respostas?.participante||{};
+      const groups=row.respostas?.todas_as_respostas||[];
+      ensure(14);
+      write(`${ri+1}. ${p.nome||'Participante'}`,10,true);
+      const details=[
+        p.idade?`Idade: ${p.idade}`:'',
+        p.curso?`Curso: ${p.curso}`:'',
+        p.disciplina?`Disciplina: ${p.disciplina}`:'',
+        p.atividade?`Atividade: ${p.atividade}`:''
+      ].filter(Boolean).join(' | ');
+      if(details) write(details,8,false,3,1);
+
+      groups.forEach(g=>{
+        ensure(12);
+        write(g.elemento||g.name||'Elemento',9,true,3,0.5);
+        (g.respostas||[]).forEach(r=>{
+          const answer=r.resposta??r.answer??'';
+          write(`${r.questao??''}. ${r.sentenca||r.sentence||''} - Resposta: ${answer}`,7.5,false,6,0.5);
+        });
+        const fb=g.feedback||'';
+        if(fb) write(`Feedback: ${fb}`,8,false,6,1);
+      });
+      y+=2;
+    });
+
+    doc.save(`dashboard_turma_${String(code).replace(/[^a-z0-9_-]+/gi,'_')}.pdf`);
+  }
+
   function renderClass(rows,code){
-    if(!rows.length){results.innerHTML='';setStatus('Nenhuma avaliação encontrada para esse código de turma/aplicação.','error');return;}
+    if(!rows.length){dashboardClassRows=[];dashboardClassCode='';results.innerHTML='';setStatus('Nenhuma avaliação encontrada para esse código de turma/aplicação.','error');return;}
+    dashboardClassRows=rows;
+    dashboardClassCode=code;
     const m=metrics(rows), elems=makeElementStats(m), pri=prioritySentences(m);
     setStatus(`${rows.length} aprendizes encontrados para ${code}.`,'success');
-    results.innerHTML=`<div class="bg-white border border-gray-200 rounded-2xl p-5"><div class="flex flex-wrap items-center justify-between gap-3"><div><span class="text-xs font-bold uppercase tracking-wider text-sky-700">Turma / aplicação</span><h3 class="heading-font text-2xl font-bold text-emerald-950 mt-1">${esc(code)}</h3></div><div class="text-right"><strong class="text-2xl text-emerald-950">${rows.length}</strong><span class="block text-xs text-gray-500">respondentes</span></div></div></div>${metricCards(rows,m)}${summaryCharts(m,elems)}${prioritiesSection(pri)}${feedbackSection(m.feedbacks)}${allResponsesSection(rows)}`;
+    results.innerHTML=`<div class="bg-white border border-gray-200 rounded-2xl p-5"><div class="flex flex-wrap items-center justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-sky-700">Turma / aplicação</span><h3 class="heading-font text-2xl font-bold text-emerald-950 mt-1">${esc(code)}</h3></div><div class="flex items-center gap-3"><div class="text-right"><strong class="text-2xl text-emerald-950">${rows.length}</strong><span class="block text-xs text-gray-500">respondentes</span></div><button type="button" id="dash-class-pdf" class="inline-flex items-center gap-2 rounded-xl border border-rose-200 bg-white px-4 py-2.5 text-rose-800 font-semibold hover:bg-rose-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-500 focus-visible:ring-offset-2" aria-label="Baixar dashboard da turma em PDF"><svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg> Baixar PDF</button></div></div></div>${metricCards(rows,m)}${summaryCharts(m,elems)}${prioritiesSection(pri)}${feedbackSection(m.feedbacks)}${allResponsesSection(rows)}`;
+    document.getElementById('dash-class-pdf')?.addEventListener('click',downloadClassDashboardPdf);
   }
   document.getElementById('dash-search-student-btn')?.addEventListener('click',async()=>{const q=document.getElementById('dash-student-name').value.trim().toLocaleLowerCase('pt-BR');if(!q){setStatus('Digite o nome do aluno.','error');return;}try{const rows=await fetchRows();renderStudentRows(rows.filter(r=>String(r.respostas?.participante?.nome||'').toLocaleLowerCase('pt-BR').includes(q)));}catch(e){console.error(e);setStatus('Não foi possível consultar as avaliações. Verifique o acesso do professor e as políticas do Supabase.','error');}});
   document.getElementById('dash-search-class-btn')?.addEventListener('click',async()=>{const code=document.getElementById('dash-class-code').value.trim().toUpperCase();if(!code){setStatus('Digite o código da turma/aplicação.','error');return;}try{const rows=await fetchRows();renderClass(rows.filter(r=>String(r.codigo_aplicacao||'').toUpperCase()===code),code);}catch(e){console.error(e);setStatus('Não foi possível consultar a turma. Verifique o acesso do professor e as políticas do Supabase.','error');}});
