@@ -188,7 +188,7 @@
         <i data-lucide="shield-check" style="width:24px;height:24px;color:#065f46"></i>
        </div>
        <h3 data-template-id="comp-card-1-title" class="canva-text heading-font font-bold mb-3" style="color: rgb(15, 43, 29); font-weight: 700; font-style: normal; font-size: 19px;">Normativas</h3>
-       <p class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">Prepare</p><p data-template-id="comp-card-1-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Estabelecem as condições para a aplicação da avaliação da LX, orientando o avaliador quanto aos requisitos mínimos do processo avaliativo.</p><div class="mt-5 pt-4 border-t border-emerald-100 text-emerald-800 font-bold text-sm inline-flex items-center gap-2">Consultar normativas <i data-lucide="arrow-right" style="width:16px;height:16px"></i></div>
+       <p class="text-xs font-bold uppercase tracking-wider text-emerald-700 mb-2">Prepare</p><p data-template-id="comp-card-1-desc" class="canva-text text-sm leading-relaxed" style="color: rgb(55, 65, 81); font-weight: 400; font-style: normal; font-size: 16px;">Estabelecem as condições para a aplicação da avaliação da LX, orientando o avaliador quanto aos requisitos mínimos do processo avaliativo.</p><div class="mt-5 pt-4 border-t border-emerald-100 text-emerald-800 font-bold text-sm inline-flex items-center gap-2">Preencher normativas <i data-lucide="arrow-right" style="width:16px;height:16px"></i></div>
       </article><!-- Formulário de Avaliação da LX -->
       <article id="questionario-card" data-template-id="comp-card-2" class="canva-card rounded-2xl p-8 border border-sky-200 cursor-pointer transition-transform hover:-translate-y-1 hover:shadow-lg" style="background: rgb(255, 255, 255);" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="questionario-modal">
        <div class="flex items-center justify-between mb-6">
@@ -402,34 +402,92 @@
    </section><!-- Composição -->
 
 <!-- Modal das Normativas -->
-<div id="normativas-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-6"
-     role="dialog" aria-modal="true" aria-labelledby="normativas-modal-title">
+<div id="normativas-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-6" role="dialog" aria-modal="true" aria-labelledby="normativas-modal-title">
   <div id="normativas-modal-backdrop" class="absolute inset-0 bg-black/55 backdrop-blur-sm"></div>
-  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-6xl h-[90vh] overflow-hidden flex flex-col">
+  <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-6xl h-[92vh] overflow-hidden flex flex-col">
     <div class="flex items-center justify-between gap-4 px-5 py-4 md:px-6 border-b border-gray-200">
       <div>
-        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Componente 01</span>
-        <h2 id="normativas-modal-title" class="heading-font text-xl md:text-2xl font-bold text-emerald-950 mt-1">Normativas do CoLeXEeM</h2>
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Componente 01 · Prepare</span>
+        <h2 id="normativas-modal-title" class="heading-font text-xl md:text-2xl font-bold text-emerald-950 mt-1">Registro das Normativas do CoLeXEeM</h2>
+        <p class="text-sm text-gray-600 mt-1">Registre as informações de planejamento e complemente as respostas quando necessário.</p>
       </div>
-      <div class="flex items-center gap-2">
-        <a href="normativas.pdf" download
-           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition"
-           aria-label="Baixar normativas em PDF">
-          <i data-lucide="download" style="width:18px;height:18px;"></i>
-          <span class="hidden sm:inline">Baixar PDF</span>
-        </a>
-        <button id="normativas-modal-close" type="button" aria-label="Fechar normativas"
-                class="w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition">
-          <i data-lucide="x" style="width:22px;height:22px;"></i>
-        </button>
-      </div>
+      <button id="normativas-modal-close" type="button" aria-label="Fechar normativas" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition">
+        <i data-lucide="x" style="width:22px;height:22px;"></i>
+      </button>
     </div>
-    <div class="flex-1 bg-gray-100 min-h-0">
-      <iframe src="normativas.pdf" title="Normativas do CoLeXEeM" class="w-full h-full border-0"></iframe>
+
+    <div class="flex-1 overflow-y-auto bg-gray-50" id="normativas-scroll">
+      <form id="normativas-form" novalidate class="p-5 md:p-7 space-y-7">
+        <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-950">
+          <strong>Como preencher:</strong> selecione as opções que representam o planejamento da atividade. Os campos de complemento são livres e podem ser usados para registrar detalhes específicos do contexto.
+        </div>
+        <div id="normativas-missing" class="hidden rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-800"></div>
+
+        <section class="space-y-4">
+          <h3 class="font-bold text-lg text-emerald-950 bg-emerald-100/70 border border-emerald-200 rounded-xl px-4 py-3">Categoria A – Contexto da atividade colaborativa</h3>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n1">
+            <h4 class="font-bold text-emerald-900">N1. Caracterização da atividade colaborativa</h4>
+            <p class="text-sm text-gray-600 mt-1 mb-4">Identifique as principais características da atividade colaborativa.</p>
+            <div class="grid md:grid-cols-2 gap-4">
+              <label class="text-sm font-semibold text-gray-700">Objetivo da atividade<input required name="n1_objetivo" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Ex.: desenvolver uma solução em grupo"></label>
+              <label class="text-sm font-semibold text-gray-700">Disciplina<input required name="n1_disciplina" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Ex.: Interação Humano-Computador"></label>
+              <label class="text-sm font-semibold text-gray-700">Duração<select required name="n1_duracao" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal"><option value="">Selecione</option><option>Uma aula</option><option>Várias aulas</option><option>Metade do semestre</option><option>Todo o semestre</option><option>Outra duração</option></select></label>
+              <fieldset><legend class="text-sm font-semibold text-gray-700 mb-2">Modalidade</legend><div class="flex flex-wrap gap-2"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n1_modalidade" value="Presencial" required class="accent-emerald-700">Presencial</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n1_modalidade" value="Híbrida" required class="accent-emerald-700">Híbrida</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n1_modalidade" value="Online" required class="accent-emerald-700">Online</label></div></fieldset>
+              <fieldset><legend class="text-sm font-semibold text-gray-700 mb-2">Tipo de atividade</legend><div class="flex flex-wrap gap-2"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n1_tipo" value="Resolução de problemas" class="accent-emerald-700">Resolução de problemas</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n1_tipo" value="Projeto" class="accent-emerald-700">Projeto</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n1_tipo" value="Estudo de caso" class="accent-emerald-700">Estudo de caso</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n1_tipo" value="Discussão" class="accent-emerald-700">Discussão</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n1_tipo" value="Outro" class="accent-emerald-700">Outro</label></div></fieldset>
+              <label class="text-sm font-semibold text-gray-700">Conteúdo<input required name="n1_conteudo" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Conteúdo abordado na atividade"></label>
+            </div>
+            <label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n1_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label>
+          </article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n2"><h4 class="font-bold text-emerald-900">N2. Momento da avaliação</h4><p class="text-sm text-gray-600 mt-1 mb-4">Identifique quando a avaliação da LX ocorrerá.</p><div class="flex flex-wrap gap-2"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n2_momento" value="Durante a atividade" required class="accent-emerald-700">Durante a atividade</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n2_momento" value="Após a atividade" required class="accent-emerald-700">Após a atividade</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n2_momento" value="Durante e após" required class="accent-emerald-700">Durante e após</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n2_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+        </section>
+
+        <section class="space-y-4">
+          <h3 class="font-bold text-lg text-emerald-950 bg-emerald-100/70 border border-emerald-200 rounded-xl px-4 py-3">Categoria B – Estratégia pedagógica</h3>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n3"><h4 class="font-bold text-emerald-900">N3. Estratégia de aprendizagem</h4><p class="text-sm text-gray-600 mt-1 mb-4">Registre estratégias utilizadas além da formação dos grupos.</p><div class="flex flex-wrap gap-2"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n3_estrategia" value="PBL" class="accent-emerald-700">PBL</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n3_estrategia" value="Sala de aula invertida" class="accent-emerald-700">Sala de aula invertida</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n3_estrategia" value="Aprendizagem baseada em projetos" class="accent-emerald-700">Aprendizagem baseada em projetos</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n3_estrategia" value="Outra estratégia" class="accent-emerald-700">Outra estratégia</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n3_estrategia" value="Nenhuma estratégia adicional" class="accent-emerald-700">Nenhuma estratégia adicional</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n3_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n4"><h4 class="font-bold text-emerald-900">N4. Objetivos</h4><p class="text-sm text-gray-600 mt-1 mb-4">Defina objetivos do grupo e objetivos individuais.</p><div class="grid md:grid-cols-2 gap-4"><label class="text-sm font-semibold text-gray-700">Objetivo do grupo<textarea required name="n4_grupo" rows="3" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal"></textarea></label><label class="text-sm font-semibold text-gray-700">Objetivos individuais<textarea required name="n4_individual" rows="3" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal"></textarea></label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n4_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n5"><h4 class="font-bold text-emerald-900">N5. Feedback</h4><p class="text-sm text-gray-600 mt-1 mb-4">Planeje os momentos de feedback durante a atividade colaborativa.</p><div class="flex flex-wrap gap-2"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n5_feedback" value="No início" class="accent-emerald-700">No início</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n5_feedback" value="Durante a atividade" class="accent-emerald-700">Durante a atividade</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n5_feedback" value="Ao final" class="accent-emerald-700">Ao final</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n5_feedback" value="Feedback contínuo" class="accent-emerald-700">Feedback contínuo</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n5_feedback" value="Não foi planejado" class="accent-emerald-700">Não foi planejado</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n5_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+        </section>
+
+        <section class="space-y-4">
+          <h3 class="font-bold text-lg text-emerald-950 bg-emerald-100/70 border border-emerald-200 rounded-xl px-4 py-3">Categoria C – Organização dos grupos</h3>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n6"><h4 class="font-bold text-emerald-900">N6. Teorias para a formação dos grupos</h4><p class="text-sm text-gray-600 mt-1 mb-4">Registre se alguma teoria de aprendizagem apoiou a formação dos grupos.</p><div class="flex flex-wrap gap-2"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n6_teoria" value="Peer Tutorial Instruction" class="accent-emerald-700">Peer Tutorial Instruction</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n6_teoria" value="Anchored Instruction" class="accent-emerald-700">Anchored Instruction</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n6_teoria" value="Jigsaw" class="accent-emerald-700">Jigsaw</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n6_teoria" value="Outra teoria" class="accent-emerald-700">Outra teoria</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n6_teoria" value="Nenhuma teoria" class="accent-emerald-700">Nenhuma teoria</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n6_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n7"><h4 class="font-bold text-emerald-900">N7. Estratégia para formação dos grupos</h4><p class="text-sm text-gray-600 mt-1 mb-4">Registre a configuração utilizada para formar os grupos.</p><div class="flex flex-wrap gap-2"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n7_estrategia" value="Aleatória" required class="accent-emerald-700">Aleatória</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n7_estrategia" value="Autosseleção" required class="accent-emerald-700">Autosseleção</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n7_estrategia" value="Determinação do professor" required class="accent-emerald-700">Determinação do professor</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n7_estrategia" value="Baseada em teoria de aprendizagem" required class="accent-emerald-700">Baseada em teoria de aprendizagem</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n7_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n71"><h4 class="font-bold text-emerald-900">N7.1. Fatores utilizados para a formação dos grupos</h4><div class="flex flex-wrap gap-2 mt-4"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n71_fatores" value="Nível de conhecimento" class="accent-emerald-700">Nível de conhecimento</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n71_fatores" value="Habilidades" class="accent-emerald-700">Habilidades</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n71_fatores" value="Traços de personalidade" class="accent-emerald-700">Traços de personalidade</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n71_fatores" value="Experiências anteriores" class="accent-emerald-700">Experiências anteriores</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n71_fatores" value="Outro fator" class="accent-emerald-700">Outro fator</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n71_fatores" value="Não se aplica" class="accent-emerald-700">Não se aplica</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n71_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n72"><h4 class="font-bold text-emerald-900">N7.2. Diversidade dos grupos</h4><div class="flex flex-wrap gap-2 mt-4"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n72_diversidade" value="Homogêneo" required class="accent-emerald-700">Homogêneo</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n72_diversidade" value="Heterogêneo" required class="accent-emerald-700">Heterogêneo</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n72_diversidade" value="Misto" required class="accent-emerald-700">Misto</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n72_diversidade" value="Não se aplica" required class="accent-emerald-700">Não se aplica</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n72_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n73"><h4 class="font-bold text-emerald-900">N7.3. Estrutura e propósito do grupo</h4><div class="flex flex-wrap gap-2 mt-4"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n73_estrutura" value="Informal" required class="accent-emerald-700">Informal</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n73_estrutura" value="Formal" required class="accent-emerald-700">Formal</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n73_estrutura" value="Grupo-base" required class="accent-emerald-700">Grupo-base</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n73_estrutura" value="Outro" required class="accent-emerald-700">Outro</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n73_estrutura" value="Não se aplica" required class="accent-emerald-700">Não se aplica</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n73_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n74"><h4 class="font-bold text-emerald-900">N7.4. Número de membros</h4><div class="flex flex-wrap gap-2 mt-4"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n74_membros" value="Duplas" required class="accent-emerald-700">Duplas</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n74_membros" value="Trios" required class="accent-emerald-700">Trios</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n74_membros" value="Quartetos" required class="accent-emerald-700">Quartetos</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n74_membros" value="5 ou mais membros" required class="accent-emerald-700">5 ou mais membros</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="radio" name="n74_membros" value="Quantidade variável" required class="accent-emerald-700">Quantidade variável</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n74_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n75"><h4 class="font-bold text-emerald-900">N7.5. Definição de papéis</h4><div class="flex flex-wrap gap-2 mt-4"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n75_papeis" value="Líder" class="accent-emerald-700">Líder</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n75_papeis" value="Integrante ativo" class="accent-emerald-700">Integrante ativo</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n75_papeis" value="Integrante passivo" class="accent-emerald-700">Integrante passivo</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n75_papeis" value="Tutor" class="accent-emerald-700">Tutor</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n75_papeis" value="Tutorado" class="accent-emerald-700">Tutorado</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n75_papeis" value="Facilitador" class="accent-emerald-700">Facilitador</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n75_papeis" value="Relator" class="accent-emerald-700">Relator</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n75_papeis" value="Outro papel" class="accent-emerald-700">Outro papel</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n75_papeis" value="Não se aplica" class="accent-emerald-700">Não se aplica</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n75_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+        </section>
+
+        <section class="space-y-4">
+          <h3 class="font-bold text-lg text-emerald-950 bg-emerald-100/70 border border-emerald-200 rounded-xl px-4 py-3">Categoria D – Ecossistema tecnológico</h3>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n8d"><h4 class="font-bold text-emerald-900">N8. Dispositivos utilizados</h4><div class="flex flex-wrap gap-2 mt-4"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_dispositivos" value="Computador" class="accent-emerald-700">Computador</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_dispositivos" value="Notebook" class="accent-emerald-700">Notebook</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_dispositivos" value="Tablet" class="accent-emerald-700">Tablet</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_dispositivos" value="Smartphone" class="accent-emerald-700">Smartphone</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_dispositivos" value="Outro dispositivo" class="accent-emerald-700">Outro dispositivo</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n8d_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n8t"><h4 class="font-bold text-emerald-900">N8. TDIC utilizadas</h4><p class="text-sm text-gray-600 mt-1 mb-4">Registre as TDIC utilizadas para apoiar a colaboração.</p><div class="flex flex-wrap gap-2"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_tdic" value="Overleaf" class="accent-emerald-700">Overleaf</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_tdic" value="Google Drive" class="accent-emerald-700">Google Drive</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_tdic" value="MEC RED" class="accent-emerald-700">MEC RED</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_tdic" value="Trello" class="accent-emerald-700">Trello</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_tdic" value="Notion" class="accent-emerald-700">Notion</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_tdic" value="WhatsApp" class="accent-emerald-700">WhatsApp</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_tdic" value="Telegram" class="accent-emerald-700">Telegram</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n8_tdic" value="Outra TDIC" class="accent-emerald-700">Outra TDIC</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n8t_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n9"><h4 class="font-bold text-emerald-900">N9. Papel das TDIC</h4><p class="text-sm text-gray-600 mt-1 mb-4">Registre as finalidades apoiadas pelas TDIC.</p><div class="flex flex-wrap gap-2"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n9_papel" value="Comunicação" class="accent-emerald-700">Comunicação</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n9_papel" value="Coordenação" class="accent-emerald-700">Coordenação</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n9_papel" value="Cooperação" class="accent-emerald-700">Cooperação</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n9_papel" value="Outro papel" class="accent-emerald-700">Outro papel</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n9_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+        </section>
+
+        <section class="space-y-4">
+          <h3 class="font-bold text-lg text-emerald-950 bg-emerald-100/70 border border-emerald-200 rounded-xl px-4 py-3">Categoria E – Planejamento da avaliação e melhorias</h3>
+          <article class="normativa-item bg-white border border-gray-200 rounded-2xl p-5" data-normativa="n12"><h4 class="font-bold text-emerald-900">N12. Objetivo da avaliação</h4><p class="text-sm text-gray-600 mt-1 mb-4">Registre o objetivo previsto para a avaliação.</p><div class="flex flex-wrap gap-2"><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n12_objetivo" value="Avaliar a LX vivenciada na atividade colaborativa" class="accent-emerald-700">Avaliar a LX vivenciada na atividade colaborativa</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n12_objetivo" value="Subsidiar melhorias na LX" class="accent-emerald-700">Subsidiar melhorias na LX</label><label class="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 bg-white text-sm cursor-pointer hover:border-emerald-400"><input type="checkbox" name="n12_objetivo" value="Outro objetivo" class="accent-emerald-700">Outro objetivo</label></div><label class="block text-sm font-semibold text-gray-700 mt-4">Complemento da resposta <span class="font-normal text-gray-400">(opcional)</span><textarea name="n12_complemento" rows="2" class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 font-normal" placeholder="Registre detalhes, justificativas ou outras informações relevantes."></textarea></label></article>
+        </section>
+
+        <div class="sticky bottom-0 bg-gray-50/95 backdrop-blur border-t border-gray-200 py-4 flex flex-wrap items-center justify-between gap-3">
+          <span id="normativas-save-status" class="text-xs text-gray-500">As respostas são salvas neste navegador.</span>
+          <div class="flex flex-wrap gap-2"><button type="button" id="normativas-limpar" class="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 font-semibold hover:bg-gray-100">Limpar</button><button type="submit" class="px-5 py-2 rounded-lg bg-emerald-700 text-white font-semibold hover:bg-emerald-800 inline-flex items-center gap-2"><i data-lucide="check-circle" style="width:18px;height:18px"></i>Finalizar registro</button></div>
+        </div>
+      </form>
+
+      <section id="normativas-resultados" class="hidden p-5 md:p-7 space-y-5">
+        <div class="bg-white border border-emerald-200 rounded-2xl p-5"><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Registro concluído</span><h3 class="heading-font text-2xl font-bold text-emerald-950 mt-1">Informações registradas nas normativas</h3><p class="text-sm text-gray-600 mt-2">Confira abaixo as informações registradas pelo professor.</p></div>
+        <div id="normativas-resumo" class="space-y-5"></div>
+        <div class="bg-white border border-gray-200 rounded-2xl p-5 flex flex-wrap gap-3 justify-between items-center">
+          <button type="button" id="normativas-voltar" class="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 font-semibold hover:bg-gray-100">Voltar e editar</button>
+          <div class="flex flex-wrap gap-2"><button type="button" id="normativas-csv" class="px-4 py-2 rounded-lg bg-sky-700 text-white font-semibold hover:bg-sky-800">Baixar CSV</button><button type="button" id="normativas-json" class="px-4 py-2 rounded-lg bg-indigo-700 text-white font-semibold hover:bg-indigo-800">Baixar JSON</button><button type="button" id="normativas-pdf" class="px-4 py-2 rounded-lg bg-emerald-700 text-white font-semibold hover:bg-emerald-800">Baixar PDF</button></div>
+        </div>
+      </section>
     </div>
   </div>
 </div>
-
 
 <!-- Modal das Diretrizes -->
 <div id="diretrizes-modal" class="fixed inset-0 z-[110] hidden items-center justify-center p-4 md:p-6" role="dialog" aria-modal="true" aria-labelledby="diretrizes-modal-title">
@@ -1381,6 +1439,182 @@
         }
 
         setupPdfModal('normativas-card', 'normativas-modal', 'normativas-modal-close', 'normativas-modal-backdrop');
+
+        // Normativas interativas: registro, resumo e exportações
+        const NORMATIVAS_STORAGE_KEY = 'colexeem_normativas_v1';
+        const normativasForm = document.getElementById('normativas-form');
+        const normativasResultados = document.getElementById('normativas-resultados');
+        const normativasResumo = document.getElementById('normativas-resumo');
+        const normativasMissing = document.getElementById('normativas-missing');
+        const normativasScroll = document.getElementById('normativas-scroll');
+        const normativasSaveStatus = document.getElementById('normativas-save-status');
+
+        const normativasMeta = [
+          {cat:'Categoria A – Contexto da atividade colaborativa', id:'N1', key:'n1', title:'Caracterização da atividade colaborativa', fields:[['Objetivo','n1_objetivo'],['Disciplina','n1_disciplina'],['Duração','n1_duracao'],['Modalidade','n1_modalidade'],['Tipo de atividade','n1_tipo'],['Conteúdo','n1_conteudo'],['Complemento','n1_complemento']]},
+          {cat:'Categoria A – Contexto da atividade colaborativa', id:'N2', key:'n2', title:'Momento da avaliação', fields:[['Momento','n2_momento'],['Complemento','n2_complemento']]},
+          {cat:'Categoria B – Estratégia pedagógica', id:'N3', key:'n3', title:'Estratégia de aprendizagem', fields:[['Estratégia','n3_estrategia'],['Complemento','n3_complemento']]},
+          {cat:'Categoria B – Estratégia pedagógica', id:'N4', key:'n4', title:'Objetivos', fields:[['Objetivo do grupo','n4_grupo'],['Objetivos individuais','n4_individual'],['Complemento','n4_complemento']]},
+          {cat:'Categoria B – Estratégia pedagógica', id:'N5', key:'n5', title:'Feedback', fields:[['Momentos de feedback','n5_feedback'],['Complemento','n5_complemento']]},
+          {cat:'Categoria C – Organização dos grupos', id:'N6', key:'n6', title:'Teorias para a formação dos grupos', fields:[['Teorias','n6_teoria'],['Complemento','n6_complemento']]},
+          {cat:'Categoria C – Organização dos grupos', id:'N7', key:'n7', title:'Estratégia para formação dos grupos', fields:[['Estratégia','n7_estrategia'],['Complemento','n7_complemento']]},
+          {cat:'Categoria C – Organização dos grupos', id:'N7.1', key:'n71', title:'Fatores utilizados para a formação dos grupos', fields:[['Fatores','n71_fatores'],['Complemento','n71_complemento']]},
+          {cat:'Categoria C – Organização dos grupos', id:'N7.2', key:'n72', title:'Diversidade dos grupos', fields:[['Diversidade','n72_diversidade'],['Complemento','n72_complemento']]},
+          {cat:'Categoria C – Organização dos grupos', id:'N7.3', key:'n73', title:'Estrutura e propósito do grupo', fields:[['Estrutura','n73_estrutura'],['Complemento','n73_complemento']]},
+          {cat:'Categoria C – Organização dos grupos', id:'N7.4', key:'n74', title:'Número de membros', fields:[['Número de membros','n74_membros'],['Complemento','n74_complemento']]},
+          {cat:'Categoria C – Organização dos grupos', id:'N7.5', key:'n75', title:'Definição de papéis', fields:[['Papéis','n75_papeis'],['Complemento','n75_complemento']]},
+          {cat:'Categoria D – Ecossistema tecnológico', id:'N8', key:'n8d', title:'Dispositivos utilizados', fields:[['Dispositivos','n8_dispositivos'],['Complemento','n8d_complemento']]},
+          {cat:'Categoria D – Ecossistema tecnológico', id:'N8', key:'n8t', title:'TDIC utilizadas', fields:[['TDIC','n8_tdic'],['Complemento','n8t_complemento']]},
+          {cat:'Categoria D – Ecossistema tecnológico', id:'N9', key:'n9', title:'Papel das TDIC', fields:[['Papel das TDIC','n9_papel'],['Complemento','n9_complemento']]},
+          {cat:'Categoria E – Planejamento da avaliação e melhorias', id:'N12', key:'n12', title:'Objetivo da avaliação', fields:[['Objetivo','n12_objetivo'],['Complemento','n12_complemento']]}
+        ];
+
+        const normativaRequiredGroups = ['n1_tipo','n3_estrategia','n5_feedback','n6_teoria','n71_fatores','n75_papeis','n8_dispositivos','n8_tdic','n9_papel','n12_objetivo'];
+
+        function getNormativasState() {
+          const state = {};
+          const data = new FormData(normativasForm);
+          for (const [key, value] of data.entries()) {
+            if (state[key] !== undefined) {
+              if (!Array.isArray(state[key])) state[key] = [state[key]];
+              state[key].push(value);
+            } else state[key] = value;
+          }
+          return state;
+        }
+
+        function restoreNormativasState() {
+          let saved;
+          try { saved = JSON.parse(localStorage.getItem(NORMATIVAS_STORAGE_KEY) || '{}'); } catch(e) { saved = {}; }
+          Object.entries(saved).forEach(([name,value]) => {
+            const elements = normativasForm.querySelectorAll(`[name="${name}"]`);
+            if (!elements.length) return;
+            elements.forEach(el => {
+              if (el.type === 'checkbox' || el.type === 'radio') {
+                const values = Array.isArray(value) ? value : [value];
+                el.checked = values.includes(el.value);
+              } else el.value = Array.isArray(value) ? value[0] : value;
+            });
+          });
+        }
+
+        function persistNormativasState() {
+          const state = getNormativasState();
+          localStorage.setItem(NORMATIVAS_STORAGE_KEY, JSON.stringify(state));
+          normativasSaveStatus.textContent = 'Respostas salvas automaticamente';
+          clearTimeout(persistNormativasState.timer);
+          persistNormativasState.timer = setTimeout(()=>normativasSaveStatus.textContent='As respostas são salvas neste navegador.',1400);
+        }
+        normativasForm?.addEventListener('input', persistNormativasState);
+        normativasForm?.addEventListener('change', persistNormativasState);
+        restoreNormativasState();
+
+        function validateNormativas() {
+          const missing = [];
+          normativasForm.querySelectorAll('.normativa-item').forEach(item => item.classList.remove('ring-2','ring-red-400','bg-red-50'));
+          normativasRequiredGroups.forEach(name => {
+            if (!normativasForm.querySelector(`[name="${name}"]:checked`)) {
+              const item = normativasForm.querySelector(`[name="${name}"]`)?.closest('.normativa-item');
+              if (item && !missing.includes(item)) missing.push(item);
+            }
+          });
+          if (!normativasForm.checkValidity()) {
+            normativasForm.querySelectorAll(':invalid').forEach(el => {
+              const item=el.closest('.normativa-item'); if(item && !missing.includes(item)) missing.push(item);
+            });
+          }
+          if (missing.length) {
+            missing.forEach(item=>item.classList.add('ring-2','ring-red-400','bg-red-50'));
+            const names = missing.map(item=>item.querySelector('h4')?.textContent?.trim()).filter(Boolean);
+            normativasMissing.classList.remove('hidden');
+            normativasMissing.innerHTML = `<strong>Há informações que ainda precisam ser registradas:</strong><br>${names.join('<br>')}`;
+            missing[0].scrollIntoView({behavior:'smooth',block:'center'});
+            return false;
+          }
+          normativasMissing.classList.add('hidden');
+          return true;
+        }
+
+        function normValue(state, name) {
+          const v = state[name];
+          if (Array.isArray(v)) return v.join(', ');
+          return (v ?? '').toString().trim();
+        }
+        function escHtml(text) { return String(text ?? '').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c])); }
+
+        function renderNormativasSummary() {
+          const state = getNormativasState();
+          const cats = [...new Set(normativasMeta.map(n=>n.cat))];
+          normativasResumo.innerHTML = cats.map(cat => {
+            const cards = normativasMeta.filter(n=>n.cat===cat).map(n => {
+              const fields=n.fields.map(([label,name])=>{
+                const value=normValue(state,name);
+                return value ? `<div class="py-2 border-t border-gray-100 first:border-t-0"><span class="text-xs font-bold uppercase tracking-wide text-gray-400">${escHtml(label)}</span><p class="text-sm text-gray-700 mt-1 whitespace-pre-wrap">${escHtml(value)}</p></div>` : '';
+              }).join('');
+              return `<article class="bg-white border border-gray-200 rounded-xl p-4"><div class="flex gap-3 items-baseline"><span class="font-bold text-emerald-700">${n.id}</span><h5 class="font-bold text-emerald-950">${escHtml(n.title)}</h5></div><div class="mt-3">${fields}</div></article>`;
+            }).join('');
+            return `<section><h4 class="font-bold text-lg text-emerald-950 mb-3">${escHtml(cat)}</h4><div class="grid md:grid-cols-2 gap-3">${cards}</div></section>`;
+          }).join('');
+          normativasForm.classList.add('hidden');
+          normativasResultados.classList.remove('hidden');
+          normativasScroll.scrollTop=0;
+          lucide.createIcons();
+        }
+
+        normativasForm?.addEventListener('submit', e => {
+          e.preventDefault();
+          persistNormativasState();
+          if (!validateNormativas()) return;
+          renderNormativasSummary();
+        });
+
+        document.getElementById('normativas-voltar')?.addEventListener('click',()=>{
+          normativasResultados.classList.add('hidden');
+          normativasForm.classList.remove('hidden');
+          normativasScroll.scrollTop=0;
+        });
+
+        document.getElementById('normativas-limpar')?.addEventListener('click',()=>{
+          if (!confirm('Deseja limpar todas as informações registradas nas normativas?')) return;
+          normativasForm.reset();
+          localStorage.removeItem(NORMATIVAS_STORAGE_KEY);
+          normativasMissing.classList.add('hidden');
+          normativasForm.querySelectorAll('.normativa-item').forEach(item=>item.classList.remove('ring-2','ring-red-400','bg-red-50'));
+          normativasSaveStatus.textContent='Informações removidas';
+        });
+
+        function normativasExportRows() {
+          const state=getNormativasState();
+          const rows=[['Categoria','Normativa','Título','Campo','Resposta']];
+          normativasMeta.forEach(n=>n.fields.forEach(([label,name])=>rows.push([n.cat,n.id,n.title,label,normValue(state,name)])));
+          return rows;
+        }
+        function downloadBlobFile(content,type,name) {
+          const blob=new Blob([content],{type}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+        }
+        document.getElementById('normativas-csv')?.addEventListener('click',()=>{
+          const csv=normativasExportRows().map(row=>row.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(';')).join('\n');
+          downloadBlobFile('\ufeff'+csv,'text/csv;charset=utf-8;','normativas_colexeem.csv');
+        });
+        document.getElementById('normativas-json')?.addEventListener('click',()=>{
+          const state=getNormativasState();
+          const structured=normativasMeta.map(n=>({categoria:n.cat,normativa:n.id,titulo:n.title,respostas:Object.fromEntries(n.fields.map(([label,name])=>[label,state[name]??'']))}));
+          downloadBlobFile(JSON.stringify({instrumento:'CoLeXEeM - Registro das Normativas',versao:1,data_exportacao:new Date().toISOString(),normativas:structured},null,2),'application/json;charset=utf-8;','normativas_colexeem.json');
+        });
+        document.getElementById('normativas-pdf')?.addEventListener('click',()=>{
+          if (!window.jspdf || !window.jspdf.jsPDF) { alert('Não foi possível carregar o gerador de PDF. Verifique sua conexão com a internet.'); return; }
+          const {jsPDF}=window.jspdf; const doc=new jsPDF({unit:'mm',format:'a4'}); const margin=15; const pageW=doc.internal.pageSize.getWidth(); const pageH=doc.internal.pageSize.getHeight(); const width=pageW-margin*2; let y=18;
+          const clean=t=>String(t??'').replace(/[–—]/g,'-').replace(/[“”]/g,'"').replace(/[‘’]/g,"'");
+          const ensure=(h=10)=>{if(y>pageH-margin-h){doc.addPage();y=18;}};
+          const write=(text,size=10,bold=false,indent=0)=>{doc.setFont('helvetica',bold?'bold':'normal');doc.setFontSize(size);const lines=doc.splitTextToSize(clean(text),width-indent);for(const line of lines){ensure(6);doc.text(line,margin+indent,y);y+=5;}y+=1;};
+          doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text('CoLeXEeM - Registro das Normativas',margin,y);y+=10;
+          const state=getNormativasState(); let currentCat='';
+          normativasMeta.forEach(n=>{
+            if(n.cat!==currentCat){ensure(15);y+=2;write(n.cat,13,true);currentCat=n.cat;}
+            ensure(15);write(`${n.id}. ${n.title}`,11,true);
+            n.fields.forEach(([label,name])=>{const value=normValue(state,name);if(value)write(`${label}: ${value}`,9,false,3);}); y+=2;
+          });
+          doc.save('normativas_colexeem.pdf');
+        });
 
 
 
