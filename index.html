@@ -6,6 +6,7 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:wght@600;700;800&amp;display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
         body { font-family: 'DM Sans', sans-serif; }
         .heading-font { font-family: 'Fraunces', serif; }
@@ -110,7 +111,7 @@
        <span class="w-1.5 h-4 bg-white rounded-full"></span><span class="w-1.5 h-3 bg-white/70 rounded-full mt-1"></span><span class="w-1.5 h-5 bg-white/50 rounded-full"></span>
       </div>
      </div><strong class="text-emerald-900 font-bold text-lg">CoLeXEeM</strong> </a> <button id="menu-btn" type="button" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Abrir menu"> <span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span> </button>
-    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-64 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-6 p-8 md:p-0 z-50" aria-label="Navegação principal"><a href="#composicao" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 font-semibold transition-colors">Aplicar</a> <a href="#sobre" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">O Método</a> <a href="#objetivo" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Objetivo</a> <a href="#composicao" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Composição</a> <a href="#camada-tdic" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Sugestões de TDIC</a> <a href="#como-usar" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Como usar</a>
+    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-64 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-6 p-8 md:p-0 z-50" aria-label="Navegação principal"><a href="#composicao" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 font-semibold transition-colors">Aplicar</a> <a href="#sobre" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">O Método</a> <a href="#objetivo" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Objetivo</a> <a href="#composicao" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Composição</a> <a href="#camada-tdic" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Sugestões de TDIC</a> <a href="#como-usar" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Como usar</a> <a href="#dashboard" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Dashboard</a>
     </nav>
    </div>
   </header>
@@ -558,7 +559,8 @@
         <section class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6">
           <div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center"><i data-lucide="user-round" style="width:20px;height:20px;color:#0c4a6e"></i></div><div><h3 class="font-bold text-emerald-950">Caracterização do participante</h3><p class="text-sm text-gray-500">Campos reproduzidos da versão atual do questionário.</p></div></div>
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <label class="text-sm font-semibold text-gray-700">Nome<input name="nome" type="text" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
+            <label class="text-sm font-semibold text-gray-700">Nome<input name="nome" type="text" required class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
+            <label class="text-sm font-semibold text-gray-700">Código da turma/aplicação<input name="codigo_aplicacao" type="text" required placeholder="Ex.: CLX-20260814-AB12CD" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal uppercase focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
             <label class="text-sm font-semibold text-gray-700">Idade<input name="idade" type="number" min="0" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
             <label class="text-sm font-semibold text-gray-700">Curso<input name="curso" type="text" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
             <label class="text-sm font-semibold text-gray-700">Gênero<input name="genero" type="text" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
@@ -569,7 +571,7 @@
         </section>
         <div class="bg-sky-50 border border-sky-100 rounded-2xl p-5"><h3 class="font-bold text-sky-950 mb-2">Escala de resposta</h3><p class="text-sm text-sky-900 leading-relaxed">1 = Discordo totalmente · 2 = Discordo fortemente · 3 = Discordo parcialmente · 4 = Não concordo nem discordo · 5 = Concordo parcialmente · 6 = Concordo fortemente · 7 = Concordo totalmente.</p></div>
         <div id="questionario-sections" class="space-y-5"></div>
-        <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">As respostas são salvas automaticamente neste navegador. Elas não são enviadas a um servidor.</div><div class="flex gap-2 shrink-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="chart-no-axes-column-increasing" style="width:18px;height:18px;"></i> Avaliar resultados</button></div></div>
+        <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">As respostas são salvas automaticamente neste navegador e, ao finalizar, são enviadas ao banco de dados do CoLeXEeM.</div><div class="flex gap-2 shrink-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="chart-no-axes-column-increasing" style="width:18px;height:18px;"></i> Avaliar resultados</button></div></div>
       </form>
       <section id="questionario-resultados" class="hidden max-w-6xl mx-auto p-5 md:p-8 space-y-6">
         <div class="bg-white border border-gray-200 rounded-2xl p-6"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resultados da avaliação</span><div class="flex items-center gap-2 mt-1">
@@ -617,7 +619,7 @@
     </h3>
 
     <p class="text-gray-600 leading-relaxed mb-6">
-      Cada sentença é apresentada individualmente no gráfico geral, de acordo com a resposta atribuída na escala Likert de 7 pontos. A lista de problemas considera o sentido do elemento para identificar respostas desfavoráveis.
+      O dashboard considera o sentido das sentenças. Para sentenças positivas, somente a resposta 7 é considerada adequada. Para sentenças negativas, somente a resposta 1 é considerada adequada. Qualquer outro valor é destacado como ponto para análise do professor.
     </p>
 
     <!-- Fórmula -->
@@ -726,35 +728,77 @@
 
   </button>
 
-</div><p class="text-gray-600 mt-2 max-w-3xl">O gráfico apresenta cada sentença do questionário e a resposta atribuída na escala Likert de 7 pontos. Ao lado, a lista de problemas destaca as sentenças com respostas desfavoráveis que merecem atenção na análise.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button>
+</div><p class="text-gray-600 mt-2 max-w-3xl">O dashboard sintetiza as respostas do questionário e destaca os pontos que precisam de análise. Em sentenças positivas, apenas a resposta 7 é considerada adequada; em sentenças negativas, apenas a resposta 1 é considerada adequada.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button>
 <button type="button" id="questionario-csv" class="px-4 py-2.5 rounded-xl border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-50 transition inline-flex items-center gap-2"><i data-lucide="file-down" style="width:18px;height:18px;"></i> Baixar CSV</button>
 <button type="button" id="questionario-json" class="px-4 py-2.5 rounded-xl border border-sky-200 text-sky-800 font-semibold hover:bg-sky-50 transition inline-flex items-center gap-2"><i data-lucide="braces" style="width:18px;height:18px;"></i> Baixar JSON</button>
 <button type="button" id="questionario-pdf" class="px-4 py-2.5 rounded-xl border border-rose-200 text-rose-800 font-semibold hover:bg-rose-50 transition inline-flex items-center gap-2"><i data-lucide="file-text" style="width:18px;height:18px;"></i> Baixar PDF</button></div></div></div>
-        <div class="grid lg:grid-cols-[minmax(0,1.7fr)_minmax(300px,0.8fr)] gap-6 items-start">
-          <div class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-5">
-              <div>
-                <h4 class="heading-font font-bold text-lg text-emerald-950">Respostas por sentença</h4>
-                <p class="text-sm text-gray-500 mt-1">Cada barra representa a resposta selecionada, de 1 a 7.</p>
-              </div>
-              <span class="text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5">Likert · 7 pontos</span>
-            </div>
-            <div id="resultado-grafico-sentencas" class="space-y-5"></div>
-          </div>
+        <!-- Dashboard da avaliação -->
+        <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
+          <article class="bg-white border border-gray-200 rounded-2xl p-5">
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Sentenças avaliadas</p>
+            <div class="flex items-end justify-between gap-3 mt-2"><strong id="dash-total" class="heading-font text-3xl text-emerald-950">0</strong><span class="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center"><i data-lucide="list-checks" style="width:20px;height:20px"></i></span></div>
+          </article>
+          <article class="bg-white border border-emerald-200 rounded-2xl p-5">
+            <p class="text-xs font-bold uppercase tracking-wider text-emerald-700">Adequadas</p>
+            <div class="flex items-end justify-between gap-3 mt-2"><strong id="dash-ok" class="heading-font text-3xl text-emerald-950">0</strong><span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center"><i data-lucide="circle-check" style="width:20px;height:20px"></i></span></div>
+            <p class="text-xs text-gray-500 mt-2">Positivas = 7 · Negativas = 1</p>
+          </article>
+          <article class="bg-white border border-rose-200 rounded-2xl p-5">
+            <p class="text-xs font-bold uppercase tracking-wider text-rose-700">Problemas para analisar</p>
+            <div class="flex items-end justify-between gap-3 mt-2"><strong id="dash-problems" class="heading-font text-3xl text-rose-800">0</strong><span class="w-10 h-10 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center"><i data-lucide="triangle-alert" style="width:20px;height:20px"></i></span></div>
+            <p class="text-xs text-gray-500 mt-2">Qualquer resposta fora do valor esperado</p>
+          </article>
+          <article class="bg-white border border-gray-200 rounded-2xl p-5">
+            <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Índice de adequação</p>
+            <div class="flex items-end justify-between gap-3 mt-2"><strong id="dash-rate" class="heading-font text-3xl text-emerald-950">0%</strong><span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center"><i data-lucide="gauge" style="width:20px;height:20px"></i></span></div>
+          </article>
+        </div>
 
-          <aside class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 lg:sticky lg:top-24">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center">
-                <i data-lucide="triangle-alert" style="width:20px;height:20px;"></i>
-              </span>
-              <div>
-                <h4 class="heading-font font-bold text-lg text-emerald-950">Problemas identificados</h4>
-                <p class="text-xs text-gray-500">Sentenças com respostas desfavoráveis.</p>
+        <div class="grid lg:grid-cols-[minmax(0,1.45fr)_minmax(300px,0.75fr)] gap-6 items-start mb-6">
+          <section class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+              <div><h4 class="heading-font font-bold text-lg text-emerald-950">Problemas por elemento</h4><p class="text-sm text-gray-500 mt-1">Quantidade de sentenças que precisam ser analisadas em cada elemento.</p></div>
+              <span class="text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5">Visão geral</span>
+            </div>
+            <div id="dash-elements" class="space-y-4"></div>
+          </section>
+
+          <aside class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6">
+            <h4 class="heading-font font-bold text-lg text-emerald-950">Situação geral</h4>
+            <p class="text-sm text-gray-500 mt-1 mb-5">Proporção entre respostas adequadas e problemas.</p>
+            <div class="flex justify-center py-2">
+              <div id="dash-donut" class="relative w-48 h-48 rounded-full" style="background:conic-gradient(#059669 0 0%, #e11d48 0 100%);">
+                <div class="absolute inset-5 bg-white rounded-full flex flex-col items-center justify-center text-center"><strong id="dash-donut-rate" class="heading-font text-3xl text-emerald-950">0%</strong><span class="text-xs text-gray-500">adequação</span></div>
               </div>
             </div>
-            <div id="resultado-problemas" class="space-y-3"></div>
+            <div class="grid grid-cols-2 gap-3 mt-5 text-sm">
+              <div class="rounded-xl bg-emerald-50 border border-emerald-100 p-3"><span class="block text-xs text-emerald-700">Adequadas</span><strong id="dash-ok-small" class="text-lg text-emerald-900">0</strong></div>
+              <div class="rounded-xl bg-rose-50 border border-rose-100 p-3"><span class="block text-xs text-rose-700">Problemas</span><strong id="dash-problems-small" class="text-lg text-rose-900">0</strong></div>
+            </div>
           </aside>
         </div>
+
+        <div class="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] gap-6 items-start mb-6">
+          <section class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6">
+            <h4 class="heading-font font-bold text-lg text-emerald-950">Distribuição das respostas</h4>
+            <p class="text-sm text-gray-500 mt-1 mb-5">Número de respostas em cada ponto da escala Likert.</p>
+            <div id="dash-likert" class="h-64 flex items-end gap-3 border-b border-gray-200 pb-1"></div>
+          </section>
+
+          <aside class="bg-white border border-rose-200 rounded-2xl p-5 md:p-6">
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <div class="flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-rose-50 text-rose-700 flex items-center justify-center"><i data-lucide="triangle-alert" style="width:20px;height:20px"></i></span><div><h4 class="heading-font font-bold text-lg text-emerald-950">Problemas identificados</h4><p class="text-xs text-gray-500">Itens fora do valor esperado para o sentido da sentença.</p></div></div>
+              <span id="dash-problem-badge" class="text-xs font-bold rounded-full px-3 py-1.5 bg-rose-50 text-rose-800 border border-rose-200">0</span>
+            </div>
+            <div class="rounded-xl bg-gray-50 border border-gray-200 p-3 mb-4 text-xs text-gray-600 leading-relaxed"><strong>Critério:</strong> sentença positiva é adequada apenas com resposta <strong>7</strong>; sentença negativa é adequada apenas com resposta <strong>1</strong>.</div>
+            <div id="resultado-problemas" class="space-y-3 max-h-[520px] overflow-y-auto pr-1"></div>
+          </aside>
+        </div>
+
+        <details class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 group">
+          <summary class="cursor-pointer list-none flex items-center justify-between gap-3"><div><h4 class="heading-font font-bold text-lg text-emerald-950">Detalhamento de todas as respostas</h4><p class="text-sm text-gray-500 mt-1">Abra para consultar cada sentença e sua resposta.</p></div><span class="text-sm font-semibold text-sky-700">Exibir detalhes</span></summary>
+          <div id="resultado-grafico-sentencas" class="space-y-4 mt-6"></div>
+        </details>
         <div class="bg-emerald-950 text-emerald-50 rounded-2xl p-6"><h4 class="font-bold text-lg mb-2">Próxima etapa do CoLeXEeM</h4><p class="text-sm leading-relaxed text-emerald-100">Utilize os problemas identificados nas sentenças como apoio para consultar as diretrizes do CoLeXEeM e planejar melhorias na atividade colaborativa.</p></div>
       </section>
     </div>
@@ -1219,6 +1263,60 @@
      <h2 data-template-id="final-title" class="canva-text heading-font font-bold leading-tight mb-8" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">Transformar resultados em experiências educacionais envolventes e memoráveis.</h2><a href="#inicio" data-template-id="final-button" class="canva-button inline-block px-8 py-4 rounded-xl font-semibold transition-transform hover:scale-105" style="background: rgb(255, 255, 255); color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 16px;">Voltar ao início</a>
     </div>
    </section>
+
+   <section id="dashboard" class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700">Análise consolidada</span>
+          <h2 class="heading-font text-3xl md:text-4xl font-bold text-emerald-950 mt-2">Dashboard</h2>
+          <p class="text-gray-600 mt-3 max-w-3xl">Consulte uma avaliação pelo nome do aluno ou consolide todos os aprendizes vinculados ao mesmo código de turma/aplicação.</p>
+        </div>
+        <div id="dashboard-user" class="hidden text-sm text-gray-600 bg-white border border-gray-200 rounded-xl px-4 py-3"></div>
+      </div>
+
+      <div id="dashboard-auth" class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm max-w-2xl">
+        <div class="flex items-start gap-4">
+          <div class="w-11 h-11 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center shrink-0"><i data-lucide="lock-keyhole" style="width:21px;height:21px"></i></div>
+          <div class="flex-1">
+            <h3 class="font-bold text-emerald-950 text-lg">Acesso do professor</h3>
+            <p class="text-sm text-gray-600 mt-1">Entre com o usuário autorizado no Supabase para consultar os dados armazenados.</p>
+            <form id="dashboard-login-form" class="grid sm:grid-cols-2 gap-3 mt-5">
+              <input id="dashboard-email" type="email" required placeholder="E-mail" class="rounded-xl border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500">
+              <input id="dashboard-password" type="password" required placeholder="Senha" class="rounded-xl border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500">
+              <button type="submit" class="sm:col-span-2 rounded-xl bg-emerald-700 text-white font-semibold px-4 py-2.5 hover:bg-emerald-800 transition">Entrar no Dashboard</button>
+            </form>
+            <p id="dashboard-auth-message" class="hidden text-sm mt-3"></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="dashboard-app" class="hidden space-y-6">
+        <div class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 shadow-sm">
+          <div class="flex flex-col lg:flex-row gap-4 lg:items-end">
+            <div class="flex-1">
+              <div class="inline-flex rounded-xl bg-gray-100 p-1 mb-4">
+                <button type="button" id="dash-mode-student" class="px-4 py-2 rounded-lg bg-white shadow-sm text-sm font-bold text-emerald-800">Por aluno</button>
+                <button type="button" id="dash-mode-class" class="px-4 py-2 rounded-lg text-sm font-semibold text-gray-600">Por turma</button>
+              </div>
+              <div id="dash-search-student">
+                <label class="block text-sm font-bold text-gray-700 mb-1">Nome do aluno</label>
+                <div class="flex gap-2"><input id="dash-student-name" type="text" placeholder="Digite o nome ou parte do nome" class="flex-1 rounded-xl border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500"><button id="dash-search-student-btn" class="rounded-xl bg-sky-700 text-white px-5 py-2.5 font-semibold hover:bg-sky-800">Buscar</button></div>
+              </div>
+              <div id="dash-search-class" class="hidden">
+                <label class="block text-sm font-bold text-gray-700 mb-1">Código da turma/aplicação</label>
+                <div class="flex gap-2"><input id="dash-class-code" type="text" placeholder="Ex.: CLX-20260814-AB12CD" class="flex-1 uppercase rounded-xl border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500"><button id="dash-search-class-btn" class="rounded-xl bg-sky-700 text-white px-5 py-2.5 font-semibold hover:bg-sky-800">Analisar turma</button></div>
+              </div>
+            </div>
+            <button id="dashboard-logout" type="button" class="rounded-xl border border-gray-300 px-4 py-2.5 text-gray-700 font-semibold hover:bg-gray-50">Sair</button>
+          </div>
+        </div>
+        <div id="dashboard-status" class="hidden rounded-xl border px-4 py-3 text-sm"></div>
+        <div id="dashboard-results" class="space-y-6"></div>
+      </div>
+    </div>
+   </section>
+
   </main>
   <footer data-template-id="footer-section" class="canva-footer py-10 text-center" style="background: rgb(10, 31, 21);"><strong data-template-id="footer-brand" class="canva-text block text-lg mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">CoLeXEeM</strong> <span data-template-id="footer-tagline" class="canva-text block text-sm mb-3" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Collaborative Learner eXperience Evaluation and redesign Method</span>
    <p data-template-id="footer-note" class="canva-text text-xs" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Proposta acadêmica para avaliação e melhoria da Learner eXperience no contexto colaborativo.</p>
@@ -1450,6 +1548,23 @@
         const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_rMFzOUr7Etzbxx9bZBcaqw_wSHAK6TR';
         const NORMATIVAS_REMOTE_KEY = 'colexeem_normativas_remote_v1';
         const QUESTIONARIO_REMOTE_KEY = 'colexeem_questionario_remote_v1';
+        const APPLICATION_CODE_KEY = 'colexeem_application_code_v1';
+
+        function getOrCreateApplicationCode() {
+          let code = localStorage.getItem(APPLICATION_CODE_KEY);
+          if (!code) {
+            const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
+            let suffix = Math.random().toString(36).slice(2,8).toUpperCase();
+            try {
+              const bytes = new Uint8Array(3); crypto.getRandomValues(bytes);
+              suffix = Array.from(bytes).map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
+            } catch (_) {}
+            code = `CLX-${date}-${suffix}`;
+            localStorage.setItem(APPLICATION_CODE_KEY, code);
+          }
+          return code;
+        }
+
 
         function createSubmissionCode(prefix='CLX') {
           const now = new Date();
@@ -1620,7 +1735,8 @@
         function renderNormativasSummary() {
           const state = getNormativasState();
           const cats = [...new Set(normativasMeta.map(n=>n.cat))];
-          normativasResumo.innerHTML = cats.map(cat => {
+          const applicationCode = getOrCreateApplicationCode();
+          normativasResumo.innerHTML = `<div class="bg-sky-50 border border-sky-200 rounded-2xl p-5"><span class="text-xs font-bold uppercase tracking-wider text-sky-700">Código desta aplicação</span><div class="flex flex-wrap items-center gap-3 mt-2"><strong class="text-xl text-sky-950">${escHtml(applicationCode)}</strong><button type="button" onclick="navigator.clipboard?.writeText('${applicationCode}')" class="text-sm font-semibold text-sky-700 border border-sky-200 bg-white rounded-lg px-3 py-1.5">Copiar código</button></div><p class="text-sm text-sky-900 mt-2">Compartilhe este código com os aprendizes para que as avaliações sejam vinculadas a esta turma/aplicação.</p></div>` + cats.map(cat => {
             const cards = normativasMeta.filter(n=>n.cat===cat).map(n => {
               const fields=n.fields.map(([label,name])=>{
                 const value=normValue(state,name);
@@ -1658,12 +1774,14 @@
             data_registro:new Date().toISOString(),
             normativas:structured
           };
-          const snapshot = JSON.stringify(remoteJson.normativas);
+          const codigoAplicacao = getOrCreateApplicationCode();
+          remoteJson.codigo_aplicacao = codigoAplicacao;
+          const snapshot = JSON.stringify({codigo_aplicacao: codigoAplicacao, normativas: remoteJson.normativas});
 
           try {
             if (!sameRemoteSnapshot(NORMATIVAS_REMOTE_KEY, snapshot)) {
               showCloudStatus('Enviando registro das normativas...', 'pending');
-              const codigo = createSubmissionCode('CLX-N');
+              const codigo = codigoAplicacao;
               await supabaseInsert('normativas_colexeem', {
                 codigo_aplicacao: codigo,
                 respostas: remoteJson,
@@ -1694,6 +1812,8 @@
           if (!confirm('Deseja limpar todas as informações registradas nas normativas?')) return;
           normativasForm.reset();
           localStorage.removeItem(NORMATIVAS_STORAGE_KEY);
+          localStorage.removeItem(APPLICATION_CODE_KEY);
+          localStorage.removeItem(NORMATIVAS_REMOTE_KEY);
           normativasMissing.classList.add('hidden');
           normativasForm.querySelectorAll('.normativa-item').forEach(item=>item.classList.remove('ring-2','ring-red-400','bg-red-50'));
           normativasSaveStatus.textContent='Informações removidas';
@@ -1767,6 +1887,7 @@
         ];
 
         const QUESTIONARIO_STORAGE_KEY = 'colexeem-questionario-v2';
+        window.questionarioData = questionarioData;
         const questionnaireTotalItems = questionarioData.reduce((n,e)=>n+e.items.length,0);
 
         const questionarioModal = document.getElementById('questionario-modal');
@@ -2256,7 +2377,7 @@
           questionarioData.forEach((element, ei) => {
             element.items.forEach((sentence, ii) => {
               const value = Number(questionnaireState.answers[`q_${ei}_${ii}`]);
-              const isProblem = element.type === 'negative' ? value >= 5 : value <= 3;
+              const isProblem = element.type === 'negative' ? value !== 1 : value !== 7;
               sentences.push({
                 element: element.name,
                 type: element.type,
@@ -2273,54 +2394,67 @@
         function renderResults(results) {
           lastCalculatedResults = results;
           const sentences = getSentenceResults();
-          const graph = document.getElementById('resultado-grafico-sentencas');
-          const problemsBox = document.getElementById('resultado-problemas');
+          const problems = sentences.filter(item => item.isProblem);
+          const adequate = sentences.length - problems.length;
+          const adequacyRate = sentences.length ? Math.round((adequate / sentences.length) * 100) : 0;
 
-          let currentElement = '';
-          graph.innerHTML = sentences.map((item) => {
-            const elementHeader = item.element !== currentElement
-              ? `<div class="pt-2 first:pt-0"><h5 class="font-bold text-emerald-950 text-sm uppercase tracking-wide">${escapeHtml(item.element)}</h5></div>`
-              : '';
-            currentElement = item.element;
+          // Indicadores principais
+          document.getElementById('dash-total').textContent = sentences.length;
+          document.getElementById('dash-ok').textContent = adequate;
+          document.getElementById('dash-problems').textContent = problems.length;
+          document.getElementById('dash-rate').textContent = `${adequacyRate}%`;
+          document.getElementById('dash-donut-rate').textContent = `${adequacyRate}%`;
+          document.getElementById('dash-ok-small').textContent = adequate;
+          document.getElementById('dash-problems-small').textContent = problems.length;
+          document.getElementById('dash-problem-badge').textContent = `${problems.length} problema${problems.length === 1 ? '' : 's'}`;
+          document.getElementById('dash-donut').style.background = `conic-gradient(#059669 0 ${adequacyRate}%, #e11d48 ${adequacyRate}% 100%)`;
 
-            const percentage = Math.max(0, Math.min(100, (item.value / 7) * 100));
-            const barClass = item.isProblem ? 'bg-rose-500' : (item.value === 4 ? 'bg-amber-400' : 'bg-emerald-600');
-
-            return `${elementHeader}
-              <article class="rounded-xl border ${item.isProblem ? 'border-rose-200 bg-rose-50/40' : 'border-gray-200 bg-white'} p-4">
-                <div class="flex items-start justify-between gap-4 mb-3">
-                  <p class="text-sm text-gray-700 leading-relaxed">
-                    <span class="font-bold text-emerald-800">${item.sentenceNumber}.</span>
-                    ${escapeHtml(item.sentence)}
-                  </p>
-                  <span class="shrink-0 min-w-9 h-9 px-2 rounded-lg flex items-center justify-center font-bold ${item.isProblem ? 'bg-rose-100 text-rose-800' : 'bg-gray-100 text-gray-700'}">${item.value}</span>
-                </div>
-                <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                  <div class="h-full ${barClass} rounded-full" style="width:${percentage}%"></div>
-                </div>
-                <div class="flex justify-between text-[10px] text-gray-400 mt-1.5"><span>1</span><span>4</span><span>7</span></div>
-              </article>`;
+          // Gráfico de problemas por elemento
+          const byElement = questionarioData.map(element => {
+            const items = sentences.filter(item => item.element === element.name);
+            return { name: element.name, total: items.length, problems: items.filter(item => item.isProblem).length };
+          }).sort((a,b) => b.problems - a.problems || a.name.localeCompare(b.name, 'pt-BR'));
+          const maxProblems = Math.max(1, ...byElement.map(item => item.problems));
+          document.getElementById('dash-elements').innerHTML = byElement.map(item => {
+            const width = item.problems ? Math.max(4, (item.problems / maxProblems) * 100) : 0;
+            return `<div>
+              <div class="flex items-center justify-between gap-3 mb-1.5"><span class="text-sm font-semibold text-gray-700">${escapeHtml(item.name)}</span><span class="text-xs font-bold ${item.problems ? 'text-rose-700' : 'text-emerald-700'}">${item.problems}/${item.total}</span></div>
+              <div class="h-3 rounded-full bg-gray-100 overflow-hidden"><div class="h-full rounded-full ${item.problems ? 'bg-rose-500' : 'bg-emerald-500'}" style="width:${item.problems ? width : 100}%"></div></div>
+            </div>`;
           }).join('');
 
-          const problems = sentences.filter(item => item.isProblem);
+          // Distribuição Likert 1–7
+          const distribution = Array.from({length:7}, (_,i) => sentences.filter(item => item.value === i + 1).length);
+          const maxCount = Math.max(1, ...distribution);
+          document.getElementById('dash-likert').innerHTML = distribution.map((count, i) => {
+            const height = Math.max(count ? 10 : 2, (count / maxCount) * 88);
+            return `<div class="flex-1 h-full flex flex-col justify-end items-center gap-2 min-w-0"><span class="text-xs font-bold text-gray-700">${count}</span><div class="w-full max-w-12 bg-sky-600 rounded-t-lg" style="height:${height}%" title="Resposta ${i+1}: ${count}"></div><span class="text-xs text-gray-500">${i+1}</span></div>`;
+          }).join('');
+
+          // Lista destacada de problemas
+          const problemsBox = document.getElementById('resultado-problemas');
           if (problems.length) {
-            problemsBox.innerHTML = problems.map(item => `
-              <article class="rounded-xl border border-rose-200 bg-rose-50 p-4">
-                <div class="flex items-center justify-between gap-3 mb-2">
-                  <span class="text-xs font-bold uppercase tracking-wide text-rose-800">${escapeHtml(item.element)}</span>
-                  <span class="text-xs font-bold text-rose-800 bg-white border border-rose-200 rounded-full px-2.5 py-1">Resposta ${item.value}</span>
-                </div>
+            problemsBox.innerHTML = problems.map(item => {
+              const expected = item.type === 'negative' ? 1 : 7;
+              const direction = item.type === 'negative' ? 'Sentença negativa' : 'Sentença positiva';
+              return `<article class="rounded-xl border border-rose-200 bg-rose-50 p-4">
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-2"><span class="text-xs font-bold uppercase tracking-wide text-rose-800">${escapeHtml(item.element)}</span><span class="text-xs font-bold text-rose-800 bg-white border border-rose-200 rounded-full px-2.5 py-1">Resposta ${item.value}</span></div>
                 <p class="text-sm text-rose-950 leading-relaxed">${escapeHtml(item.sentence)}</p>
-              </article>`).join('');
+                <div class="flex flex-wrap gap-2 mt-3"><span class="text-[11px] font-semibold rounded-full bg-white border border-rose-200 text-rose-700 px-2.5 py-1">${direction}</span><span class="text-[11px] font-semibold rounded-full bg-white border border-gray-200 text-gray-600 px-2.5 py-1">Esperado: ${expected}</span></div>
+              </article>`;
+            }).join('');
           } else {
-            problemsBox.innerHTML = `
-              <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-                <div class="flex items-start gap-3">
-                  <i data-lucide="circle-check" class="shrink-0 mt-0.5" style="width:19px;height:19px;color:#047857"></i>
-                  <p class="text-sm text-emerald-900 leading-relaxed">Nenhuma sentença apresentou resposta classificada como problema pelos critérios atuais.</p>
-                </div>
-              </div>`;
+            problemsBox.innerHTML = `<div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4"><div class="flex items-start gap-3"><i data-lucide="circle-check" class="shrink-0 mt-0.5" style="width:19px;height:19px;color:#047857"></i><p class="text-sm text-emerald-900 leading-relaxed">Todas as sentenças atingiram o valor esperado.</p></div></div>`;
           }
+
+          // Detalhamento completo, recolhido por padrão
+          let currentElement = '';
+          document.getElementById('resultado-grafico-sentencas').innerHTML = sentences.map(item => {
+            const elementHeader = item.element !== currentElement ? `<div class="pt-3 first:pt-0"><h5 class="font-bold text-emerald-950 text-sm uppercase tracking-wide">${escapeHtml(item.element)}</h5></div>` : '';
+            currentElement = item.element;
+            const expected = item.type === 'negative' ? 1 : 7;
+            return `${elementHeader}<article class="rounded-xl border ${item.isProblem ? 'border-rose-200 bg-rose-50/40' : 'border-emerald-200 bg-emerald-50/30'} p-4"><div class="flex items-start justify-between gap-4"><p class="text-sm text-gray-700 leading-relaxed"><span class="font-bold text-emerald-800">${item.sentenceNumber}.</span> ${escapeHtml(item.sentence)}</p><div class="shrink-0 text-right"><span class="min-w-9 h-9 px-2 rounded-lg inline-flex items-center justify-center font-bold ${item.isProblem ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'}">${item.value}</span><div class="text-[10px] text-gray-400 mt-1">esperado ${expected}</div></div></div></article>`;
+          }).join('');
 
           questionarioForm.classList.add('hidden');
           questionarioResultados.classList.remove('hidden');
@@ -2358,7 +2492,7 @@
           try {
             if (!sameRemoteSnapshot(QUESTIONARIO_REMOTE_KEY, snapshot)) {
               showCloudStatus('Enviando avaliação ao banco de dados...', 'pending');
-              const codigo = createSubmissionCode('CLX-A');
+              const codigo = String(exportData.participante?.codigo_aplicacao || '').trim().toUpperCase();
               await supabaseInsert('avaliacoes_colexeem', {
                 codigo_aplicacao: codigo,
                 respostas: exportData,
@@ -2419,7 +2553,7 @@
           questionarioData.forEach((element, ei) => {
             element.items.forEach((sentence, ii) => {
               const value = Number(questionnaireState.answers[`q_${ei}_${ii}`]);
-              const isProblem = element.type === 'negative' ? value >= 5 : value <= 3;
+              const isProblem = element.type === 'negative' ? value !== 1 : value !== 7;
               rows.push([
                 element.name,
                 sentence,
@@ -2570,6 +2704,7 @@
           const participant = questionnaireState.participant || {};
           const participantLines = [
             ['Nome', participant.nome],
+            ['Código da turma/aplicação', participant.codigo_aplicacao],
             ['Idade', participant.idade],
             ['Curso', participant.curso],
             ['Genero', participant.genero],
@@ -2697,4 +2832,35 @@
 })();
 
 </script>
+
+<script>
+(function(){
+  if (!window.supabase || !window.supabase.createClient) return;
+  const client = window.supabase.createClient('https://qarnhvmjsouknphedsaf.supabase.co','sb_publishable_rMFzOUr7Etzbxx9bZBcaqw_wSHAK6TR');
+  const authBox=document.getElementById('dashboard-auth'), app=document.getElementById('dashboard-app'), userBox=document.getElementById('dashboard-user');
+  const msg=document.getElementById('dashboard-auth-message'), status=document.getElementById('dashboard-status'), results=document.getElementById('dashboard-results');
+  if(!authBox||!app) return;
+  let allRows=[];
+  const esc=v=>String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#039;'}[c]));
+  function setStatus(text,type='info'){ status.classList.remove('hidden','bg-rose-50','border-rose-200','text-rose-900','bg-sky-50','border-sky-200','text-sky-900','bg-emerald-50','border-emerald-200','text-emerald-900'); const cls=type==='error'?['bg-rose-50','border-rose-200','text-rose-900']:type==='success'?['bg-emerald-50','border-emerald-200','text-emerald-900']:['bg-sky-50','border-sky-200','text-sky-900']; status.classList.add(...cls); status.textContent=text; }
+  async function refreshAuth(){ const {data}=await client.auth.getSession(); const session=data.session; authBox.classList.toggle('hidden',!!session); app.classList.toggle('hidden',!session); userBox.classList.toggle('hidden',!session); if(session){userBox.textContent=`Professor autenticado: ${session.user.email||''}`;} }
+  document.getElementById('dashboard-login-form')?.addEventListener('submit',async e=>{e.preventDefault(); msg.classList.add('hidden'); const email=document.getElementById('dashboard-email').value.trim(), password=document.getElementById('dashboard-password').value; const {error}=await client.auth.signInWithPassword({email,password}); if(error){msg.className='text-sm mt-3 text-rose-700';msg.textContent='Não foi possível entrar: '+error.message;msg.classList.remove('hidden');return;} await refreshAuth();});
+  document.getElementById('dashboard-logout')?.addEventListener('click',async()=>{await client.auth.signOut(); results.innerHTML=''; status.classList.add('hidden'); await refreshAuth();});
+  client.auth.onAuthStateChange(()=>setTimeout(refreshAuth,0)); refreshAuth();
+
+  const bStudent=document.getElementById('dash-mode-student'), bClass=document.getElementById('dash-mode-class'), sStudent=document.getElementById('dash-search-student'), sClass=document.getElementById('dash-search-class');
+  function mode(which){ const student=which==='student'; sStudent.classList.toggle('hidden',!student);sClass.classList.toggle('hidden',student);bStudent.className=student?'px-4 py-2 rounded-lg bg-white shadow-sm text-sm font-bold text-emerald-800':'px-4 py-2 rounded-lg text-sm font-semibold text-gray-600';bClass.className=!student?'px-4 py-2 rounded-lg bg-white shadow-sm text-sm font-bold text-emerald-800':'px-4 py-2 rounded-lg text-sm font-semibold text-gray-600';results.innerHTML='';status.classList.add('hidden');}
+  bStudent?.addEventListener('click',()=>mode('student')); bClass?.addEventListener('click',()=>mode('class'));
+
+  async function fetchRows(){ setStatus('Consultando o banco de dados...'); const {data,error}=await client.from('avaliacoes_colexeem').select('id,codigo_aplicacao,data_registro,respostas,resultados').order('data_registro',{ascending:false}); if(error) throw error; allRows=data||[]; return allRows; }
+  function flatAnswers(row){ const out=[]; const groups=row?.respostas?.todas_as_respostas||[]; groups.forEach(g=>{ const qd=(window.questionarioData||[]).find(x=>x.name===g.elemento); const negative=qd?qd.type==='negative':['Raiva','Medo','Neuroticismo'].includes(g.elemento); (g.respostas||[]).forEach(q=>{const v=Number(q.resposta);out.push({element:g.elemento,sentence:q.sentenca,value:v,negative,isProblem:negative?v!==1:v!==7});});}); return out; }
+  function metrics(rows){ const answers=rows.flatMap(flatAnswers); const problems=answers.filter(a=>a.isProblem); const adequate=answers.length-problems.length; return {answers,problems,adequate,rate:answers.length?Math.round(adequate/answers.length*100):0}; }
+  function metricCards(rows,m){ return `<div class=\"grid grid-cols-2 lg:grid-cols-4 gap-3\"><div class=\"bg-white border rounded-2xl p-5\"><span class=\"text-xs text-gray-500\">Respondentes</span><strong class=\"block text-3xl text-emerald-950 mt-1\">${rows.length}</strong></div><div class=\"bg-white border rounded-2xl p-5\"><span class=\"text-xs text-gray-500\">Respostas analisadas</span><strong class=\"block text-3xl text-emerald-950 mt-1\">${m.answers.length}</strong></div><div class=\"bg-white border rounded-2xl p-5\"><span class=\"text-xs text-gray-500\">Problemas</span><strong class=\"block text-3xl text-rose-700 mt-1\">${m.problems.length}</strong></div><div class=\"bg-white border rounded-2xl p-5\"><span class=\"text-xs text-gray-500\">Índice de adequação</span><strong class=\"block text-3xl text-sky-700 mt-1\">${m.rate}%</strong></div></div>`; }
+  function renderStudentRows(rows){ if(!rows.length){results.innerHTML='';setStatus('Nenhuma avaliação encontrada para esse nome.','error');return;} setStatus(`${rows.length} avaliação(ões) encontrada(s).`,'success'); results.innerHTML=rows.map(row=>{const p=row.respostas?.participante||{};const m=metrics([row]);const probs=m.problems.slice(0,12);return `<article class=\"bg-white border border-gray-200 rounded-2xl p-6\"><div class=\"flex flex-col md:flex-row justify-between gap-3 mb-5\"><div><h3 class=\"heading-font text-2xl font-bold text-emerald-950\">${esc(p.nome||'Participante')}</h3><p class=\"text-sm text-gray-500\">${esc(p.disciplina||'')} ${p.atividade?'· '+esc(p.atividade):''}</p><p class=\"text-xs text-sky-700 font-bold mt-1\">${esc(row.codigo_aplicacao||p.codigo_aplicacao||'Sem código')}</p></div><div class=\"text-sm text-gray-500\">${new Date(row.data_registro).toLocaleString('pt-BR')}</div></div>${metricCards([row],m)}<div class=\"mt-6\"><h4 class=\"font-bold text-rose-900 mb-3\">Problemas destacados</h4><div class=\"grid md:grid-cols-2 gap-3\">${probs.length?probs.map(x=>`<div class=\"rounded-xl border border-rose-200 bg-rose-50 p-4\"><div class=\"flex justify-between gap-2\"><strong class=\"text-xs uppercase text-rose-700\">${esc(x.element)}</strong><span class=\"text-xs font-bold text-rose-800\">Resposta ${x.value}</span></div><p class=\"text-sm text-rose-950 mt-2\">${esc(x.sentence)}</p></div>`).join(''):'<p class=\"text-sm text-emerald-700\">Nenhum problema identificado.</p>'}</div>${m.problems.length>12?`<p class=\"text-xs text-gray-500 mt-3\">Mostrando 12 de ${m.problems.length} problemas.</p>`:''}</div></article>`;}).join(''); }
+  function renderClass(rows,code){ if(!rows.length){results.innerHTML='';setStatus('Nenhuma avaliação encontrada para esse código de turma/aplicação.','error');return;} const m=metrics(rows); setStatus(`${rows.length} aprendizes encontrados para ${code}.`,'success'); const byElement={}; m.answers.forEach(a=>{byElement[a.element]??={total:0,problems:0};byElement[a.element].total++;if(a.isProblem)byElement[a.element].problems++;}); const elems=Object.entries(byElement).map(([name,v])=>({name,...v,pct:v.total?Math.round(v.problems/v.total*100):0})).sort((a,b)=>b.pct-a.pct); const sentenceMap=new Map(); m.answers.forEach(a=>{const key=a.element+'||'+a.sentence;if(!sentenceMap.has(key))sentenceMap.set(key,{element:a.element,sentence:a.sentence,total:0,problems:0});const z=sentenceMap.get(key);z.total++;if(a.isProblem)z.problems++;}); const pri=[...sentenceMap.values()].map(x=>({...x,pct:Math.round(x.problems/x.total*100)})).filter(x=>x.problems>0).sort((a,b)=>b.pct-a.pct||b.problems-a.problems); const names=rows.map(r=>r.respostas?.participante?.nome).filter(Boolean); results.innerHTML=`<div class=\"bg-white border border-gray-200 rounded-2xl p-6\"><span class=\"text-xs font-bold uppercase tracking-wider text-sky-700\">Turma / aplicação</span><div class=\"flex flex-wrap justify-between gap-3 mt-1\"><h3 class=\"heading-font text-2xl font-bold text-emerald-950\">${esc(code)}</h3><span class=\"text-sm text-gray-500\">${rows.length} respondentes</span></div></div>${metricCards(rows,m)}<div class=\"grid lg:grid-cols-2 gap-5\"><section class=\"bg-white border rounded-2xl p-6\"><h3 class=\"font-bold text-emerald-950 text-lg\">Problemas por elemento</h3><p class=\"text-sm text-gray-500 mb-5\">Percentual de respostas problemáticas dentro de cada elemento.</p><div class=\"space-y-4\">${elems.map(e=>`<div><div class=\"flex justify-between text-sm mb-1\"><strong>${esc(e.name)}</strong><span>${e.pct}%</span></div><div class=\"h-3 rounded-full bg-gray-100 overflow-hidden\"><div class=\"h-full bg-rose-500\" style=\"width:${e.pct}%\"></div></div><p class=\"text-[11px] text-gray-400 mt-1\">${e.problems} de ${e.total} respostas</p></div>`).join('')}</div></section><section class=\"bg-white border rounded-2xl p-6\"><h3 class=\"font-bold text-emerald-950 text-lg\">Problemas prioritários</h3><p class=\"text-sm text-gray-500 mb-5\">Sentenças ordenadas pela proporção de aprendizes com resposta problemática.</p><div class=\"space-y-3 max-h-[520px] overflow-y-auto pr-2\">${pri.slice(0,20).map((x,i)=>`<article class=\"border border-rose-200 bg-rose-50 rounded-xl p-4\"><div class=\"flex justify-between gap-3\"><span class=\"text-xs font-bold text-rose-700\">${i+1}. ${esc(x.element)}</span><strong class=\"text-sm text-rose-900\">${x.pct}%</strong></div><p class=\"text-sm text-rose-950 mt-2\">${esc(x.sentence)}</p><p class=\"text-xs text-rose-700 mt-2\">${x.problems} de ${x.total} aprendizes</p></article>`).join('')}</div></section></div><section class=\"bg-white border rounded-2xl p-6\"><h3 class=\"font-bold text-emerald-950 text-lg mb-3\">Respondentes</h3><p class=\"text-sm text-gray-600\">${names.map(esc).join(', ')||'Nomes não informados.'}</p></section>`; }
+  document.getElementById('dash-search-student-btn')?.addEventListener('click',async()=>{const q=document.getElementById('dash-student-name').value.trim().toLocaleLowerCase('pt-BR');if(!q){setStatus('Digite o nome do aluno.','error');return;}try{const rows=await fetchRows();renderStudentRows(rows.filter(r=>String(r.respostas?.participante?.nome||'').toLocaleLowerCase('pt-BR').includes(q)));}catch(e){console.error(e);setStatus('Não foi possível consultar as avaliações. Verifique o acesso do professor e as políticas do Supabase.','error');}});
+  document.getElementById('dash-search-class-btn')?.addEventListener('click',async()=>{const code=document.getElementById('dash-class-code').value.trim().toUpperCase();if(!code){setStatus('Digite o código da turma/aplicação.','error');return;}try{const rows=await fetchRows();renderClass(rows.filter(r=>String(r.codigo_aplicacao||'').toUpperCase()===code),code);}catch(e){console.error(e);setStatus('Não foi possível consultar a turma. Verifique o acesso do professor e as políticas do Supabase.','error');}});
+})();
+</script>
+
 </body></html>
