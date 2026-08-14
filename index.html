@@ -6,6 +6,7 @@
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Fraunces:wght@600;700;800&amp;display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
         body { font-family: 'DM Sans', sans-serif; }
         .heading-font { font-family: 'Fraunces', serif; }
@@ -110,7 +111,7 @@
        <span class="w-1.5 h-4 bg-white rounded-full"></span><span class="w-1.5 h-3 bg-white/70 rounded-full mt-1"></span><span class="w-1.5 h-5 bg-white/50 rounded-full"></span>
       </div>
      </div><strong class="text-emerald-900 font-bold text-lg">CoLeXEeM</strong> </a> <button id="menu-btn" type="button" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Abrir menu"> <span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span> </button>
-    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-64 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-6 p-8 md:p-0 z-50" aria-label="Navegação principal"><a href="#composicao" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 font-semibold transition-colors">Aplicar</a> <a href="#sobre" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">O Método</a> <a href="#objetivo" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Objetivo</a> <a href="#composicao" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Composição</a> <a href="#camada-tdic" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Sugestões de TDIC</a> <a href="#como-usar" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Como usar</a>
+    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-64 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-6 p-8 md:p-0 z-50" aria-label="Navegação principal"><a href="#composicao" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 font-semibold transition-colors">Aplicar</a> <a href="#sobre" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">O Método</a> <a href="#objetivo" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Objetivo</a> <a href="#composicao" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Composição</a> <a href="#camada-tdic" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Sugestões de TDIC</a> <a href="#como-usar" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Como usar</a> <a href="#dashboard" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Dashboard</a>
     </nav>
    </div>
   </header>
@@ -558,7 +559,8 @@
         <section class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6">
           <div class="flex items-center gap-3 mb-5"><div class="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center"><i data-lucide="user-round" style="width:20px;height:20px;color:#0c4a6e"></i></div><div><h3 class="font-bold text-emerald-950">Caracterização do participante</h3><p class="text-sm text-gray-500">Campos reproduzidos da versão atual do questionário.</p></div></div>
           <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <label class="text-sm font-semibold text-gray-700">Nome<input name="nome" type="text" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
+            <label class="text-sm font-semibold text-gray-700">Nome<input name="nome" type="text" required class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
+            <label class="text-sm font-semibold text-gray-700">Código da turma/aplicação<input name="codigo_aplicacao" type="text" required placeholder="Ex.: CLX-20260814-AB12CD" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal uppercase focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
             <label class="text-sm font-semibold text-gray-700">Idade<input name="idade" type="number" min="0" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
             <label class="text-sm font-semibold text-gray-700">Curso<input name="curso" type="text" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
             <label class="text-sm font-semibold text-gray-700">Gênero<input name="genero" type="text" class="mt-1 w-full rounded-xl border border-gray-300 px-3 py-2.5 font-normal focus:outline-none focus:ring-2 focus:ring-sky-500"></label>
@@ -569,7 +571,7 @@
         </section>
         <div class="bg-sky-50 border border-sky-100 rounded-2xl p-5"><h3 class="font-bold text-sky-950 mb-2">Escala de resposta</h3><p class="text-sm text-sky-900 leading-relaxed">1 = Discordo totalmente · 2 = Discordo fortemente · 3 = Discordo parcialmente · 4 = Não concordo nem discordo · 5 = Concordo parcialmente · 6 = Concordo fortemente · 7 = Concordo totalmente.</p></div>
         <div id="questionario-sections" class="space-y-5"></div>
-        <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">As respostas são salvas automaticamente neste navegador. Elas não são enviadas a um servidor.</div><div class="flex gap-2 shrink-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="chart-no-axes-column-increasing" style="width:18px;height:18px;"></i> Avaliar resultados</button></div></div>
+        <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">As respostas são salvas automaticamente neste navegador e, ao finalizar, são enviadas ao banco de dados do CoLeXEeM.</div><div class="flex gap-2 shrink-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="chart-no-axes-column-increasing" style="width:18px;height:18px;"></i> Avaliar resultados</button></div></div>
       </form>
       <section id="questionario-resultados" class="hidden max-w-6xl mx-auto p-5 md:p-8 space-y-6">
         <div class="bg-white border border-gray-200 rounded-2xl p-6"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resultados da avaliação</span><div class="flex items-center gap-2 mt-1">
@@ -1261,6 +1263,60 @@
      <h2 data-template-id="final-title" class="canva-text heading-font font-bold leading-tight mb-8" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 24px;">Transformar resultados em experiências educacionais envolventes e memoráveis.</h2><a href="#inicio" data-template-id="final-button" class="canva-button inline-block px-8 py-4 rounded-xl font-semibold transition-transform hover:scale-105" style="background: rgb(255, 255, 255); color: rgb(6, 95, 70); font-weight: 600; font-style: normal; font-size: 16px;">Voltar ao início</a>
     </div>
    </section>
+
+   <section id="dashboard" class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-700">Análise consolidada</span>
+          <h2 class="heading-font text-3xl md:text-4xl font-bold text-emerald-950 mt-2">Dashboard</h2>
+          <p class="text-gray-600 mt-3 max-w-3xl">Consulte uma avaliação pelo nome do aluno ou consolide todos os aprendizes vinculados ao mesmo código de turma/aplicação.</p>
+        </div>
+        <div id="dashboard-user" class="hidden text-sm text-gray-600 bg-white border border-gray-200 rounded-xl px-4 py-3"></div>
+      </div>
+
+      <div id="dashboard-auth" class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm max-w-2xl">
+        <div class="flex items-start gap-4">
+          <div class="w-11 h-11 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center shrink-0"><i data-lucide="lock-keyhole" style="width:21px;height:21px"></i></div>
+          <div class="flex-1">
+            <h3 class="font-bold text-emerald-950 text-lg">Acesso do professor</h3>
+            <p class="text-sm text-gray-600 mt-1">Entre com o usuário autorizado no Supabase para consultar os dados armazenados.</p>
+            <form id="dashboard-login-form" class="grid sm:grid-cols-2 gap-3 mt-5">
+              <input id="dashboard-email" type="email" required placeholder="E-mail" class="rounded-xl border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500">
+              <input id="dashboard-password" type="password" required placeholder="Senha" class="rounded-xl border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500">
+              <button type="submit" class="sm:col-span-2 rounded-xl bg-emerald-700 text-white font-semibold px-4 py-2.5 hover:bg-emerald-800 transition">Entrar no Dashboard</button>
+            </form>
+            <p id="dashboard-auth-message" class="hidden text-sm mt-3"></p>
+          </div>
+        </div>
+      </div>
+
+      <div id="dashboard-app" class="hidden space-y-6">
+        <div class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 shadow-sm">
+          <div class="flex flex-col lg:flex-row gap-4 lg:items-end">
+            <div class="flex-1">
+              <div class="inline-flex rounded-xl bg-gray-100 p-1 mb-4">
+                <button type="button" id="dash-mode-student" class="px-4 py-2 rounded-lg bg-white shadow-sm text-sm font-bold text-emerald-800">Por aluno</button>
+                <button type="button" id="dash-mode-class" class="px-4 py-2 rounded-lg text-sm font-semibold text-gray-600">Por turma</button>
+              </div>
+              <div id="dash-search-student">
+                <label class="block text-sm font-bold text-gray-700 mb-1">Nome do aluno</label>
+                <div class="flex gap-2"><input id="dash-student-name" type="text" placeholder="Digite o nome ou parte do nome" class="flex-1 rounded-xl border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500"><button id="dash-search-student-btn" class="rounded-xl bg-sky-700 text-white px-5 py-2.5 font-semibold hover:bg-sky-800">Buscar</button></div>
+              </div>
+              <div id="dash-search-class" class="hidden">
+                <label class="block text-sm font-bold text-gray-700 mb-1">Código da turma/aplicação</label>
+                <div class="flex gap-2"><input id="dash-class-code" type="text" placeholder="Ex.: CLX-20260814-AB12CD" class="flex-1 uppercase rounded-xl border border-gray-300 px-3 py-2.5 focus:outline-none focus:ring-2 focus:ring-sky-500"><button id="dash-search-class-btn" class="rounded-xl bg-sky-700 text-white px-5 py-2.5 font-semibold hover:bg-sky-800">Analisar turma</button></div>
+              </div>
+            </div>
+            <button id="dashboard-logout" type="button" class="rounded-xl border border-gray-300 px-4 py-2.5 text-gray-700 font-semibold hover:bg-gray-50">Sair</button>
+          </div>
+        </div>
+        <div id="dashboard-status" class="hidden rounded-xl border px-4 py-3 text-sm"></div>
+        <div id="dashboard-results" class="space-y-6"></div>
+      </div>
+    </div>
+   </section>
+
   </main>
   <footer data-template-id="footer-section" class="canva-footer py-10 text-center" style="background: rgb(10, 31, 21);"><strong data-template-id="footer-brand" class="canva-text block text-lg mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">CoLeXEeM</strong> <span data-template-id="footer-tagline" class="canva-text block text-sm mb-3" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Collaborative Learner eXperience Evaluation and redesign Method</span>
    <p data-template-id="footer-note" class="canva-text text-xs" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Proposta acadêmica para avaliação e melhoria da Learner eXperience no contexto colaborativo.</p>
@@ -1492,6 +1548,23 @@
         const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_rMFzOUr7Etzbxx9bZBcaqw_wSHAK6TR';
         const NORMATIVAS_REMOTE_KEY = 'colexeem_normativas_remote_v1';
         const QUESTIONARIO_REMOTE_KEY = 'colexeem_questionario_remote_v1';
+        const APPLICATION_CODE_KEY = 'colexeem_application_code_v1';
+
+        function getOrCreateApplicationCode() {
+          let code = localStorage.getItem(APPLICATION_CODE_KEY);
+          if (!code) {
+            const date = new Date().toISOString().slice(0,10).replace(/-/g,'');
+            let suffix = Math.random().toString(36).slice(2,8).toUpperCase();
+            try {
+              const bytes = new Uint8Array(3); crypto.getRandomValues(bytes);
+              suffix = Array.from(bytes).map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
+            } catch (_) {}
+            code = `CLX-${date}-${suffix}`;
+            localStorage.setItem(APPLICATION_CODE_KEY, code);
+          }
+          return code;
+        }
+
 
         function createSubmissionCode(prefix='CLX') {
           const now = new Date();
@@ -1662,7 +1735,8 @@
         function renderNormativasSummary() {
           const state = getNormativasState();
           const cats = [...new Set(normativasMeta.map(n=>n.cat))];
-          normativasResumo.innerHTML = cats.map(cat => {
+          const applicationCode = getOrCreateApplicationCode();
+          normativasResumo.innerHTML = `<div class="bg-sky-50 border border-sky-200 rounded-2xl p-5"><span class="text-xs font-bold uppercase tracking-wider text-sky-700">Código desta aplicação</span><div class="flex flex-wrap items-center gap-3 mt-2"><strong class="text-xl text-sky-950">${escHtml(applicationCode)}</strong><button type="button" onclick="navigator.clipboard?.writeText('${applicationCode}')" class="text-sm font-semibold text-sky-700 border border-sky-200 bg-white rounded-lg px-3 py-1.5">Copiar código</button></div><p class="text-sm text-sky-900 mt-2">Compartilhe este código com os aprendizes para que as avaliações sejam vinculadas a esta turma/aplicação.</p></div>` + cats.map(cat => {
             const cards = normativasMeta.filter(n=>n.cat===cat).map(n => {
               const fields=n.fields.map(([label,name])=>{
                 const value=normValue(state,name);
@@ -1700,12 +1774,14 @@
             data_registro:new Date().toISOString(),
             normativas:structured
           };
-          const snapshot = JSON.stringify(remoteJson.normativas);
+          const codigoAplicacao = getOrCreateApplicationCode();
+          remoteJson.codigo_aplicacao = codigoAplicacao;
+          const snapshot = JSON.stringify({codigo_aplicacao: codigoAplicacao, normativas: remoteJson.normativas});
 
           try {
             if (!sameRemoteSnapshot(NORMATIVAS_REMOTE_KEY, snapshot)) {
               showCloudStatus('Enviando registro das normativas...', 'pending');
-              const codigo = createSubmissionCode('CLX-N');
+              const codigo = codigoAplicacao;
               await supabaseInsert('normativas_colexeem', {
                 codigo_aplicacao: codigo,
                 respostas: remoteJson,
@@ -1736,6 +1812,8 @@
           if (!confirm('Deseja limpar todas as informações registradas nas normativas?')) return;
           normativasForm.reset();
           localStorage.removeItem(NORMATIVAS_STORAGE_KEY);
+          localStorage.removeItem(APPLICATION_CODE_KEY);
+          localStorage.removeItem(NORMATIVAS_REMOTE_KEY);
           normativasMissing.classList.add('hidden');
           normativasForm.querySelectorAll('.normativa-item').forEach(item=>item.classList.remove('ring-2','ring-red-400','bg-red-50'));
           normativasSaveStatus.textContent='Informações removidas';
@@ -1809,6 +1887,7 @@
         ];
 
         const QUESTIONARIO_STORAGE_KEY = 'colexeem-questionario-v2';
+        window.questionarioData = questionarioData;
         const questionnaireTotalItems = questionarioData.reduce((n,e)=>n+e.items.length,0);
 
         const questionarioModal = document.getElementById('questionario-modal');
@@ -1881,7 +1960,7 @@
         }
 
         function collectParticipantState() {
-          ['nome','idade','curso','genero','disciplina','atividade','integrantes'].forEach(name => {
+          ['nome','codigo_aplicacao','idade','curso','genero','disciplina','atividade','integrantes'].forEach(name => {
             const field = questionarioForm.elements[name];
             if (field) questionnaireState.participant[name] = field.value;
           });
@@ -2413,7 +2492,7 @@
           try {
             if (!sameRemoteSnapshot(QUESTIONARIO_REMOTE_KEY, snapshot)) {
               showCloudStatus('Enviando avaliação ao banco de dados...', 'pending');
-              const codigo = createSubmissionCode('CLX-A');
+              const codigo = String(exportData.participante?.codigo_aplicacao || '').trim().toUpperCase();
               await supabaseInsert('avaliacoes_colexeem', {
                 codigo_aplicacao: codigo,
                 respostas: exportData,
@@ -2625,6 +2704,7 @@
           const participant = questionnaireState.participant || {};
           const participantLines = [
             ['Nome', participant.nome],
+            ['Código da turma/aplicação', participant.codigo_aplicacao],
             ['Idade', participant.idade],
             ['Curso', participant.curso],
             ['Genero', participant.genero],
@@ -2752,4 +2832,35 @@
 })();
 
 </script>
+
+<script>
+(function(){
+  if (!window.supabase || !window.supabase.createClient) return;
+  const client = window.supabase.createClient('https://qarnhvmjsouknphedsaf.supabase.co','sb_publishable_rMFzOUr7Etzbxx9bZBcaqw_wSHAK6TR');
+  const authBox=document.getElementById('dashboard-auth'), app=document.getElementById('dashboard-app'), userBox=document.getElementById('dashboard-user');
+  const msg=document.getElementById('dashboard-auth-message'), status=document.getElementById('dashboard-status'), results=document.getElementById('dashboard-results');
+  if(!authBox||!app) return;
+  let allRows=[];
+  const esc=v=>String(v??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#039;'}[c]));
+  function setStatus(text,type='info'){ status.classList.remove('hidden','bg-rose-50','border-rose-200','text-rose-900','bg-sky-50','border-sky-200','text-sky-900','bg-emerald-50','border-emerald-200','text-emerald-900'); const cls=type==='error'?['bg-rose-50','border-rose-200','text-rose-900']:type==='success'?['bg-emerald-50','border-emerald-200','text-emerald-900']:['bg-sky-50','border-sky-200','text-sky-900']; status.classList.add(...cls); status.textContent=text; }
+  async function refreshAuth(){ const {data}=await client.auth.getSession(); const session=data.session; authBox.classList.toggle('hidden',!!session); app.classList.toggle('hidden',!session); userBox.classList.toggle('hidden',!session); if(session){userBox.textContent=`Professor autenticado: ${session.user.email||''}`;} }
+  document.getElementById('dashboard-login-form')?.addEventListener('submit',async e=>{e.preventDefault(); msg.classList.add('hidden'); const email=document.getElementById('dashboard-email').value.trim(), password=document.getElementById('dashboard-password').value; const {error}=await client.auth.signInWithPassword({email,password}); if(error){msg.className='text-sm mt-3 text-rose-700';msg.textContent='Não foi possível entrar: '+error.message;msg.classList.remove('hidden');return;} await refreshAuth();});
+  document.getElementById('dashboard-logout')?.addEventListener('click',async()=>{await client.auth.signOut(); results.innerHTML=''; status.classList.add('hidden'); await refreshAuth();});
+  client.auth.onAuthStateChange(()=>setTimeout(refreshAuth,0)); refreshAuth();
+
+  const bStudent=document.getElementById('dash-mode-student'), bClass=document.getElementById('dash-mode-class'), sStudent=document.getElementById('dash-search-student'), sClass=document.getElementById('dash-search-class');
+  function mode(which){ const student=which==='student'; sStudent.classList.toggle('hidden',!student);sClass.classList.toggle('hidden',student);bStudent.className=student?'px-4 py-2 rounded-lg bg-white shadow-sm text-sm font-bold text-emerald-800':'px-4 py-2 rounded-lg text-sm font-semibold text-gray-600';bClass.className=!student?'px-4 py-2 rounded-lg bg-white shadow-sm text-sm font-bold text-emerald-800':'px-4 py-2 rounded-lg text-sm font-semibold text-gray-600';results.innerHTML='';status.classList.add('hidden');}
+  bStudent?.addEventListener('click',()=>mode('student')); bClass?.addEventListener('click',()=>mode('class'));
+
+  async function fetchRows(){ setStatus('Consultando o banco de dados...'); const {data,error}=await client.from('avaliacoes_colexeem').select('id,codigo_aplicacao,data_registro,respostas,resultados').order('data_registro',{ascending:false}); if(error) throw error; allRows=data||[]; return allRows; }
+  function flatAnswers(row){ const out=[]; const groups=row?.respostas?.todas_as_respostas||[]; groups.forEach(g=>{ const qd=(window.questionarioData||[]).find(x=>x.name===g.elemento); const negative=qd?qd.type==='negative':['Raiva','Medo','Neuroticismo'].includes(g.elemento); (g.respostas||[]).forEach(q=>{const v=Number(q.resposta);out.push({element:g.elemento,sentence:q.sentenca,value:v,negative,isProblem:negative?v!==1:v!==7});});}); return out; }
+  function metrics(rows){ const answers=rows.flatMap(flatAnswers); const problems=answers.filter(a=>a.isProblem); const adequate=answers.length-problems.length; return {answers,problems,adequate,rate:answers.length?Math.round(adequate/answers.length*100):0}; }
+  function metricCards(rows,m){ return `<div class=\"grid grid-cols-2 lg:grid-cols-4 gap-3\"><div class=\"bg-white border rounded-2xl p-5\"><span class=\"text-xs text-gray-500\">Respondentes</span><strong class=\"block text-3xl text-emerald-950 mt-1\">${rows.length}</strong></div><div class=\"bg-white border rounded-2xl p-5\"><span class=\"text-xs text-gray-500\">Respostas analisadas</span><strong class=\"block text-3xl text-emerald-950 mt-1\">${m.answers.length}</strong></div><div class=\"bg-white border rounded-2xl p-5\"><span class=\"text-xs text-gray-500\">Problemas</span><strong class=\"block text-3xl text-rose-700 mt-1\">${m.problems.length}</strong></div><div class=\"bg-white border rounded-2xl p-5\"><span class=\"text-xs text-gray-500\">Índice de adequação</span><strong class=\"block text-3xl text-sky-700 mt-1\">${m.rate}%</strong></div></div>`; }
+  function renderStudentRows(rows){ if(!rows.length){results.innerHTML='';setStatus('Nenhuma avaliação encontrada para esse nome.','error');return;} setStatus(`${rows.length} avaliação(ões) encontrada(s).`,'success'); results.innerHTML=rows.map(row=>{const p=row.respostas?.participante||{};const m=metrics([row]);const probs=m.problems.slice(0,12);return `<article class=\"bg-white border border-gray-200 rounded-2xl p-6\"><div class=\"flex flex-col md:flex-row justify-between gap-3 mb-5\"><div><h3 class=\"heading-font text-2xl font-bold text-emerald-950\">${esc(p.nome||'Participante')}</h3><p class=\"text-sm text-gray-500\">${esc(p.disciplina||'')} ${p.atividade?'· '+esc(p.atividade):''}</p><p class=\"text-xs text-sky-700 font-bold mt-1\">${esc(row.codigo_aplicacao||p.codigo_aplicacao||'Sem código')}</p></div><div class=\"text-sm text-gray-500\">${new Date(row.data_registro).toLocaleString('pt-BR')}</div></div>${metricCards([row],m)}<div class=\"mt-6\"><h4 class=\"font-bold text-rose-900 mb-3\">Problemas destacados</h4><div class=\"grid md:grid-cols-2 gap-3\">${probs.length?probs.map(x=>`<div class=\"rounded-xl border border-rose-200 bg-rose-50 p-4\"><div class=\"flex justify-between gap-2\"><strong class=\"text-xs uppercase text-rose-700\">${esc(x.element)}</strong><span class=\"text-xs font-bold text-rose-800\">Resposta ${x.value}</span></div><p class=\"text-sm text-rose-950 mt-2\">${esc(x.sentence)}</p></div>`).join(''):'<p class=\"text-sm text-emerald-700\">Nenhum problema identificado.</p>'}</div>${m.problems.length>12?`<p class=\"text-xs text-gray-500 mt-3\">Mostrando 12 de ${m.problems.length} problemas.</p>`:''}</div></article>`;}).join(''); }
+  function renderClass(rows,code){ if(!rows.length){results.innerHTML='';setStatus('Nenhuma avaliação encontrada para esse código de turma/aplicação.','error');return;} const m=metrics(rows); setStatus(`${rows.length} aprendizes encontrados para ${code}.`,'success'); const byElement={}; m.answers.forEach(a=>{byElement[a.element]??={total:0,problems:0};byElement[a.element].total++;if(a.isProblem)byElement[a.element].problems++;}); const elems=Object.entries(byElement).map(([name,v])=>({name,...v,pct:v.total?Math.round(v.problems/v.total*100):0})).sort((a,b)=>b.pct-a.pct); const sentenceMap=new Map(); m.answers.forEach(a=>{const key=a.element+'||'+a.sentence;if(!sentenceMap.has(key))sentenceMap.set(key,{element:a.element,sentence:a.sentence,total:0,problems:0});const z=sentenceMap.get(key);z.total++;if(a.isProblem)z.problems++;}); const pri=[...sentenceMap.values()].map(x=>({...x,pct:Math.round(x.problems/x.total*100)})).filter(x=>x.problems>0).sort((a,b)=>b.pct-a.pct||b.problems-a.problems); const names=rows.map(r=>r.respostas?.participante?.nome).filter(Boolean); results.innerHTML=`<div class=\"bg-white border border-gray-200 rounded-2xl p-6\"><span class=\"text-xs font-bold uppercase tracking-wider text-sky-700\">Turma / aplicação</span><div class=\"flex flex-wrap justify-between gap-3 mt-1\"><h3 class=\"heading-font text-2xl font-bold text-emerald-950\">${esc(code)}</h3><span class=\"text-sm text-gray-500\">${rows.length} respondentes</span></div></div>${metricCards(rows,m)}<div class=\"grid lg:grid-cols-2 gap-5\"><section class=\"bg-white border rounded-2xl p-6\"><h3 class=\"font-bold text-emerald-950 text-lg\">Problemas por elemento</h3><p class=\"text-sm text-gray-500 mb-5\">Percentual de respostas problemáticas dentro de cada elemento.</p><div class=\"space-y-4\">${elems.map(e=>`<div><div class=\"flex justify-between text-sm mb-1\"><strong>${esc(e.name)}</strong><span>${e.pct}%</span></div><div class=\"h-3 rounded-full bg-gray-100 overflow-hidden\"><div class=\"h-full bg-rose-500\" style=\"width:${e.pct}%\"></div></div><p class=\"text-[11px] text-gray-400 mt-1\">${e.problems} de ${e.total} respostas</p></div>`).join('')}</div></section><section class=\"bg-white border rounded-2xl p-6\"><h3 class=\"font-bold text-emerald-950 text-lg\">Problemas prioritários</h3><p class=\"text-sm text-gray-500 mb-5\">Sentenças ordenadas pela proporção de aprendizes com resposta problemática.</p><div class=\"space-y-3 max-h-[520px] overflow-y-auto pr-2\">${pri.slice(0,20).map((x,i)=>`<article class=\"border border-rose-200 bg-rose-50 rounded-xl p-4\"><div class=\"flex justify-between gap-3\"><span class=\"text-xs font-bold text-rose-700\">${i+1}. ${esc(x.element)}</span><strong class=\"text-sm text-rose-900\">${x.pct}%</strong></div><p class=\"text-sm text-rose-950 mt-2\">${esc(x.sentence)}</p><p class=\"text-xs text-rose-700 mt-2\">${x.problems} de ${x.total} aprendizes</p></article>`).join('')}</div></section></div><section class=\"bg-white border rounded-2xl p-6\"><h3 class=\"font-bold text-emerald-950 text-lg mb-3\">Respondentes</h3><p class=\"text-sm text-gray-600\">${names.map(esc).join(', ')||'Nomes não informados.'}</p></section>`; }
+  document.getElementById('dash-search-student-btn')?.addEventListener('click',async()=>{const q=document.getElementById('dash-student-name').value.trim().toLocaleLowerCase('pt-BR');if(!q){setStatus('Digite o nome do aluno.','error');return;}try{const rows=await fetchRows();renderStudentRows(rows.filter(r=>String(r.respostas?.participante?.nome||'').toLocaleLowerCase('pt-BR').includes(q)));}catch(e){console.error(e);setStatus('Não foi possível consultar as avaliações. Verifique o acesso do professor e as políticas do Supabase.','error');}});
+  document.getElementById('dash-search-class-btn')?.addEventListener('click',async()=>{const code=document.getElementById('dash-class-code').value.trim().toUpperCase();if(!code){setStatus('Digite o código da turma/aplicação.','error');return;}try{const rows=await fetchRows();renderClass(rows.filter(r=>String(r.codigo_aplicacao||'').toUpperCase()===code),code);}catch(e){console.error(e);setStatus('Não foi possível consultar a turma. Verifique o acesso do professor e as políticas do Supabase.','error');}});
+})();
+</script>
+
 </body></html>
