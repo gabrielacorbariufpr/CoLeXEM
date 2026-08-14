@@ -495,7 +495,12 @@
   <div class="relative bg-white rounded-2xl shadow-2xl w-full max-w-6xl h-[90vh] overflow-hidden flex flex-col">
     <div class="flex items-center justify-between gap-4 px-5 py-4 md:px-6 border-b border-gray-200">
       <div><span class="text-xs font-bold uppercase tracking-wider text-amber-700">Componente 03</span><h2 id="diretrizes-modal-title" class="heading-font text-xl md:text-2xl font-bold text-emerald-950 mt-1">Diretrizes do CoLeXEeM</h2><p class="text-sm text-gray-600 mt-1">Consulte as diretrizes de forma flexível, considerando os resultados da avaliação e o contexto da atividade colaborativa.</p></div>
-      <button id="diretrizes-modal-close" type="button" aria-label="Fechar diretrizes" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition"><i data-lucide="x" style="width:22px;height:22px;"></i></button>
+      <div class="flex items-center gap-2 shrink-0">
+        <button id="diretrizes-pdf" type="button" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-amber-200 text-amber-800 font-semibold hover:bg-amber-50 transition" aria-label="Baixar as diretrizes do CoLeXEeM em PDF">
+          <i data-lucide="file-down" style="width:18px;height:18px;"></i> PDF
+        </button>
+        <button id="diretrizes-modal-close" type="button" aria-label="Fechar diretrizes" class="w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100 hover:text-gray-900 transition"><i data-lucide="x" style="width:22px;height:22px;"></i></button>
+      </div>
     </div>
     <div class="flex-1 overflow-y-auto p-5 md:p-7 bg-amber-50/30">
       <div class="overflow-x-auto rounded-xl border border-amber-200 bg-white">
@@ -2501,5 +2506,43 @@
  
 <script>
 (function(){const m=document.getElementById('diretrizes-modal'),c=document.getElementById('diretrizes-modal-close'),b=document.getElementById('diretrizes-modal-backdrop'),card=document.getElementById('diretrizes-card');if(!m||!card)return;const open=()=>{m.classList.remove('hidden');m.classList.add('flex');document.body.style.overflow='hidden';c?.focus();};const close=()=>{m.classList.add('hidden');m.classList.remove('flex');document.body.style.overflow='';card.focus();};card.addEventListener('click',open);card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});c?.addEventListener('click',close);b?.addEventListener('click',close);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!m.classList.contains('hidden'))close();});})();
+
+(function(){
+  const btn=document.getElementById('diretrizes-pdf');
+  if(!btn) return;
+  const diretrizes=[
+    ['D1','Analisar os resultados da avaliação','Analisar os resultados do questionário.'],
+    ['D2','Revisar o planejamento da atividade colaborativa','Revisar os objetivos da atividade, alinhar o uso das TDIC às necessidades de aprendizagem, planejar tarefas que utilizem recursos colaborativos da TDIC e explicitar aos aprendizes a finalidade do seu uso.'],
+    ['D3','Reorganizar a estrutura dos grupos','Revisar a estratégia de formação dos grupos, redefinir número de participantes, redistribuir tarefas, definir papéis e equilibrar responsabilidades.'],
+    ['D4','Fortalecer a mediação do professor durante a atividade','Planejar momentos de acompanhamento, oferecer feedback contínuo, esclarecer dúvidas, reconhecer contribuições e estimular a participação dos grupos.'],
+    ['D5','Aprimorar a utilização das TDIC','Apresentar previamente as funcionalidades das TDIC, disponibilizar orientações de uso, selecionar apenas recursos relevantes e simplificar o fluxo de interação da atividade.'],
+    ['D6','Estimular a comunicação e a construção colaborativa do conhecimento','Incentivar discussões utilizando os recursos da TDIC, promover a tomada de decisão coletiva, registrar as contribuições dos integrantes e acompanhar a evolução das interações durante a atividade.'],
+    ['D7','Adequar a atividade às necessidades dos aprendizes','Ajustar a duração da atividade, adequar sua complexidade, flexibilizar estratégias de aprendizagem, revisar os dispositivos previstos e adaptar o planejamento às características dos aprendizes.']
+  ];
+  btn.addEventListener('click',()=>{
+    if(!window.jspdf || !window.jspdf.jsPDF){alert('Não foi possível carregar o gerador de PDF. Verifique sua conexão com a internet.');return;}
+    const {jsPDF}=window.jspdf;
+    const doc=new jsPDF({unit:'mm',format:'a4'});
+    const margin=15, pageW=doc.internal.pageSize.getWidth(), pageH=doc.internal.pageSize.getHeight(), width=pageW-margin*2;
+    let y=18;
+    const newPage=()=>{doc.addPage();y=18;};
+    const ensure=(h)=>{if(y+h>pageH-15)newPage();};
+    doc.setFont('helvetica','bold');doc.setFontSize(17);doc.text('Diretrizes do CoLeXEeM',margin,y);y+=9;
+    doc.setFont('helvetica','normal');doc.setFontSize(10);
+    const intro=doc.splitTextToSize('As diretrizes apoiam a análise dos resultados e orientam ações para promover melhorias na Learner eXperience em atividades colaborativas. A seleção e aplicação das diretrizes devem considerar o contexto da atividade.',width);
+    doc.text(intro,margin,y);y+=intro.length*5+5;
+    diretrizes.forEach(([id,titulo,acao])=>{
+      const titleLines=doc.splitTextToSize(`${id}. ${titulo}`,width);
+      const actionLines=doc.splitTextToSize(`Ações recomendadas: ${acao}`,width);
+      const needed=titleLines.length*5+actionLines.length*4.5+8;
+      ensure(needed);
+      doc.setFont('helvetica','bold');doc.setFontSize(11);doc.text(titleLines,margin,y);y+=titleLines.length*5+2;
+      doc.setFont('helvetica','normal');doc.setFontSize(9.5);doc.text(actionLines,margin,y);y+=actionLines.length*4.5+5;
+      doc.setDrawColor(220);doc.line(margin,y-2,pageW-margin,y-2);
+    });
+    doc.save('diretrizes_colexeem.pdf');
+  });
+})();
+
 </script>
 </body></html>
