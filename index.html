@@ -83,7 +83,25 @@
  <body data-template-id="__page-root" class="w-full min-h-screen" style="background: rgb(248, 250, 249);">
   <!-- Barra de acessibilidade -->
   <div id="accessibility-bar" class="accessibility-bar fixed top-0 left-0 w-full z-[60]">
-    <div class="max-w-6xl mx-auto px-6 h-8 flex items-center justify-end gap-1" aria-label="Recursos de acessibilidade">
+    <div class="max-w-6xl mx-auto px-6 h-8 flex items-center justify-between gap-3" aria-label="Recursos de acessibilidade">
+      <nav aria-label="Atalhos de acessibilidade" class="flex items-center gap-3 text-xs">
+        <a href="#conteudo-principal" accesskey="1"
+           class="text-sky-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-sm"
+           title="Ir para o conteúdo (Alt+1)">
+          Conteúdo <span class="accessibility-key" aria-hidden="true">1</span>
+        </a>
+        <a href="#main-nav" accesskey="2"
+           class="text-sky-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-sm"
+           title="Ir para o menu (Alt+2)">
+          Menu <span class="accessibility-key" aria-hidden="true">2</span>
+        </a>
+        <a href="#rodape" accesskey="3"
+           class="text-sky-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-sm"
+           title="Ir para o rodapé (Alt+3)">
+          Rodapé <span class="accessibility-key" aria-hidden="true">3</span>
+        </a>
+      </nav>
+      <div class="flex items-center justify-end gap-1">
       <button id="toggle-contrast" type="button" class="accessibility-control"
               aria-label="Alternar alto contraste" aria-pressed="false" title="Alto contraste (Alt+4)">
         <span aria-hidden="true" style="font-size:15px;">◐</span>
@@ -101,6 +119,7 @@
         <span aria-hidden="true">A−</span>
         <span class="accessibility-key" aria-hidden="true">6</span>
       </button>
+      </div>
     </div>
   </div>
 <!-- Header -->
@@ -111,11 +130,29 @@
        <span class="w-1.5 h-4 bg-white rounded-full"></span><span class="w-1.5 h-3 bg-white/70 rounded-full mt-1"></span><span class="w-1.5 h-5 bg-white/50 rounded-full"></span>
       </div>
      </div><strong class="text-emerald-900 font-bold text-lg">CoLeXEeM</strong> </a> <button id="menu-btn" type="button" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Abrir menu"> <span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span> </button>
-    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-64 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-6 p-8 md:p-0 z-50" aria-label="Navegação principal"><a href="#composicao" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 font-semibold transition-colors">Aplicar</a> <a href="#sobre" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">O Método</a> <a href="#objetivo" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Objetivo</a> <a href="#composicao" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Composição</a> <a href="#camada-tdic" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Sugestões de TDIC</a> <a href="#como-usar" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Como usar</a> <a href="#dashboard" class="text-emerald-900 hover:text-emerald-600 font-medium transition-colors">Dashboard</a>
+    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-72 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-5 p-8 md:p-0 z-50" aria-label="Navegação principal">
+      <a href="#composicao" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-semibold transition-colors">Aplicar</a>
+
+      <div id="metodo-menu" class="relative w-full md:w-auto">
+        <button id="metodo-menu-btn" type="button"
+          class="w-full md:w-auto inline-flex items-center justify-between md:justify-center gap-2 px-2 py-2 rounded-lg text-emerald-900 hover:text-emerald-600 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-medium transition-colors"
+          aria-haspopup="true" aria-expanded="false" aria-controls="metodo-submenu">
+          <span>O Método</span>
+          <i data-lucide="chevron-down" id="metodo-menu-icon" aria-hidden="true" style="width:16px;height:16px;transition:transform .2s ease;"></i>
+        </button>
+        <div id="metodo-submenu" class="hidden md:absolute md:top-full md:left-0 md:mt-2 w-full md:w-48 bg-white border border-gray-200 rounded-xl shadow-lg p-2 z-[80]" role="menu" aria-label="Submenu O Método">
+          <a href="#objetivo" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Objetivo</a>
+          <a href="#composicao" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Composição</a>
+          <a href="#como-usar" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Como usar</a>
+        </div>
+      </div>
+
+      <a href="#camada-tdic" class="px-2 py-2 rounded-lg text-emerald-900 hover:text-emerald-600 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-medium transition-colors">Sugestões de TDIC</a>
+      <a href="#dashboard" class="px-2 py-2 rounded-lg text-emerald-900 hover:text-emerald-600 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-medium transition-colors">Dashboard</a>
     </nav>
    </div>
   </header>
-  <main><!-- Hero -->
+  <main id="conteudo-principal" tabindex="-1"><!-- Hero -->
    <section id="inicio" class="relative overflow-hidden pt-24 pb-16 md:pt-32 md:pb-24"><img data-template-id="hero-image" class="canva-image absolute inset-0 w-full h-full object-cover opacity-10" loading="lazy" src="https://images.pexels.com/photos/5212687/pexels-photo-5212687.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920" alt="A group of diverse students collaborating on laptops in a classroom setting, guided by a teacher.">
     <div class="absolute inset-0 bg-gradient-to-b from-emerald-50/80 to-white/90"></div>
     <div class="relative z-10 max-w-6xl mx-auto px-6">
@@ -1136,7 +1173,7 @@
    </section>
 
   </main>
-  <footer data-template-id="footer-section" class="canva-footer py-10 text-center" style="background: rgb(10, 31, 21);"><strong data-template-id="footer-brand" class="canva-text block text-lg mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">CoLeXEeM</strong> <span data-template-id="footer-tagline" class="canva-text block text-sm mb-3" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Collaborative Learner eXperience Evaluation and redesign Method</span>
+  <footer id="rodape" tabindex="-1" data-template-id="footer-section" class="canva-footer py-10 text-center" style="background: rgb(10, 31, 21);"><strong data-template-id="footer-brand" class="canva-text block text-lg mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">CoLeXEeM</strong> <span data-template-id="footer-tagline" class="canva-text block text-sm mb-3" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Collaborative Learner eXperience Evaluation and redesign Method</span>
    <p data-template-id="footer-note" class="canva-text text-xs" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Proposta acadêmica para avaliação e melhoria da Learner eXperience no contexto colaborativo.</p>
   </footer>
   <script src="/_sdk/c229d146679821d6.editing_sdk.js" integrity="sha512-umX8A9h8eJWRPB7xE7gh7Ngl1Y7fHpiaFvRwc6mxacvabfaLB/fImp68nlFMPDFjFbXCyl4OWAaW63aecWWnEA=="></script>
@@ -2552,8 +2589,75 @@
 
         const menuBtn = document.getElementById('menu-btn');
         const nav = document.getElementById('main-nav');
-        menuBtn.addEventListener('click', () => nav.classList.toggle('nav-active'));
-        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('nav-active')));
+        const metodoMenu = document.getElementById('metodo-menu');
+        const metodoMenuBtn = document.getElementById('metodo-menu-btn');
+        const metodoSubmenu = document.getElementById('metodo-submenu');
+        const metodoMenuIcon = document.getElementById('metodo-menu-icon');
+
+        // Estado acessível do menu mobile.
+        menuBtn.setAttribute('aria-controls', 'main-nav');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.addEventListener('click', () => {
+          const open = nav.classList.toggle('nav-active');
+          menuBtn.setAttribute('aria-expanded', String(open));
+          menuBtn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+          if (!open) closeMetodoMenu();
+        });
+
+        function openMetodoMenu(focusFirst = false) {
+          metodoSubmenu.classList.remove('hidden');
+          metodoMenuBtn.setAttribute('aria-expanded', 'true');
+          if (metodoMenuIcon) metodoMenuIcon.style.transform = 'rotate(180deg)';
+          if (focusFirst) metodoSubmenu.querySelector('a')?.focus();
+        }
+
+        function closeMetodoMenu(returnFocus = false) {
+          metodoSubmenu.classList.add('hidden');
+          metodoMenuBtn.setAttribute('aria-expanded', 'false');
+          if (metodoMenuIcon) metodoMenuIcon.style.transform = '';
+          if (returnFocus) metodoMenuBtn.focus();
+        }
+
+        metodoMenuBtn.addEventListener('click', () => {
+          const isOpen = metodoMenuBtn.getAttribute('aria-expanded') === 'true';
+          isOpen ? closeMetodoMenu() : openMetodoMenu();
+        });
+
+        metodoMenuBtn.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            openMetodoMenu(true);
+          } else if (event.key === 'Escape') {
+            event.preventDefault();
+            closeMetodoMenu(true);
+          }
+        });
+
+        metodoSubmenu.addEventListener('keydown', (event) => {
+          const items = [...metodoSubmenu.querySelectorAll('a')];
+          const current = items.indexOf(document.activeElement);
+          if (event.key === 'Escape') {
+            event.preventDefault();
+            closeMetodoMenu(true);
+          } else if (event.key === 'ArrowDown') {
+            event.preventDefault();
+            items[(current + 1 + items.length) % items.length]?.focus();
+          } else if (event.key === 'ArrowUp') {
+            event.preventDefault();
+            items[(current - 1 + items.length) % items.length]?.focus();
+          }
+        });
+
+        document.addEventListener('click', (event) => {
+          if (metodoMenu && !metodoMenu.contains(event.target)) closeMetodoMenu();
+        });
+
+        nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          nav.classList.remove('nav-active');
+          menuBtn.setAttribute('aria-expanded', 'false');
+          menuBtn.setAttribute('aria-label', 'Abrir menu');
+          closeMetodoMenu();
+        }));
         const header = document.getElementById('site-header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 60) { header.style.background = 'rgba(255,255,255,0.95)'; header.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)'; }
@@ -2699,5 +2803,43 @@
   document.getElementById('dash-search-class-btn')?.addEventListener('click',async()=>{const code=document.getElementById('dash-class-code').value.trim().toUpperCase();if(!code){setStatus('Digite o código da turma/aplicação.','error');return;}try{const rows=await fetchRows();renderClass(rows.filter(r=>String(r.codigo_aplicacao||'').toUpperCase()===code),code);}catch(e){console.error(e);setStatus('Não foi possível consultar a turma. Verifique o acesso do professor e as políticas do Supabase.','error');}});
 })();
 </script>
+
+
+  <!-- Botão acessível: voltar ao topo -->
+  <button
+    id="back-to-top"
+    type="button"
+    aria-label="Voltar ao topo da página"
+    title="Voltar ao topo"
+    class="fixed right-5 bottom-5 z-[120] hidden w-11 h-11 rounded-lg bg-slate-600 text-white shadow-lg
+           items-center justify-center hover:bg-slate-700 focus:outline-none focus:ring-4 focus:ring-sky-300
+           transition-all duration-200"
+  >
+    <i data-lucide="chevron-up" aria-hidden="true" style="width:24px;height:24px;"></i>
+  </button>
+
+  <script>
+    (() => {
+      const backToTop = document.getElementById('back-to-top');
+      if (!backToTop) return;
+
+      const updateBackToTop = () => {
+        const show = window.scrollY > 350;
+        backToTop.classList.toggle('hidden', !show);
+        backToTop.classList.toggle('flex', show);
+      };
+
+      window.addEventListener('scroll', updateBackToTop, { passive: true });
+      updateBackToTop();
+
+      backToTop.addEventListener('click', () => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({
+          top: 0,
+          behavior: reduceMotion ? 'auto' : 'smooth'
+        });
+      });
+    })();
+  </script>
 
 </body></html>
