@@ -2708,6 +2708,17 @@ const elementData = {
           if (!open) closeMetodoMenu();
         });
 
+        // Fecha o menu mobile ao tocar/clicar fora dele.
+        document.addEventListener('pointerdown', (event) => {
+          if (window.innerWidth >= 768 || !nav.classList.contains('nav-active')) return;
+          if (nav.contains(event.target) || menuBtn.contains(event.target)) return;
+
+          nav.classList.remove('nav-active');
+          menuBtn.setAttribute('aria-expanded', 'false');
+          menuBtn.setAttribute('aria-label', 'Abrir menu');
+          closeMetodoMenu();
+        });
+
         function openMetodoMenu(focusFirst = false) {
           metodoSubmenu.classList.remove('hidden');
           metodoMenuBtn.setAttribute('aria-expanded', 'true');
