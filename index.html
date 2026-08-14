@@ -1445,6 +1445,77 @@
 
         setupPdfModal('normativas-card', 'normativas-modal', 'normativas-modal-close', 'normativas-modal-backdrop');
 
+        // Integração Supabase: armazenamento centralizado dos registros
+        const SUPABASE_URL = 'https://qarnhvmjsouknphedsaf.supabase.co';
+        const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_rMFzOUr7Etzbxx9bZBcaqw_wSHAK6TR';
+        const NORMATIVAS_REMOTE_KEY = 'colexeem_normativas_remote_v1';
+        const QUESTIONARIO_REMOTE_KEY = 'colexeem_questionario_remote_v1';
+
+        function createSubmissionCode(prefix='CLX') {
+          const now = new Date();
+          const stamp = now.toISOString().replace(/[-:TZ.]/g,'').slice(0,14);
+          let random = '';
+          try {
+            const bytes = new Uint8Array(4);
+            crypto.getRandomValues(bytes);
+            random = Array.from(bytes).map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
+          } catch (_) {
+            random = Math.random().toString(36).slice(2,10).toUpperCase();
+          }
+          return `${prefix}-${stamp}-${random}`;
+        }
+
+        async function supabaseInsert(table, payload) {
+          const response = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+            method: 'POST',
+            headers: {
+              'apikey': SUPABASE_PUBLISHABLE_KEY,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal'
+            },
+            body: JSON.stringify(payload)
+          });
+          if (!response.ok) {
+            const detail = await response.text().catch(()=> '');
+            throw new Error(`Supabase ${response.status}: ${detail || response.statusText}`);
+          }
+          return true;
+        }
+
+        function showCloudStatus(message, type='success') {
+          let toast = document.getElementById('colexeem-cloud-status');
+          if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'colexeem-cloud-status';
+            toast.setAttribute('role','status');
+            toast.setAttribute('aria-live','polite');
+            toast.className = 'fixed right-4 bottom-4 z-[9999] max-w-sm rounded-xl border px-4 py-3 shadow-xl text-sm font-semibold transition-all';
+            document.body.appendChild(toast);
+          }
+          const styles = {
+            success: ['bg-emerald-50','border-emerald-200','text-emerald-900'],
+            pending: ['bg-amber-50','border-amber-200','text-amber-900'],
+            error: ['bg-rose-50','border-rose-200','text-rose-900']
+          };
+          toast.className = 'fixed right-4 bottom-4 z-[9999] max-w-sm rounded-xl border px-4 py-3 shadow-xl text-sm font-semibold transition-all ' + (styles[type] || styles.success).join(' ');
+          toast.textContent = message;
+          clearTimeout(showCloudStatus.timer);
+          showCloudStatus.timer = setTimeout(()=>toast.remove(), type === 'error' ? 6500 : 4200);
+        }
+
+        function sameRemoteSnapshot(storageKey, snapshot) {
+          try {
+            const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+            return saved.snapshot === snapshot && !!saved.codigo_aplicacao;
+          } catch (_) { return false; }
+        }
+
+        function rememberRemoteSnapshot(storageKey, snapshot, codigo) {
+          try {
+            localStorage.setItem(storageKey, JSON.stringify({snapshot, codigo_aplicacao:codigo, enviado_em:new Date().toISOString()}));
+          } catch (_) {}
+        }
+
         // Normativas interativas: registro, resumo e exportações
         const NORMATIVAS_STORAGE_KEY = 'colexeem_normativas_v1';
         const normativasForm = document.getElementById('normativas-form');
@@ -1565,10 +1636,51 @@
           lucide.createIcons();
         }
 
-        normativasForm?.addEventListener('submit', e => {
+        normativasForm?.addEventListener('submit', async e => {
           e.preventDefault();
           persistNormativasState();
           if (!validateNormativas()) return;
+
+          const submitButton = normativasForm.querySelector('button[type="submit"]');
+          if (submitButton?.disabled) return;
+          if (submitButton) submitButton.disabled = true;
+
+          const state = getNormativasState();
+          const structured = normativasMeta.map(n=>({
+            categoria:n.cat,
+            normativa:n.id,
+            titulo:n.title,
+            respostas:Object.fromEntries(n.fields.map(([label,name])=>[label,state[name]??'']))
+          }));
+          const remoteJson = {
+            instrumento:'CoLeXEeM - Registro das Normativas',
+            versao:1,
+            data_registro:new Date().toISOString(),
+            normativas:structured
+          };
+          const snapshot = JSON.stringify(remoteJson.normativas);
+
+          try {
+            if (!sameRemoteSnapshot(NORMATIVAS_REMOTE_KEY, snapshot)) {
+              showCloudStatus('Enviando registro das normativas...', 'pending');
+              const codigo = createSubmissionCode('CLX-N');
+              await supabaseInsert('normativas_colexeem', {
+                codigo_aplicacao: codigo,
+                respostas: remoteJson,
+                versao_instrumento: 'CoLeXEeM - Normativas v1'
+              });
+              rememberRemoteSnapshot(NORMATIVAS_REMOTE_KEY, snapshot, codigo);
+              showCloudStatus('Normativas salvas no banco de dados com sucesso.', 'success');
+            } else {
+              showCloudStatus('Este registro das normativas já foi enviado ao banco.', 'success');
+            }
+          } catch (error) {
+            console.error('Falha ao enviar normativas ao Supabase:', error);
+            showCloudStatus('Não foi possível enviar as normativas ao banco. O preenchimento continua salvo neste navegador.', 'error');
+          } finally {
+            if (submitButton) submitButton.disabled = false;
+          }
+
           renderNormativasSummary();
         });
 
@@ -2216,7 +2328,7 @@
           lucide.createIcons();
         }
 
-        questionarioForm.addEventListener('submit',event=>{
+        questionarioForm.addEventListener('submit', async event=>{
           event.preventDefault();
           collectParticipantState();
           persistQuestionnaireState();
@@ -2229,7 +2341,47 @@
           }
 
           clearMissingHighlights();
-          renderResults(getQuestionnaireResults());
+
+          const submitButton = questionarioForm.querySelector('button[type="submit"]');
+          if (submitButton?.disabled) return;
+          if (submitButton) submitButton.disabled = true;
+
+          const results = getQuestionnaireResults();
+          lastCalculatedResults = results;
+          const exportData = buildJsonExport();
+          const snapshot = JSON.stringify({
+            participante: exportData.participante,
+            todas_as_respostas: exportData.todas_as_respostas,
+            problemas_identificados: exportData.problemas_identificados
+          });
+
+          try {
+            if (!sameRemoteSnapshot(QUESTIONARIO_REMOTE_KEY, snapshot)) {
+              showCloudStatus('Enviando avaliação ao banco de dados...', 'pending');
+              const codigo = createSubmissionCode('CLX-A');
+              await supabaseInsert('avaliacoes_colexeem', {
+                codigo_aplicacao: codigo,
+                respostas: exportData,
+                feedbacks: questionnaireState.feedbacks || {},
+                resultados: {
+                  problemas_identificados: exportData.problemas_identificados,
+                  resumo_por_elemento: exportData.resumo_por_elemento
+                },
+                versao_instrumento: 'CoLeXEeM - Questionário v4'
+              });
+              rememberRemoteSnapshot(QUESTIONARIO_REMOTE_KEY, snapshot, codigo);
+              showCloudStatus('Avaliação salva no banco de dados com sucesso.', 'success');
+            } else {
+              showCloudStatus('Esta avaliação já foi enviada ao banco.', 'success');
+            }
+          } catch (error) {
+            console.error('Falha ao enviar avaliação ao Supabase:', error);
+            showCloudStatus('Não foi possível enviar a avaliação ao banco. As respostas continuam salvas neste navegador.', 'error');
+          } finally {
+            if (submitButton) submitButton.disabled = false;
+          }
+
+          renderResults(results);
         });
 
         document.getElementById('questionario-voltar').addEventListener('click',()=>{
