@@ -573,238 +573,56 @@
         <div id="questionario-sections" class="space-y-5"></div>
         <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">As respostas são salvas automaticamente neste navegador e, ao finalizar, são enviadas ao banco de dados do CoLeXEeM.</div><div class="flex gap-2 shrink-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="chart-no-axes-column-increasing" style="width:18px;height:18px;"></i> Avaliar resultados</button></div></div>
       </form>
-      <section id="questionario-resultados" class="hidden max-w-6xl mx-auto p-5 md:p-8 space-y-6">
-        <div class="bg-white border border-gray-200 rounded-2xl p-6"><div class="flex flex-col md:flex-row md:items-start justify-between gap-4"><div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Resultados da avaliação</span><div class="flex items-center gap-2 mt-1">
-<!-- Informações sobre o cálculo dos resultados -->
-<div id="resultado-calculo-modal"
-     class="fixed inset-0 z-[150] hidden items-center justify-center p-4"
-     role="dialog"
-     aria-modal="true"
-     aria-labelledby="resultado-calculo-title">
+      <section id="questionario-resultados" class="hidden max-w-4xl mx-auto p-5 md:p-8 space-y-6">
+        <div class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Avaliação concluída</span>
+          <h3 class="heading-font text-2xl md:text-3xl font-bold text-emerald-950 mt-2">Resumo das suas respostas</h3>
+          <p class="text-gray-600 mt-2 max-w-3xl">Este resumo considera as respostas fornecidas na escala Likert de 7 pontos. Para sentenças positivas, a resposta esperada é 7; para sentenças negativas, a resposta esperada é 1.</p>
 
-  <div id="resultado-calculo-backdrop"
-       class="absolute inset-0 bg-black/50 backdrop-blur-sm">
-  </div>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
+            <article class="rounded-2xl border border-gray-200 bg-gray-50 p-4">
+              <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Sentenças respondidas</p>
+              <strong id="resumo-total" class="heading-font text-3xl text-emerald-950 block mt-2">0</strong>
+            </article>
+            <article class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
+              <p class="text-xs font-bold uppercase tracking-wider text-emerald-700">Respostas esperadas</p>
+              <strong id="resumo-adequadas" class="heading-font text-3xl text-emerald-900 block mt-2">0</strong>
+            </article>
+            <article class="rounded-2xl border border-amber-200 bg-amber-50 p-4">
+              <p class="text-xs font-bold uppercase tracking-wider text-amber-700">Pontos para análise</p>
+              <strong id="resumo-atencao" class="heading-font text-3xl text-amber-900 block mt-2">0</strong>
+            </article>
+            <article class="rounded-2xl border border-sky-200 bg-sky-50 p-4">
+              <p class="text-xs font-bold uppercase tracking-wider text-sky-700">Adequação</p>
+              <strong id="resumo-percentual" class="heading-font text-3xl text-sky-900 block mt-2">0%</strong>
+            </article>
+          </div>
 
-  <div class="relative bg-white rounded-2xl shadow-2xl
-              w-full max-w-3xl max-h-[90vh] overflow-y-auto p-6 md:p-8">
-
-    <button id="resultado-calculo-close"
-            type="button"
-            class="absolute top-4 right-4 w-9 h-9 rounded-full
-                   flex items-center justify-center text-gray-500
-                   hover:bg-gray-100"
-            aria-label="Fechar">
-
-      <i data-lucide="x"
-         style="width:20px;height:20px;"></i>
-
-    </button>
-
-    <div class="w-11 h-11 rounded-full bg-sky-100
-                flex items-center justify-center mb-5">
-
-      <i data-lucide="calculator"
-         style="width:22px;height:22px;color:#0369a1;"></i>
-
-    </div>
-
-    <span class="text-xs font-bold uppercase tracking-wider text-sky-700">
-      Interpretação dos resultados
-    </span>
-
-    <h3 id="resultado-calculo-title"
-        class="heading-font text-2xl font-bold text-emerald-950 mt-2 mb-3">
-      Como o resultado é calculado?
-    </h3>
-
-    <p class="text-gray-600 leading-relaxed mb-6">
-      O dashboard considera o sentido das sentenças. Para sentenças positivas, somente a resposta 7 é considerada adequada. Para sentenças negativas, somente a resposta 1 é considerada adequada. Qualquer outro valor é destacado como ponto para análise do professor.
-    </p>
-
-    <!-- Fórmula -->
-    <div class="rounded-xl bg-gray-50 border border-gray-200 p-5 mb-7 text-center">
-
-      <span class="text-sm font-semibold text-gray-500 block mb-2">
-        Cálculo
-      </span>
-
-      <div class="text-lg md:text-xl font-bold text-emerald-950">
-        Resposta da sentença = valor selecionado na escala Likert (1 a 7)
-      </div>
-
-    </div>
-
-
-    <!-- Likert -->
-    <div class="mb-7">
-
-      <div class="flex items-center gap-2 mb-3">
-        <span class="w-8 h-8 rounded-full bg-sky-100
-                     flex items-center justify-center font-bold text-sky-800">
-          7
-        </span>
-
-        <h4 class="font-bold text-emerald-950">
-          Escala Likert de 7 pontos
-        </h4>
-      </div>
-
-      <div class="grid sm:grid-cols-3 gap-3">
-
-        <div class="rounded-xl border border-rose-200 bg-rose-50 p-4">
-          <strong class="text-rose-800 block">
-            Necessita melhoria
-          </strong>
-          <span class="text-sm text-rose-700">
-            1,00 a 3,00
-          </span>
-        </div>
-
-        <div class="rounded-xl border border-amber-200 bg-amber-50 p-4">
-          <strong class="text-amber-800 block">
-            Atenção
-          </strong>
-          <span class="text-sm text-amber-700">
-            acima de 3,00 e abaixo de 5,00
-          </span>
-        </div>
-
-        <div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4">
-          <strong class="text-emerald-800 block">
-            Satisfatório
-          </strong>
-          <span class="text-sm text-emerald-700">
-            5,00 a 7,00
-          </span>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Elementos negativos -->
-    <div class="rounded-xl border border-amber-200 bg-amber-50 p-5">
-
-      <div class="flex gap-3 items-start">
-
-        <i data-lucide="triangle-alert"
-           class="shrink-0 mt-0.5"
-           style="width:20px;height:20px;color:#92400e;"></i>
-
-        <div>
-          <h4 class="font-bold text-amber-950 mb-1">
-            Elementos com sentido negativo
-          </h4>
-
-          <p class="text-sm leading-relaxed text-amber-900">
-            Para elementos que representam aspectos negativos da experiência,
-            a interpretação é inversa. Quanto maior a média, maior a presença
-            do aspecto negativo e, consequentemente, maior a necessidade de
-            melhoria.
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</div>
-          
-  <h3 class="heading-font text-2xl font-bold text-emerald-950">
-    Gráfico geral das respostas
-  </h3>
-
-  <button
-    type="button"
-    id="resultado-calculo-info"
-    class="w-8 h-8 rounded-full flex items-center justify-center
-           text-sky-700 hover:bg-sky-50 transition"
-    aria-label="Como os resultados são calculados?"
-    title="Como os resultados são calculados?">
-
-    <i data-lucide="info"
-       style="width:19px;height:19px;"></i>
-
-  </button>
-
-</div><p class="text-gray-600 mt-2 max-w-3xl">O dashboard sintetiza as respostas do questionário e destaca os pontos que precisam de análise. Em sentenças positivas, apenas a resposta 7 é considerada adequada; em sentenças negativas, apenas a resposta 1 é considerada adequada.</p></div><div class="flex flex-wrap gap-2"><button type="button" id="questionario-voltar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Editar respostas</button>
-<button type="button" id="questionario-csv" class="px-4 py-2.5 rounded-xl border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-50 transition inline-flex items-center gap-2"><i data-lucide="file-down" style="width:18px;height:18px;"></i> Baixar CSV</button>
-<button type="button" id="questionario-json" class="px-4 py-2.5 rounded-xl border border-sky-200 text-sky-800 font-semibold hover:bg-sky-50 transition inline-flex items-center gap-2"><i data-lucide="braces" style="width:18px;height:18px;"></i> Baixar JSON</button>
-<button type="button" id="questionario-pdf" class="px-4 py-2.5 rounded-xl border border-rose-200 text-rose-800 font-semibold hover:bg-rose-50 transition inline-flex items-center gap-2"><i data-lucide="file-text" style="width:18px;height:18px;"></i> Baixar PDF</button></div></div></div>
-        <!-- Dashboard da avaliação -->
-        <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-6">
-          <article class="bg-white border border-gray-200 rounded-2xl p-5">
-            <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Sentenças avaliadas</p>
-            <div class="flex items-end justify-between gap-3 mt-2"><strong id="dash-total" class="heading-font text-3xl text-emerald-950">0</strong><span class="w-10 h-10 rounded-xl bg-sky-50 text-sky-700 flex items-center justify-center"><i data-lucide="list-checks" style="width:20px;height:20px"></i></span></div>
-          </article>
-          <article class="bg-white border border-emerald-200 rounded-2xl p-5">
-            <p class="text-xs font-bold uppercase tracking-wider text-emerald-700">Adequadas</p>
-            <div class="flex items-end justify-between gap-3 mt-2"><strong id="dash-ok" class="heading-font text-3xl text-emerald-950">0</strong><span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center"><i data-lucide="circle-check" style="width:20px;height:20px"></i></span></div>
-            <p class="text-xs text-gray-500 mt-2">Positivas = 7 · Negativas = 1</p>
-          </article>
-          <article class="bg-white border border-rose-200 rounded-2xl p-5">
-            <p class="text-xs font-bold uppercase tracking-wider text-rose-700">Problemas para analisar</p>
-            <div class="flex items-end justify-between gap-3 mt-2"><strong id="dash-problems" class="heading-font text-3xl text-rose-800">0</strong><span class="w-10 h-10 rounded-xl bg-rose-50 text-rose-700 flex items-center justify-center"><i data-lucide="triangle-alert" style="width:20px;height:20px"></i></span></div>
-            <p class="text-xs text-gray-500 mt-2">Qualquer resposta fora do valor esperado</p>
-          </article>
-          <article class="bg-white border border-gray-200 rounded-2xl p-5">
-            <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Índice de adequação</p>
-            <div class="flex items-end justify-between gap-3 mt-2"><strong id="dash-rate" class="heading-font text-3xl text-emerald-950">0%</strong><span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center"><i data-lucide="gauge" style="width:20px;height:20px"></i></span></div>
-          </article>
-        </div>
-
-        <div class="grid lg:grid-cols-[minmax(0,1.45fr)_minmax(300px,0.75fr)] gap-6 items-start mb-6">
-          <section class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
-              <div><h4 class="heading-font font-bold text-lg text-emerald-950">Problemas por elemento</h4><p class="text-sm text-gray-500 mt-1">Quantidade de sentenças que precisam ser analisadas em cada elemento.</p></div>
-              <span class="text-xs font-semibold text-gray-500 bg-gray-50 border border-gray-200 rounded-full px-3 py-1.5">Visão geral</span>
-            </div>
-            <div id="dash-elements" class="space-y-4"></div>
-          </section>
-
-          <aside class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6">
-            <h4 class="heading-font font-bold text-lg text-emerald-950">Situação geral</h4>
-            <p class="text-sm text-gray-500 mt-1 mb-5">Proporção entre respostas adequadas e problemas.</p>
-            <div class="flex justify-center py-2">
-              <div id="dash-donut" class="relative w-48 h-48 rounded-full" style="background:conic-gradient(#059669 0 0%, #e11d48 0 100%);">
-                <div class="absolute inset-5 bg-white rounded-full flex flex-col items-center justify-center text-center"><strong id="dash-donut-rate" class="heading-font text-3xl text-emerald-950">0%</strong><span class="text-xs text-gray-500">adequação</span></div>
+          <div class="rounded-2xl border border-gray-200 bg-slate-50 p-5 mt-6">
+            <div class="flex items-start gap-3">
+              <span class="w-9 h-9 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center shrink-0"><i data-lucide="info" style="width:18px;height:18px"></i></span>
+              <div>
+                <h4 class="font-bold text-emerald-950">Síntese da avaliação</h4>
+                <p id="resumo-texto" class="text-sm text-gray-600 leading-relaxed mt-1"></p>
               </div>
             </div>
-            <div class="grid grid-cols-2 gap-3 mt-5 text-sm">
-              <div class="rounded-xl bg-emerald-50 border border-emerald-100 p-3"><span class="block text-xs text-emerald-700">Adequadas</span><strong id="dash-ok-small" class="text-lg text-emerald-900">0</strong></div>
-              <div class="rounded-xl bg-rose-50 border border-rose-100 p-3"><span class="block text-xs text-rose-700">Problemas</span><strong id="dash-problems-small" class="text-lg text-rose-900">0</strong></div>
-            </div>
-          </aside>
+          </div>
         </div>
 
-        <div class="grid lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)] gap-6 items-start mb-6">
-          <section class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6">
-            <h4 class="heading-font font-bold text-lg text-emerald-950">Distribuição das respostas</h4>
-            <p class="text-sm text-gray-500 mt-1 mb-5">Número de respostas em cada ponto da escala Likert.</p>
-            <div id="dash-likert" class="h-64 flex items-end gap-3 border-b border-gray-200 pb-1"></div>
-          </section>
-
-          <aside class="bg-white border border-rose-200 rounded-2xl p-5 md:p-6">
-            <div class="flex items-center justify-between gap-3 mb-4">
-              <div class="flex items-center gap-3"><span class="w-10 h-10 rounded-full bg-rose-50 text-rose-700 flex items-center justify-center"><i data-lucide="triangle-alert" style="width:20px;height:20px"></i></span><div><h4 class="heading-font font-bold text-lg text-emerald-950">Problemas identificados</h4><p class="text-xs text-gray-500">Itens fora do valor esperado para o sentido da sentença.</p></div></div>
-              <span id="dash-problem-badge" class="text-xs font-bold rounded-full px-3 py-1.5 bg-rose-50 text-rose-800 border border-rose-200">0</span>
-            </div>
-            <div class="rounded-xl bg-gray-50 border border-gray-200 p-3 mb-4 text-xs text-gray-600 leading-relaxed"><strong>Critério:</strong> sentença positiva é adequada apenas com resposta <strong>7</strong>; sentença negativa é adequada apenas com resposta <strong>1</strong>.</div>
-            <div id="resultado-problemas" class="space-y-3 max-h-[520px] overflow-y-auto pr-1"></div>
-          </aside>
+        <div class="bg-white border border-gray-200 rounded-2xl p-6">
+          <h4 class="heading-font font-bold text-lg text-emerald-950">Baixar seus resultados</h4>
+          <p class="text-sm text-gray-500 mt-1 mb-4">Escolha o formato desejado para guardar uma cópia da sua avaliação.</p>
+          <div class="flex flex-wrap gap-3">
+            <button type="button" id="questionario-csv" class="px-4 py-2.5 rounded-xl border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-50 transition inline-flex items-center gap-2"><i data-lucide="file-down" style="width:18px;height:18px;"></i> Baixar CSV</button>
+            <button type="button" id="questionario-json" class="px-4 py-2.5 rounded-xl border border-sky-200 text-sky-800 font-semibold hover:bg-sky-50 transition inline-flex items-center gap-2"><i data-lucide="braces" style="width:18px;height:18px;"></i> Baixar JSON</button>
+            <button type="button" id="questionario-pdf" class="px-4 py-2.5 rounded-xl border border-rose-200 text-rose-800 font-semibold hover:bg-rose-50 transition inline-flex items-center gap-2"><i data-lucide="file-text" style="width:18px;height:18px;"></i> Baixar PDF</button>
+          </div>
         </div>
-
-        <details class="bg-white border border-gray-200 rounded-2xl p-5 md:p-6 group">
-          <summary class="cursor-pointer list-none flex items-center justify-between gap-3"><div><h4 class="heading-font font-bold text-lg text-emerald-950">Detalhamento de todas as respostas</h4><p class="text-sm text-gray-500 mt-1">Abra para consultar cada sentença e sua resposta.</p></div><span class="text-sm font-semibold text-sky-700">Exibir detalhes</span></summary>
-          <div id="resultado-grafico-sentencas" class="space-y-4 mt-6"></div>
-        </details>
-        <div class="bg-emerald-950 text-emerald-50 rounded-2xl p-6"><h4 class="font-bold text-lg mb-2">Próxima etapa do CoLeXEeM</h4><p class="text-sm leading-relaxed text-emerald-100">Utilize os problemas identificados nas sentenças como apoio para consultar as diretrizes do CoLeXEeM e planejar melhorias na atividade colaborativa.</p></div>
       </section>
+
     </div>
   </div>
 </div>
-
 
 <!-- Camada de TDIC -->
 <section id="camada-tdic" class="py-20 bg-white">
@@ -2394,67 +2212,19 @@
         function renderResults(results) {
           lastCalculatedResults = results;
           const sentences = getSentenceResults();
-          const problems = sentences.filter(item => item.isProblem);
-          const adequate = sentences.length - problems.length;
+          const attention = sentences.filter(item => item.isProblem).length;
+          const adequate = sentences.length - attention;
           const adequacyRate = sentences.length ? Math.round((adequate / sentences.length) * 100) : 0;
 
-          // Indicadores principais
-          document.getElementById('dash-total').textContent = sentences.length;
-          document.getElementById('dash-ok').textContent = adequate;
-          document.getElementById('dash-problems').textContent = problems.length;
-          document.getElementById('dash-rate').textContent = `${adequacyRate}%`;
-          document.getElementById('dash-donut-rate').textContent = `${adequacyRate}%`;
-          document.getElementById('dash-ok-small').textContent = adequate;
-          document.getElementById('dash-problems-small').textContent = problems.length;
-          document.getElementById('dash-problem-badge').textContent = `${problems.length} problema${problems.length === 1 ? '' : 's'}`;
-          document.getElementById('dash-donut').style.background = `conic-gradient(#059669 0 ${adequacyRate}%, #e11d48 ${adequacyRate}% 100%)`;
+          document.getElementById('resumo-total').textContent = sentences.length;
+          document.getElementById('resumo-adequadas').textContent = adequate;
+          document.getElementById('resumo-atencao').textContent = attention;
+          document.getElementById('resumo-percentual').textContent = `${adequacyRate}%`;
 
-          // Gráfico de problemas por elemento
-          const byElement = questionarioData.map(element => {
-            const items = sentences.filter(item => item.element === element.name);
-            return { name: element.name, total: items.length, problems: items.filter(item => item.isProblem).length };
-          }).sort((a,b) => b.problems - a.problems || a.name.localeCompare(b.name, 'pt-BR'));
-          const maxProblems = Math.max(1, ...byElement.map(item => item.problems));
-          document.getElementById('dash-elements').innerHTML = byElement.map(item => {
-            const width = item.problems ? Math.max(4, (item.problems / maxProblems) * 100) : 0;
-            return `<div>
-              <div class="flex items-center justify-between gap-3 mb-1.5"><span class="text-sm font-semibold text-gray-700">${escapeHtml(item.name)}</span><span class="text-xs font-bold ${item.problems ? 'text-rose-700' : 'text-emerald-700'}">${item.problems}/${item.total}</span></div>
-              <div class="h-3 rounded-full bg-gray-100 overflow-hidden"><div class="h-full rounded-full ${item.problems ? 'bg-rose-500' : 'bg-emerald-500'}" style="width:${item.problems ? width : 100}%"></div></div>
-            </div>`;
-          }).join('');
-
-          // Distribuição Likert 1–7
-          const distribution = Array.from({length:7}, (_,i) => sentences.filter(item => item.value === i + 1).length);
-          const maxCount = Math.max(1, ...distribution);
-          document.getElementById('dash-likert').innerHTML = distribution.map((count, i) => {
-            const height = Math.max(count ? 10 : 2, (count / maxCount) * 88);
-            return `<div class="flex-1 h-full flex flex-col justify-end items-center gap-2 min-w-0"><span class="text-xs font-bold text-gray-700">${count}</span><div class="w-full max-w-12 bg-sky-600 rounded-t-lg" style="height:${height}%" title="Resposta ${i+1}: ${count}"></div><span class="text-xs text-gray-500">${i+1}</span></div>`;
-          }).join('');
-
-          // Lista destacada de problemas
-          const problemsBox = document.getElementById('resultado-problemas');
-          if (problems.length) {
-            problemsBox.innerHTML = problems.map(item => {
-              const expected = item.type === 'negative' ? 1 : 7;
-              const direction = item.type === 'negative' ? 'Sentença negativa' : 'Sentença positiva';
-              return `<article class="rounded-xl border border-rose-200 bg-rose-50 p-4">
-                <div class="flex flex-wrap items-center justify-between gap-2 mb-2"><span class="text-xs font-bold uppercase tracking-wide text-rose-800">${escapeHtml(item.element)}</span><span class="text-xs font-bold text-rose-800 bg-white border border-rose-200 rounded-full px-2.5 py-1">Resposta ${item.value}</span></div>
-                <p class="text-sm text-rose-950 leading-relaxed">${escapeHtml(item.sentence)}</p>
-                <div class="flex flex-wrap gap-2 mt-3"><span class="text-[11px] font-semibold rounded-full bg-white border border-rose-200 text-rose-700 px-2.5 py-1">${direction}</span><span class="text-[11px] font-semibold rounded-full bg-white border border-gray-200 text-gray-600 px-2.5 py-1">Esperado: ${expected}</span></div>
-              </article>`;
-            }).join('');
-          } else {
-            problemsBox.innerHTML = `<div class="rounded-xl border border-emerald-200 bg-emerald-50 p-4"><div class="flex items-start gap-3"><i data-lucide="circle-check" class="shrink-0 mt-0.5" style="width:19px;height:19px;color:#047857"></i><p class="text-sm text-emerald-900 leading-relaxed">Todas as sentenças atingiram o valor esperado.</p></div></div>`;
-          }
-
-          // Detalhamento completo, recolhido por padrão
-          let currentElement = '';
-          document.getElementById('resultado-grafico-sentencas').innerHTML = sentences.map(item => {
-            const elementHeader = item.element !== currentElement ? `<div class="pt-3 first:pt-0"><h5 class="font-bold text-emerald-950 text-sm uppercase tracking-wide">${escapeHtml(item.element)}</h5></div>` : '';
-            currentElement = item.element;
-            const expected = item.type === 'negative' ? 1 : 7;
-            return `${elementHeader}<article class="rounded-xl border ${item.isProblem ? 'border-rose-200 bg-rose-50/40' : 'border-emerald-200 bg-emerald-50/30'} p-4"><div class="flex items-start justify-between gap-4"><p class="text-sm text-gray-700 leading-relaxed"><span class="font-bold text-emerald-800">${item.sentenceNumber}.</span> ${escapeHtml(item.sentence)}</p><div class="shrink-0 text-right"><span class="min-w-9 h-9 px-2 rounded-lg inline-flex items-center justify-center font-bold ${item.isProblem ? 'bg-rose-100 text-rose-800' : 'bg-emerald-100 text-emerald-800'}">${item.value}</span><div class="text-[10px] text-gray-400 mt-1">esperado ${expected}</div></div></div></article>`;
-          }).join('');
+          const text = attention === 0
+            ? `Todas as ${sentences.length} sentenças atingiram o valor esperado na escala Likert. Seu registro foi concluído e ficará disponível para análise conjunta pelo professor.`
+            : `${adequate} de ${sentences.length} sentenças atingiram o valor esperado na escala Likert. Em ${attention} sentença${attention === 1 ? '' : 's'}, a resposta ficou fora do valor esperado e poderá ser considerada pelo professor na análise da experiência da turma. Este resumo não substitui a interpretação contextual das respostas.`;
+          document.getElementById('resumo-texto').textContent = text;
 
           questionarioForm.classList.add('hidden');
           questionarioResultados.classList.remove('hidden');
@@ -2518,7 +2288,7 @@
           renderResults(results);
         });
 
-        document.getElementById('questionario-voltar').addEventListener('click',()=>{
+        document.getElementById('questionario-voltar')?.addEventListener('click',()=>{
           questionarioResultados.classList.add('hidden');
           questionarioForm.classList.remove('hidden');
           questionarioScroll.scrollTop = 0;
