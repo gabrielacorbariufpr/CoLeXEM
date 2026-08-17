@@ -2901,7 +2901,7 @@ const elementData = {
     const max=Math.max(...dist,1);
     const dPct=m.discordanceRate, nPct=m.neutralRate, pPct=m.positiveRate;
     const first=dPct, second=dPct+nPct;
-    const top=byElement.slice(0,8);
+    const top=byElement.filter(e=>e.discordance>0).slice(0,8);
 
     return `<div class="grid xl:grid-cols-3 gap-4">
       <section class="bg-white border rounded-2xl p-5">
@@ -2931,7 +2931,7 @@ const elementData = {
       </section>
 
       <section class="bg-white border rounded-2xl p-5">
-        <h3 class="font-bold text-emerald-950">Feedback por elemento</h3><p class="text-xs text-gray-500 mt-1">Proporção interpretada conforme sentenças positivas e negativas</p>
+        <h3 class="font-bold text-emerald-950">Feedback por elemento</h3><p class="text-xs text-gray-500 mt-1">Exibe somente elementos que possuem pelo menos uma resposta com discordância.</p>
         <div class="space-y-3 mt-4">${top.map(e=>`
           <div>
             <div class="flex justify-between gap-2 text-xs mb-1"><span class="font-semibold truncate">${esc(e.name)}</span><span class="text-gray-400">${e.total} resp.</span></div>
