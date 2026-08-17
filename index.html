@@ -684,52 +684,18 @@ html, body { max-width: 100%; overflow-x: hidden; }
         </section>
         <div class="bg-sky-50 border border-sky-100 rounded-2xl p-5"><h3 class="font-bold text-sky-950 mb-2">Escala de resposta</h3><p class="text-sm text-sky-900 leading-relaxed">1 = Discordo totalmente · 2 = Discordo fortemente · 3 = Discordo parcialmente · 4 = Não concordo nem discordo · 5 = Concordo parcialmente · 6 = Concordo fortemente · 7 = Concordo totalmente.</p></div>
         <div id="questionario-sections" class="space-y-5"></div>
-        <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">As respostas são salvas automaticamente neste navegador e, ao finalizar, são enviadas ao banco de dados do CoLeXEeM.</div><div class="flex gap-2 sm:shrink-0 min-w-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="chart-no-axes-column-increasing" style="width:18px;height:18px;"></i> Avaliar resultados</button></div></div>
+        <div class="flex flex-col sm:flex-row gap-3 justify-between items-stretch sm:items-center bg-white border border-gray-200 rounded-2xl p-5"><div class="text-sm text-gray-500">As respostas são salvas automaticamente neste navegador e, ao finalizar, são enviadas ao banco de dados do CoLeXEeM.</div><div class="flex gap-2 sm:shrink-0 min-w-0"><button type="button" id="questionario-limpar" class="px-4 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-semibold hover:bg-gray-50 transition">Limpar</button><button type="submit" class="px-5 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 transition inline-flex items-center justify-center gap-2"><i data-lucide="circle-check" style="width:18px;height:18px;"></i> Finalizar avaliação</button></div></div>
       </form>
-      <section id="questionario-resultados" class="hidden max-w-4xl mx-auto p-5 md:p-8 space-y-6">
-        <div class="bg-white border border-gray-200 rounded-2xl p-6 md:p-8">
+      <section id="questionario-resultados" class="hidden max-w-3xl mx-auto p-5 md:p-8">
+        <div class="bg-white border border-emerald-200 rounded-2xl p-8 md:p-12 text-center shadow-sm" role="status" aria-live="polite">
+          <div class="w-16 h-16 mx-auto rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mb-5">
+            <i data-lucide="circle-check" aria-hidden="true" style="width:34px;height:34px;"></i>
+          </div>
           <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Avaliação concluída</span>
-          <h3 class="heading-font text-2xl md:text-3xl font-bold text-emerald-950 mt-2">Resumo das suas respostas</h3>
-          <p class="text-gray-600 mt-2 max-w-3xl">Este resumo considera as respostas fornecidas na escala Likert de 7 pontos. Para sentenças positivas, a resposta esperada é 7; para sentenças negativas, a resposta esperada é 1.</p>
-
-          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-6">
-            <article class="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-              <p class="text-xs font-bold uppercase tracking-wider text-gray-500">Sentenças respondidas</p>
-              <strong id="resumo-total" class="heading-font text-3xl text-emerald-950 block mt-2">0</strong>
-            </article>
-            <article class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4">
-              <p class="text-xs font-bold uppercase tracking-wider text-emerald-700">Respostas esperadas</p>
-              <strong id="resumo-adequadas" class="heading-font text-3xl text-emerald-900 block mt-2">0</strong>
-            </article>
-            <article class="rounded-2xl border border-amber-200 bg-amber-50 p-4">
-              <p class="text-xs font-bold uppercase tracking-wider text-amber-700">Pontos para análise</p>
-              <strong id="resumo-atencao" class="heading-font text-3xl text-amber-900 block mt-2">0</strong>
-            </article>
-            <article class="rounded-2xl border border-sky-200 bg-sky-50 p-4">
-              <p class="text-xs font-bold uppercase tracking-wider text-sky-700">Adequação</p>
-              <strong id="resumo-percentual" class="heading-font text-3xl text-sky-900 block mt-2">0%</strong>
-            </article>
-          </div>
-
-          <div class="rounded-2xl border border-gray-200 bg-slate-50 p-5 mt-6">
-            <div class="flex items-start gap-3">
-              <span class="w-9 h-9 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center shrink-0"><i data-lucide="info" style="width:18px;height:18px"></i></span>
-              <div>
-                <h4 class="font-bold text-emerald-950">Síntese da avaliação</h4>
-                <p id="resumo-texto" class="text-sm text-gray-600 leading-relaxed mt-1"></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="bg-white border border-gray-200 rounded-2xl p-6">
-          <h4 class="heading-font font-bold text-lg text-emerald-950">Baixar seus resultados</h4>
-          <p class="text-sm text-gray-500 mt-1 mb-4">Escolha o formato desejado para guardar uma cópia da sua avaliação.</p>
-          <div class="flex flex-wrap gap-3">
-            <button type="button" id="questionario-csv" class="px-4 py-2.5 rounded-xl border border-emerald-200 text-emerald-800 font-semibold hover:bg-emerald-50 transition inline-flex items-center gap-2"><i data-lucide="file-down" style="width:18px;height:18px;"></i> Baixar CSV</button>
-            <button type="button" id="questionario-json" class="px-4 py-2.5 rounded-xl border border-sky-200 text-sky-800 font-semibold hover:bg-sky-50 transition inline-flex items-center gap-2"><i data-lucide="braces" style="width:18px;height:18px;"></i> Baixar JSON</button>
-            <button type="button" id="questionario-pdf" class="px-4 py-2.5 rounded-xl border border-rose-200 text-rose-800 font-semibold hover:bg-rose-50 transition inline-flex items-center gap-2"><i data-lucide="file-text" style="width:18px;height:18px;"></i> Baixar PDF</button>
-          </div>
+          <h3 class="heading-font text-2xl md:text-3xl font-bold text-emerald-950 mt-2">Resposta registrada com sucesso</h3>
+          <p class="text-gray-600 mt-3 max-w-xl mx-auto leading-relaxed">
+            Sua avaliação da LX foi finalizada e suas respostas foram registradas.
+          </p>
         </div>
       </section>
 
@@ -2352,21 +2318,6 @@ const elementData = {
 
         function renderResults(results) {
           lastCalculatedResults = results;
-          const sentences = getSentenceResults();
-          const attention = sentences.filter(item => item.isProblem).length;
-          const adequate = sentences.length - attention;
-          const adequacyRate = sentences.length ? Math.round((adequate / sentences.length) * 100) : 0;
-
-          document.getElementById('resumo-total').textContent = sentences.length;
-          document.getElementById('resumo-adequadas').textContent = adequate;
-          document.getElementById('resumo-atencao').textContent = attention;
-          document.getElementById('resumo-percentual').textContent = `${adequacyRate}%`;
-
-          const text = attention === 0
-            ? `Todas as ${sentences.length} sentenças atingiram o valor esperado na escala Likert. Seu registro foi concluído e ficará disponível para análise conjunta pelo professor.`
-            : `${adequate} de ${sentences.length} sentenças atingiram o valor esperado na escala Likert. Em ${attention} sentença${attention === 1 ? '' : 's'}, a resposta ficou fora do valor esperado e poderá ser considerada pelo professor na análise da experiência da turma. Este resumo não substitui a interpretação contextual das respostas.`;
-          document.getElementById('resumo-texto').textContent = text;
-
           questionarioForm.classList.add('hidden');
           questionarioResultados.classList.remove('hidden');
           questionarioScroll.scrollTop = 0;
@@ -2457,7 +2408,7 @@ const elementData = {
 
         
 
-        document.getElementById('questionario-csv').addEventListener('click',()=>{
+        document.getElementById('questionario-csv')?.addEventListener('click',()=>{
           collectParticipantState();
           persistQuestionnaireState();
           const rows=[['Elemento','Sentença','Resposta','Escala','Problema','Feedback']];
