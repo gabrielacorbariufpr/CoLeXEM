@@ -2812,47 +2812,172 @@ const elementData = {
     }
     return out;
   }
-  function metrics(rows){ const answers=rows.flatMap(flatAnswers); const problems=answers.filter(a=>a.isProblem); const adequate=answers.length-problems.length; const feedbacks=rows.flatMap(qualitative); return {answers,problems,adequate,feedbacks,rate:pct(adequate,answers.length)}; }
-  function likertDistribution(answers){ const d=[0,0,0,0,0,0,0]; answers.forEach(a=>{if(a.value>=1&&a.value<=7)d[a.value-1]++;}); return d; }
+  function feedbackBand(value){
+    const v=Number(value);
+    if(v>=1 && v<=3) return 'discordancia';
+    if(v===4) return 'neutro';
+    if(v>=5 && v<=7) return 'positivo';
+    return 'sem_dado';
+  }
+
+  function metrics(rows){
+    const answers=rows.flatMap(flatAnswers);
+    const discordance=answers.filter(a=>feedbackBand(a.value)==='discordancia');
+    const neutral=answers.filter(a=>feedbackBand(a.value)==='neutro');
+    const positive=answers.filter(a=>feedbackBand(a.value)==='positivo');
+    const feedbacks=rows.flatMap(qualitative);
+    return {
+      answers,
+      discordance,
+      neutral,
+      positive,
+      feedbacks,
+      discordanceRate:pct(discordance.length,answers.length),
+      neutralRate:pct(neutral.length,answers.length),
+      positiveRate:pct(positive.length,answers.length)
+    };
+  }
+
+  function likertDistribution(answers){
+    const d=[0,0,0,0,0,0,0];
+    answers.forEach(a=>{if(a.value>=1&&a.value<=7)d[a.value-1]++;});
+    return d;
+  }
+
   function metricCards(rows,m){
-    return `<div class="grid grid-cols-2 xl:grid-cols-5 gap-3">
-      <div class="bg-white border rounded-2xl p-4"><span class="text-xs text-gray-500">Respondentes</span><strong class="block text-2xl text-emerald-950 mt-1">${rows.length}</strong></div>
-      <div class="bg-white border rounded-2xl p-4"><span class="text-xs text-gray-500">Respostas</span><strong class="block text-2xl text-emerald-950 mt-1">${m.answers.length}</strong></div>
-      <div class="bg-white border rounded-2xl p-4"><span class="text-xs text-gray-500">Adequadas</span><strong class="block text-2xl text-emerald-700 mt-1">${m.adequate}</strong></div>
-      <div class="bg-white border rounded-2xl p-4"><span class="text-xs text-gray-500">Problemas</span><strong class="block text-2xl text-rose-700 mt-1">${m.problems.length}</strong></div>
-      <div class="bg-white border rounded-2xl p-4"><span class="text-xs text-gray-500">Feedbacks abertos</span><strong class="block text-2xl text-sky-700 mt-1">${m.feedbacks.length}</strong></div>
+    return `<div class="space-y-3">
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 rounded-2xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-600">
+        <span><strong class="text-emerald-950">${rows.length}</strong> respondente(s)</span>
+        <span><strong class="text-emerald-950">${m.answers.length}</strong> sentenças respondidas</span>
+        <span><strong class="text-sky-700">${m.feedbacks.length}</strong> feedback(s) aberto(s)</span>
+      </div>
+      <div class="grid md:grid-cols-3 gap-3">
+        <article class="rounded-2xl border border-red-200 bg-red-50 p-5">
+          <div class="flex items-start justify-between gap-3">
+            <div><span class="text-xs font-bold uppercase tracking-wider text-red-700">Feedback com discordância</span><p class="text-xs text-red-600 mt-1">Respostas de 1 a 3 na escala Likert</p></div>
+            <span class="w-3 h-3 rounded-full bg-red-500 shrink-0 mt-1"></span>
+          </div>
+          <div class="flex items-end justify-between gap-3 mt-4"><strong class="heading-font text-3xl text-red-800">${m.discordance.length}</strong><span class="text-sm font-bold text-red-700">${m.discordanceRate}%</span></div>
+        </article>
+        <article class="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+          <div class="flex items-start justify-between gap-3">
+            <div><span class="text-xs font-bold uppercase tracking-wider text-amber-800">Feedback nem positivo nem negativo</span><p class="text-xs text-amber-700 mt-1">Resposta 4 na escala Likert</p></div>
+            <span class="w-3 h-3 rounded-full bg-amber-400 shrink-0 mt-1"></span>
+          </div>
+          <div class="flex items-end justify-between gap-3 mt-4"><strong class="heading-font text-3xl text-amber-900">${m.neutral.length}</strong><span class="text-sm font-bold text-amber-800">${m.neutralRate}%</span></div>
+        </article>
+        <article class="rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+          <div class="flex items-start justify-between gap-3">
+            <div><span class="text-xs font-bold uppercase tracking-wider text-emerald-700">Feedback positivo</span><p class="text-xs text-emerald-600 mt-1">Respostas de 5 a 7 na escala Likert</p></div>
+            <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0 mt-1"></span>
+          </div>
+          <div class="flex items-end justify-between gap-3 mt-4"><strong class="heading-font text-3xl text-emerald-900">${m.positive.length}</strong><span class="text-sm font-bold text-emerald-700">${m.positiveRate}%</span></div>
+        </article>
+      </div>
     </div>`;
   }
+
   function summaryCharts(m, byElement){
-    const problemPct=100-m.rate;
-    const dist=likertDistribution(m.answers); const max=Math.max(...dist,1);
-    const top=byElement.slice(0,8); const maxEl=Math.max(...top.map(e=>e.pct),1);
+    const dist=likertDistribution(m.answers);
+    const max=Math.max(...dist,1);
+    const dPct=m.discordanceRate, nPct=m.neutralRate, pPct=m.positiveRate;
+    const first=dPct, second=dPct+nPct;
+    const top=byElement.slice(0,8);
+
     return `<div class="grid xl:grid-cols-3 gap-4">
       <section class="bg-white border rounded-2xl p-5">
-        <div class="flex items-center justify-between gap-3"><div><h3 class="font-bold text-emerald-950">Situação geral</h3><p class="text-xs text-gray-500 mt-1">Adequação das respostas</p></div><strong class="text-2xl text-emerald-800">${m.rate}%</strong></div>
-        <div class="flex items-center gap-5 mt-5"><div class="w-28 h-28 rounded-full flex items-center justify-center shrink-0" style="background:conic-gradient(#059669 0 ${m.rate}%, #f43f5e ${m.rate}% 100%);"><div class="w-20 h-20 bg-white rounded-full flex items-center justify-center"><span class="text-sm font-bold text-emerald-950">${m.rate}%</span></div></div><div class="space-y-2 text-sm"><div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-emerald-600"></span>Adequadas: <strong>${m.adequate}</strong></div><div class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-rose-500"></span>Problemas: <strong>${m.problems.length}</strong></div><div class="text-xs text-gray-400">${problemPct}% requer análise</div></div></div>
+        <div><h3 class="font-bold text-emerald-950">Distribuição geral dos feedbacks</h3><p class="text-xs text-gray-500 mt-1">Agrupamento das respostas conforme a escala Likert</p></div>
+        <div class="flex flex-col sm:flex-row xl:flex-col 2xl:flex-row items-center gap-5 mt-5">
+          <div class="w-32 h-32 rounded-full flex items-center justify-center shrink-0" style="background:conic-gradient(#ef4444 0 ${first}%, #f59e0b ${first}% ${second}%, #10b981 ${second}% 100%);">
+            <div class="w-24 h-24 bg-white rounded-full flex flex-col items-center justify-center text-center">
+              <strong class="text-xl text-emerald-950">${m.answers.length}</strong><span class="text-[10px] text-gray-500">respostas</span>
+            </div>
+          </div>
+          <div class="space-y-2 text-sm w-full">
+            <div class="flex items-center justify-between gap-3"><span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-red-500"></span>Discordância (1–3)</span><strong>${dPct}%</strong></div>
+            <div class="flex items-center justify-between gap-3"><span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-amber-400"></span>Nem positivo nem negativo (4)</span><strong>${nPct}%</strong></div>
+            <div class="flex items-center justify-between gap-3"><span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full bg-emerald-500"></span>Positivo (5–7)</span><strong>${pPct}%</strong></div>
+          </div>
+        </div>
       </section>
+
       <section class="bg-white border rounded-2xl p-5">
         <h3 class="font-bold text-emerald-950">Distribuição Likert</h3><p class="text-xs text-gray-500 mt-1">Frequência das respostas de 1 a 7</p>
-        <div class="flex items-end gap-2 h-32 mt-4">${dist.map((n,i)=>`<div class="flex-1 flex flex-col items-center justify-end h-full"><span class="text-[10px] text-gray-500 mb-1">${n}</span><div class="w-full rounded-t-md bg-sky-600" style="height:${Math.max(4,n/max*88)}px"></div><span class="text-xs mt-1 font-bold text-gray-600">${i+1}</span></div>`).join('')}</div>
+        <div class="flex items-end gap-2 h-36 mt-4">${dist.map((n,i)=>{
+          const value=i+1;
+          const color=value<=3?'bg-red-500':value===4?'bg-amber-400':'bg-emerald-500';
+          return `<div class="flex-1 flex flex-col items-center justify-end h-full"><span class="text-[10px] text-gray-500 mb-1">${n}</span><div class="w-full rounded-t-md ${color}" style="height:${Math.max(4,n/max*92)}px"></div><span class="text-xs mt-1 font-bold text-gray-600">${value}</span></div>`;
+        }).join('')}</div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1 mt-3 text-[10px] text-gray-500"><span class="flex items-center gap-1"><i class="w-2.5 h-2.5 rounded-full bg-red-500"></i>1–3 discordância</span><span class="flex items-center gap-1"><i class="w-2.5 h-2.5 rounded-full bg-amber-400"></i>4 neutro</span><span class="flex items-center gap-1"><i class="w-2.5 h-2.5 rounded-full bg-emerald-500"></i>5–7 positivo</span></div>
       </section>
+
       <section class="bg-white border rounded-2xl p-5">
-        <h3 class="font-bold text-emerald-950">Elementos com mais problemas</h3><p class="text-xs text-gray-500 mt-1">Percentual de respostas problemáticas</p>
-        <div class="space-y-2.5 mt-4">${top.map(e=>`<div><div class="flex justify-between gap-2 text-xs mb-1"><span class="font-semibold truncate">${esc(e.name)}</span><strong>${e.pct}%</strong></div><div class="h-2 rounded-full bg-gray-100 overflow-hidden"><div class="h-full bg-rose-500" style="width:${e.pct/maxEl*100}%"></div></div></div>`).join('')||'<p class="text-sm text-gray-500">Sem dados.</p>'}</div>
+        <h3 class="font-bold text-emerald-950">Feedback por elemento</h3><p class="text-xs text-gray-500 mt-1">Proporção de discordância, neutralidade e feedback positivo</p>
+        <div class="space-y-3 mt-4">${top.map(e=>`
+          <div>
+            <div class="flex justify-between gap-2 text-xs mb-1"><span class="font-semibold truncate">${esc(e.name)}</span><span class="text-gray-400">${e.total} resp.</span></div>
+            <div class="h-3 rounded-full bg-gray-100 overflow-hidden flex" title="Discordância ${e.discordancePct}% · Neutro ${e.neutralPct}% · Positivo ${e.positivePct}%">
+              <div class="h-full bg-red-500" style="width:${e.discordancePct}%"></div>
+              <div class="h-full bg-amber-400" style="width:${e.neutralPct}%"></div>
+              <div class="h-full bg-emerald-500" style="width:${e.positivePct}%"></div>
+            </div>
+          </div>`).join('')||'<p class="text-sm text-gray-500">Sem dados.</p>'}</div>
+        <div class="flex flex-wrap gap-x-3 gap-y-1 mt-4 text-[10px] text-gray-500"><span class="flex items-center gap-1"><i class="w-2.5 h-2.5 rounded-full bg-red-500"></i>Discordância</span><span class="flex items-center gap-1"><i class="w-2.5 h-2.5 rounded-full bg-amber-400"></i>Neutro</span><span class="flex items-center gap-1"><i class="w-2.5 h-2.5 rounded-full bg-emerald-500"></i>Positivo</span></div>
       </section>
     </div>`;
   }
+
   function feedbackSection(feedbacks){
     if(!feedbacks.length) return `<section class="bg-white border rounded-2xl p-5"><h3 class="font-bold text-emerald-950">Feedbacks qualitativos</h3><p class="text-sm text-gray-500 mt-2">Nenhum feedback aberto foi registrado nesta consulta.</p></section>`;
     const by={}; feedbacks.forEach(f=>{(by[f.element]??=[]).push(f)});
     return `<section class="bg-white border rounded-2xl p-5"><div class="flex items-start justify-between gap-4 mb-4"><div><h3 class="font-bold text-emerald-950 text-lg">Feedbacks qualitativos</h3><p class="text-sm text-gray-500">Comentários abertos dos aprendizes, organizados por elemento.</p></div><span class="px-3 py-1 rounded-full bg-sky-50 text-sky-700 text-xs font-bold">${feedbacks.length} registro(s)</span></div><div class="grid lg:grid-cols-2 gap-3">${Object.entries(by).map(([el,items])=>`<details class="border border-gray-200 rounded-xl bg-gray-50/40"><summary class="cursor-pointer px-4 py-3 font-bold text-emerald-900 flex justify-between gap-2"><span>${esc(el)}</span><span class="text-xs text-gray-400">${items.length}</span></summary><div class="px-4 pb-4 space-y-3">${items.map(f=>`<blockquote class="border-l-4 border-sky-300 pl-3 text-sm text-gray-700"><p>${esc(f.text)}</p><footer class="text-xs text-gray-400 mt-1">${esc(f.name)}</footer></blockquote>`).join('')}</div></details>`).join('')}</div></section>`;
   }
+
   function allResponsesSection(rows){
-    return `<section class="bg-white border rounded-2xl p-5"><div class="mb-4"><h3 class="font-bold text-emerald-950 text-lg">Todas as respostas dos alunos</h3><p class="text-sm text-gray-500">Abra um aluno para visualizar caracterização, todas as sentenças Likert e os feedbacks qualitativos.</p></div><div class="space-y-3">${rows.map((row,ri)=>{const p=row.respostas?.participante||{};const groups=row.respostas?.todas_as_respostas||[];const m=metrics([row]);return `<details class="border border-gray-200 rounded-xl"><summary class="cursor-pointer px-4 py-3 flex flex-wrap items-center justify-between gap-3"><div><strong class="text-emerald-950">${esc(p.nome||'Participante')}</strong><span class="text-xs text-gray-400 ml-2">${new Date(row.data_registro).toLocaleString('pt-BR')}</span></div><div class="flex gap-2"><span class="px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">${m.rate}% adequado</span><span class="px-2 py-1 rounded-full bg-rose-50 text-rose-700 text-xs font-bold">${m.problems.length} problemas</span></div></summary><div class="border-t px-4 py-4"><div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs text-gray-600 mb-5"><div><strong>Curso:</strong> ${esc(p.curso||'Não informado')}</div><div><strong>Disciplina:</strong> ${esc(p.disciplina||'Não informado')}</div><div><strong>Atividade:</strong> ${esc(p.atividade||'Não informado')}</div><div><strong>Código:</strong> ${esc(row.codigo_aplicacao||p.codigo_aplicacao||'Não informado')}</div></div><div class="space-y-3">${groups.map(g=>`<details class="rounded-lg border border-gray-100 bg-gray-50"><summary class="cursor-pointer px-3 py-2 text-sm font-bold text-emerald-800">${esc(g.elemento)}</summary><div class="px-3 pb-3"><div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="text-left text-xs text-gray-500"><th class="py-2 pr-3">Sentença</th><th class="py-2 text-center">Resposta</th></tr></thead><tbody>${(g.respostas||[]).map(q=>`<tr class="border-t"><td class="py-2 pr-3">${esc(q.sentenca)}</td><td class="py-2 text-center font-bold">${esc(q.resposta)}</td></tr>`).join('')}</tbody></table></div>${String(g.feedback||'').trim()?`<div class="mt-3 rounded-lg bg-sky-50 border border-sky-100 p-3"><span class="text-xs font-bold uppercase text-sky-700">Feedback qualitativo</span><p class="text-sm text-gray-700 mt-1">${esc(g.feedback)}</p></div>`:''}</div></details>`).join('')}</div></div></details>`;}).join('')}</div></section>`;
+    return `<section class="bg-white border rounded-2xl p-5"><div class="mb-4"><h3 class="font-bold text-emerald-950 text-lg">Todas as respostas dos alunos</h3><p class="text-sm text-gray-500">Abra um aluno para visualizar caracterização, todas as sentenças Likert e os feedbacks qualitativos.</p></div><div class="space-y-3">${rows.map((row,ri)=>{const p=row.respostas?.participante||{};const groups=row.respostas?.todas_as_respostas||[];const m=metrics([row]);return `<details class="border border-gray-200 rounded-xl"><summary class="cursor-pointer px-4 py-3 flex flex-wrap items-center justify-between gap-3"><div><strong class="text-emerald-950">${esc(p.nome||'Participante')}</strong><span class="text-xs text-gray-400 ml-2">${new Date(row.data_registro).toLocaleString('pt-BR')}</span></div><div class="flex flex-wrap gap-2"><span class="px-2 py-1 rounded-full bg-red-50 text-red-700 text-xs font-bold">${m.discordance.length} discordância</span><span class="px-2 py-1 rounded-full bg-amber-50 text-amber-800 text-xs font-bold">${m.neutral.length} neutro</span><span class="px-2 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold">${m.positive.length} positivo</span></div></summary><div class="border-t px-4 py-4"><div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-2 text-xs text-gray-600 mb-5"><div><strong>Curso:</strong> ${esc(p.curso||'Não informado')}</div><div><strong>Disciplina:</strong> ${esc(p.disciplina||'Não informado')}</div><div><strong>Atividade:</strong> ${esc(p.atividade||'Não informado')}</div><div><strong>Código:</strong> ${esc(row.codigo_aplicacao||p.codigo_aplicacao||'Não informado')}</div></div><div class="space-y-3">${groups.map(g=>`<details class="rounded-lg border border-gray-100 bg-gray-50"><summary class="cursor-pointer px-3 py-2 text-sm font-bold text-emerald-800">${esc(g.elemento)}</summary><div class="px-3 pb-3"><div class="overflow-x-auto"><table class="w-full text-sm"><thead><tr class="text-left text-xs text-gray-500"><th class="py-2 pr-3">Sentença</th><th class="py-2 text-center">Resposta</th><th class="py-2 pl-3">Classificação</th></tr></thead><tbody>${(g.respostas||[]).map(q=>{const band=feedbackBand(Number(q.resposta));const cls=band==='discordancia'?'text-red-700 bg-red-50':band==='neutro'?'text-amber-800 bg-amber-50':'text-emerald-700 bg-emerald-50';const label=band==='discordancia'?'Discordância':band==='neutro'?'Nem positivo nem negativo':'Positivo';return `<tr class="border-t"><td class="py-2 pr-3">${esc(q.sentenca)}</td><td class="py-2 text-center font-bold">${esc(q.resposta)}</td><td class="py-2 pl-3"><span class="inline-flex px-2 py-1 rounded-full text-xs font-bold ${cls}">${label}</span></td></tr>`}).join('')}</tbody></table></div>${String(g.feedback||'').trim()?`<div class="mt-3 rounded-lg bg-sky-50 border border-sky-100 p-3"><span class="text-xs font-bold uppercase text-sky-700">Feedback qualitativo</span><p class="text-sm text-gray-700 mt-1">${esc(g.feedback)}</p></div>`:''}</div></details>`).join('')}</div></div></details>`;}).join('')}</div></section>`;
   }
-  function makeElementStats(m){ const byElement={}; m.answers.forEach(a=>{byElement[a.element]??={total:0,problems:0};byElement[a.element].total++;if(a.isProblem)byElement[a.element].problems++;}); return Object.entries(byElement).map(([name,v])=>({name,...v,pct:pct(v.problems,v.total)})).sort((a,b)=>b.pct-a.pct); }
-  function prioritySentences(m){ const sentenceMap=new Map();m.answers.forEach(a=>{const key=a.element+'||'+a.sentence;if(!sentenceMap.has(key))sentenceMap.set(key,{element:a.element,sentence:a.sentence,total:0,problems:0});const z=sentenceMap.get(key);z.total++;if(a.isProblem)z.problems++;});return [...sentenceMap.values()].map(x=>({...x,pct:pct(x.problems,x.total)})).filter(x=>x.problems>0).sort((a,b)=>b.pct-a.pct||b.problems-a.problems); }
-  function prioritiesSection(pri){ return `<section class="bg-white border rounded-2xl p-5"><div class="flex items-start justify-between gap-3 mb-4"><div><h3 class="font-bold text-emerald-950 text-lg">Problemas prioritários</h3><p class="text-sm text-gray-500">Sentenças com maior proporção de respostas que requerem análise.</p></div><span class="text-xs font-bold text-rose-700 bg-rose-50 rounded-full px-3 py-1">${pri.length} sentença(s)</span></div><div class="grid lg:grid-cols-2 gap-3">${pri.slice(0,12).map((x,i)=>`<article class="border border-rose-200 bg-rose-50 rounded-xl p-3"><div class="flex justify-between gap-3"><span class="text-xs font-bold text-rose-700">${i+1}. ${esc(x.element)}</span><strong class="text-sm text-rose-900">${x.pct}%</strong></div><p class="text-sm text-rose-950 mt-1.5">${esc(x.sentence)}</p><p class="text-xs text-rose-700 mt-1.5">${x.problems} de ${x.total} resposta(s)</p></article>`).join('')||'<p class="text-sm text-emerald-700">Nenhum problema identificado.</p>'}</div>${pri.length>12?`<details class="mt-4"><summary class="cursor-pointer text-sm font-bold text-sky-700">Ver mais ${pri.length-12} sentenças problemáticas</summary><div class="grid lg:grid-cols-2 gap-3 mt-3">${pri.slice(12).map((x,i)=>`<article class="border border-rose-100 rounded-xl p-3"><div class="flex justify-between gap-3"><span class="text-xs font-bold text-rose-700">${i+13}. ${esc(x.element)}</span><strong class="text-sm text-rose-900">${x.pct}%</strong></div><p class="text-sm mt-1">${esc(x.sentence)}</p></article>`).join('')}</div></details>`:''}</section>`; }
+
+  function makeElementStats(m){
+    const byElement={};
+    m.answers.forEach(a=>{
+      byElement[a.element]??={total:0,discordance:0,neutral:0,positive:0};
+      const item=byElement[a.element];
+      item.total++;
+      const band=feedbackBand(a.value);
+      if(band==='discordancia') item.discordance++;
+      else if(band==='neutro') item.neutral++;
+      else if(band==='positivo') item.positive++;
+    });
+    return Object.entries(byElement).map(([name,v])=>({
+      name,...v,
+      discordancePct:pct(v.discordance,v.total),
+      neutralPct:pct(v.neutral,v.total),
+      positivePct:pct(v.positive,v.total)
+    })).sort((a,b)=>b.discordancePct-a.discordancePct);
+  }
+
+  function prioritySentences(m){
+    const sentenceMap=new Map();
+    m.answers.forEach(a=>{
+      const key=a.element+'||'+a.sentence;
+      if(!sentenceMap.has(key)) sentenceMap.set(key,{element:a.element,sentence:a.sentence,total:0,discordance:0,neutral:0,positive:0});
+      const z=sentenceMap.get(key); z.total++;
+      const band=feedbackBand(a.value);
+      if(band==='discordancia') z.discordance++;
+      else if(band==='neutro') z.neutral++;
+      else if(band==='positivo') z.positive++;
+    });
+    return [...sentenceMap.values()].map(x=>({
+      ...x,
+      discordancePct:pct(x.discordance,x.total),
+      neutralPct:pct(x.neutral,x.total),
+      positivePct:pct(x.positive,x.total)
+    })).filter(x=>x.discordance>0).sort((a,b)=>b.discordancePct-a.discordancePct||b.discordance-a.discordance);
+  }
+
+  function prioritiesSection(pri){
+    return `<section class="bg-white border rounded-2xl p-5"><div class="flex items-start justify-between gap-3 mb-4"><div><h3 class="font-bold text-emerald-950 text-lg">Sentenças com maior discordância</h3><p class="text-sm text-gray-500">Sentenças com maior proporção de respostas entre 1 e 3 na escala Likert.</p></div><span class="text-xs font-bold text-red-700 bg-red-50 rounded-full px-3 py-1">${pri.length} sentença(s)</span></div><div class="grid lg:grid-cols-2 gap-3">${pri.slice(0,12).map((x,i)=>`<article class="border border-red-200 bg-red-50 rounded-xl p-3"><div class="flex justify-between gap-3"><span class="text-xs font-bold text-red-700">${i+1}. ${esc(x.element)}</span><strong class="text-sm text-red-900">${x.discordancePct}%</strong></div><p class="text-sm text-red-950 mt-1.5">${esc(x.sentence)}</p><div class="flex flex-wrap gap-3 text-xs mt-2"><span class="text-red-700">${x.discordance} discordância (${x.discordancePct}% de feedback com discordância)</span><span class="text-amber-700">${x.neutral} neutro</span><span class="text-emerald-700">${x.positive} positivo</span></div></article>`).join('')||'<p class="text-sm text-emerald-700">Nenhuma resposta com discordância foi registrada.</p>'}</div>${pri.length>12?`<details class="mt-4"><summary class="cursor-pointer text-sm font-bold text-sky-700">Ver mais ${pri.length-12} sentenças</summary><div class="grid lg:grid-cols-2 gap-3 mt-3">${pri.slice(12).map((x,i)=>`<article class="border border-red-100 rounded-xl p-3"><div class="flex justify-between gap-3"><span class="text-xs font-bold text-red-700">${i+13}. ${esc(x.element)}</span><strong class="text-sm text-red-900">${x.discordancePct}%</strong></div><p class="text-sm mt-1">${esc(x.sentence)}</p></article>`).join('')}</div></details>`:''}</section>`;
+  }
 
   function renderStudentRows(rows){
     if(!rows.length){results.innerHTML='';setStatus('Nenhuma avaliação encontrada para esse nome.','error');return;}
@@ -2906,30 +3031,26 @@ const elementData = {
     line();
 
     heading('Sintese geral',12);
-    const adequate=m.answers.filter(a=>!a.isProblem).length;
-    const problems=m.answers.filter(a=>a.isProblem).length;
     const total=m.answers.length;
-    const adequacy=total?Math.round(adequate/total*100):0;
     write(`Respondentes: ${rows.length}`,10,true);
     write(`Respostas analisadas: ${total}`);
-    write(`Respostas adequadas: ${adequate}`);
-    write(`Respostas que requerem analise: ${problems}`);
-    write(`Indice de adequacao: ${adequacy}%`);
+    write(`Feedback com discordancia (1 a 3): ${m.discordance.length} (${m.discordanceRate}%)`);
+    write(`Feedback nem positivo nem negativo (4): ${m.neutral.length} (${m.neutralRate}%)`);
+    write(`Feedback positivo (5 a 7): ${m.positive.length} (${m.positiveRate}%)`);
     write(`Feedbacks qualitativos registrados: ${m.feedbacks.length}`);
 
-    heading('Problemas por elemento',12);
-    elems.filter(e=>e.problems>0).sort((a,b)=>b.pct-a.pct).forEach(e=>{
-      write(`${e.name}: ${e.pct}% (${e.problems} de ${e.total} respostas)`,9,false,0,0.5);
+    heading('Distribuicao por elemento',12);
+    elems.forEach(e=>{
+      write(`${e.name}: discordancia ${e.discordancePct}% | neutro ${e.neutralPct}% | positivo ${e.positivePct}%`,9,false,0,0.5);
     });
-    if(!elems.some(e=>e.problems>0)) write('Nenhum problema identificado.');
 
-    heading('Problemas prioritarios por sentenca',12);
-    if(!pri.length) write('Nenhuma sentenca problematica identificada.');
+    heading('Sentencas com maior discordancia',12);
+    if(!pri.length) write('Nenhuma resposta com discordancia foi registrada.');
     pri.forEach((x,i)=>{
       ensure(14);
-      write(`${i+1}. ${x.element} - ${x.pct}%`,9,true,0,0);
+      write(`${i+1}. ${x.element} - ${x.discordancePct}% de discordancia`,9,true,0,0);
       write(x.sentence,8,false,3,0);
-      write(`${x.problems} de ${x.total} resposta(s) requerem analise.`,8,false,3,1);
+      write(`${x.discordance} discordancia | ${x.neutral} neutro | ${x.positive} positivo`,8,false,3,1);
     });
 
     heading('Feedbacks qualitativos',12);
