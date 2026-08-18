@@ -140,6 +140,20 @@ html, body { max-width: 100%; overflow-x: hidden; }
 </style>
 
 
+
+<style id="tdic-header-standardization">
+  #site-header > div {
+    max-width: 72rem !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  @media (min-width: 768px) {
+    #main-nav {
+      width: auto !important;
+    }
+  }
+</style>
+
 </head>
  <body data-template-id="__page-root" class="dashboard-page w-full min-h-screen" style="background: rgb(248, 250, 249);">
   <!-- Barra de acessibilidade -->
@@ -185,12 +199,12 @@ html, body { max-width: 100%; overflow-x: hidden; }
   </div>
 <!-- Header -->
   <header id="site-header" class="fixed top-8 left-0 w-full z-50 transition-all duration-300">
-   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"><a href="index.html#inicio" class="flex items-center gap-3">
+   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"><a href="./index.html#inicio" class="flex items-center gap-3">
      <div class="w-12 h-12 flex items-center justify-center shrink-0">
       <img src="colexeem-logo.png" alt="" aria-hidden="true" class="w-full h-full object-contain" style="display:block;">
      </div><strong class="text-emerald-900 font-bold text-lg">CoLeXEeM</strong> </a> <button id="menu-btn" type="button" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Abrir menu"> <span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span> </button>
     <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-72 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-5 p-8 md:p-0 z-50" aria-label="Navegação principal">
-      <a href="index.html#composicao" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-semibold transition-colors">Aplicar</a>
+      <a href="./index.html#composicao" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-semibold transition-colors">Aplicar</a>
 
       <div id="metodo-menu" class="relative w-full md:w-auto">
         <button id="metodo-menu-btn" type="button"
@@ -200,14 +214,14 @@ html, body { max-width: 100%; overflow-x: hidden; }
           <i data-lucide="chevron-down" id="metodo-menu-icon" aria-hidden="true" style="width:16px;height:16px;transition:transform .2s ease;"></i>
         </button>
         <div id="metodo-submenu" class="hidden md:absolute md:top-full md:left-0 md:mt-2 w-full md:w-48 bg-white border border-gray-200 rounded-xl shadow-lg p-2 z-[80]" role="menu" aria-label="Submenu O Método">
-          <a href="index.html#objetivo" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Objetivo</a>
-          <a href="index.html#composicao" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Composição</a>
-          <a href="index.html#como-usar" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Como usar</a>
+          <a href="./index.html#objetivo" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Objetivo</a>
+          <a href="./index.html#composicao" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Composição</a>
+          <a href="./index.html#como-usar" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Como usar</a>
         </div>
       </div>
 
-      <a href="./sugestoes-tdic.html" aria-current="page" class="px-2 py-2 rounded-lg text-emerald-900 bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-semibold transition-colors">Sugestões de TDIC</a>
-      <a href="dashboard.html" class="px-2 py-2 rounded-lg text-emerald-900 hover:text-emerald-600 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-medium transition-colors">Dashboard</a>
+      <a href="./sugestoes-tdic.html" aria-current="page" class="px-2 py-2 rounded-lg text-emerald-900 hover:text-emerald-600 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-medium transition-colors bg-emerald-50 font-semibold">Sugestões de TDIC</a>
+      <a href="./dashboard.html" class="px-2 py-2 rounded-lg text-emerald-900 hover:text-emerald-600 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-medium transition-colors">Dashboard</a>
     </nav>
    </div>
   </header>
