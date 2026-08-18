@@ -56,82 +56,72 @@
 <body class="w-full min-h-screen overflow-x-hidden">
 
   <div id="accessibility-bar" class="accessibility-bar fixed top-0 left-0 w-full z-[60]">
-    <div class="max-w-6xl mx-auto px-3 sm:px-6 h-8 flex items-center justify-between gap-2" aria-label="Recursos de acessibilidade">
-      <nav aria-label="Atalhos de acessibilidade" class="flex items-center gap-2 sm:gap-3 text-[11px] sm:text-xs">
-        <a href="#camada-tdic" accesskey="1" class="text-sky-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-sm">
+    <div class="max-w-6xl mx-auto px-6 h-8 flex items-center justify-between gap-3" aria-label="Recursos de acessibilidade">
+      <nav aria-label="Atalhos de acessibilidade" class="flex items-center gap-3 text-xs">
+        <a href="#camada-tdic" accesskey="1"
+           class="text-sky-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-sm"
+           title="Ir para o conteúdo (Alt+1)">
           Conteúdo <span class="accessibility-key" aria-hidden="true">1</span>
         </a>
-        <a href="#main-nav" accesskey="2" class="text-sky-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-sm">
+        <a href="#main-nav" accesskey="2"
+           class="text-sky-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-sm"
+           title="Ir para o menu (Alt+2)">
           Menu <span class="accessibility-key" aria-hidden="true">2</span>
         </a>
-        <a href="#rodape" accesskey="3" class="text-sky-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-sm">
+        <a href="#rodape" accesskey="3"
+           class="text-sky-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-500 rounded-sm"
+           title="Ir para o rodapé (Alt+3)">
           Rodapé <span class="accessibility-key" aria-hidden="true">3</span>
         </a>
       </nav>
-      <div class="flex items-center gap-0 sm:gap-1">
-        <button id="toggle-contrast" type="button" class="accessibility-control" aria-label="Alternar alto contraste">
-          <span aria-hidden="true">◐</span><span class="accessibility-key" aria-hidden="true">4</span>
-        </button>
-        <button id="increase-font" type="button" class="accessibility-control" aria-label="Aumentar tamanho do texto">
-          <span aria-hidden="true">A+</span><span class="accessibility-key" aria-hidden="true">5</span>
-        </button>
-        <button id="decrease-font" type="button" class="accessibility-control" aria-label="Diminuir tamanho do texto">
-          <span aria-hidden="true">A−</span><span class="accessibility-key" aria-hidden="true">6</span>
-        </button>
+      <div class="flex items-center justify-end gap-1">
+      <button id="toggle-contrast" type="button" class="accessibility-control"
+              aria-label="Alternar alto contraste" aria-pressed="false" title="Alto contraste (Alt+4)">
+        <span aria-hidden="true" style="font-size:15px;">◐</span>
+        <span class="accessibility-key" aria-hidden="true">4</span>
+      </button>
+
+      <button id="increase-font" type="button" class="accessibility-control"
+              aria-label="Aumentar tamanho do texto" title="Aumentar texto (Alt+5)">
+        <span aria-hidden="true">A+</span>
+        <span class="accessibility-key" aria-hidden="true">5</span>
+      </button>
+
+      <button id="decrease-font" type="button" class="accessibility-control"
+              aria-label="Diminuir tamanho do texto" title="Diminuir texto (Alt+6)">
+        <span aria-hidden="true">A−</span>
+        <span class="accessibility-key" aria-hidden="true">6</span>
+      </button>
       </div>
     </div>
   </div>
-
+<!-- Header -->
   <header id="site-header" class="fixed top-8 left-0 w-full z-50 transition-all duration-300">
-    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="./index.html#inicio" class="flex items-center gap-3">
-        <div class="w-12 h-12 flex items-center justify-center shrink-0">
-          <img src="colexeem-logo.png" alt="" aria-hidden="true" class="w-full h-full object-contain">
+   <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between"><a href="./index.html#inicio" class="flex items-center gap-3">
+     <div class="w-12 h-12 flex items-center justify-center shrink-0">
+      <img src="colexeem-logo.png" alt="" aria-hidden="true" class="w-full h-full object-contain" style="display:block;">
+     </div><strong class="text-emerald-900 font-bold text-lg">CoLeXEeM</strong> </a> <button id="menu-btn" type="button" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Abrir menu"> <span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span><span class="w-6 h-0.5 bg-emerald-900 rounded"></span> </button>
+    <nav id="main-nav" class="fixed md:relative top-0 right-0 h-full md:h-auto w-72 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-5 p-8 md:p-0 z-50" aria-label="Navegação principal">
+      <a href="./index.html#composicao" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-semibold transition-colors">Aplicar</a>
+
+      <div id="metodo-menu" class="relative w-full md:w-auto">
+        <button id="metodo-menu-btn" type="button"
+          class="w-full md:w-auto inline-flex items-center justify-between md:justify-center gap-2 px-2 py-2 rounded-lg text-emerald-900 hover:text-emerald-600 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-medium transition-colors"
+          aria-haspopup="true" aria-expanded="false" aria-controls="metodo-submenu">
+          <span>O Método</span>
+          <i data-lucide="chevron-down" id="metodo-menu-icon" aria-hidden="true" style="width:16px;height:16px;transition:transform .2s ease;"></i>
+        </button>
+        <div id="metodo-submenu" class="hidden md:absolute md:top-full md:left-0 md:mt-2 w-full md:w-48 bg-white border border-gray-200 rounded-xl shadow-lg p-2 z-[80]" role="menu" aria-label="Submenu O Método">
+          <a href="./index.html#objetivo" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Objetivo</a>
+          <a href="./index.html#composicao" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Composição</a>
+          <a href="./index.html#como-usar" role="menuitem" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 font-medium">Como usar</a>
         </div>
-        <strong class="text-emerald-900 font-bold text-lg">CoLeXEeM</strong>
-      </a>
+      </div>
 
-      <button id="menu-btn" type="button" class="md:hidden flex flex-col gap-1.5 p-2"
-              aria-label="Abrir menu" aria-controls="main-nav" aria-expanded="false">
-        <span class="w-6 h-0.5 bg-emerald-900 rounded"></span>
-        <span class="w-6 h-0.5 bg-emerald-900 rounded"></span>
-        <span class="w-6 h-0.5 bg-emerald-900 rounded"></span>
-      </button>
-
-      <nav id="main-nav"
-        class="fixed md:relative top-0 right-0 h-full md:h-auto w-72 md:w-auto bg-white md:bg-transparent shadow-xl md:shadow-none transform translate-x-full md:translate-x-0 transition-transform duration-300 flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-5 p-8 md:p-0 z-50"
-        aria-label="Navegação principal">
-
-        <a href="./index.html#composicao"
-           class="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-emerald-700 text-white hover:bg-emerald-800 font-semibold">
-          Aplicar
-        </a>
-
-        <div id="metodo-menu" class="relative w-full md:w-auto">
-          <button id="metodo-menu-btn" type="button"
-            class="w-full md:w-auto inline-flex items-center justify-between gap-2 px-2 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50 font-medium"
-            aria-haspopup="true" aria-expanded="false" aria-controls="metodo-submenu">
-            <span>O Método</span>
-            <i data-lucide="chevron-down" id="metodo-menu-icon" aria-hidden="true" style="width:16px;height:16px"></i>
-          </button>
-          <div id="metodo-submenu"
-            class="hidden md:absolute md:top-full md:left-0 md:mt-2 w-full md:w-48 bg-white border border-gray-200 rounded-xl shadow-lg p-2 z-[80]">
-            <a href="./index.html#objetivo" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50">Objetivo</a>
-            <a href="./index.html#composicao" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50">Composição</a>
-            <a href="./index.html#como-usar" class="block px-3 py-2 rounded-lg text-emerald-900 hover:bg-emerald-50">Como usar</a>
-          </div>
-        </div>
-
-        <a href="./sugestoes-tdic.html" aria-current="page"
-           class="px-2 py-2 rounded-lg text-emerald-900 bg-emerald-50 font-semibold">
-          Sugestões de TDIC
-        </a>
-        <a href="./dashboard.html"
-           class="px-2 py-2 rounded-lg text-emerald-900 hover:text-emerald-600 hover:bg-emerald-50 font-medium">
-          Dashboard
-        </a>
-      </nav>
-    </div>
+      <a href="./sugestoes-tdic.html" aria-current="page" class="px-2 py-2 rounded-lg text-emerald-900 hover:text-emerald-600 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-medium transition-colors bg-emerald-50 font-semibold">Sugestões de TDIC</a>
+      <a href="./dashboard.html" class="px-2 py-2 rounded-lg text-emerald-900  hover:text-emerald-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 font-medium transition-colors">Dashboard</a>
+    </nav>
+   </div>
   </header>
 
   <main id="conteudo-principal">
@@ -200,6 +190,27 @@
         </div>
       </article>
     </div>
+    <article class="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6 md:p-7">
+      <div class="flex flex-col md:flex-row md:items-center gap-5">
+        <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+          <i data-lucide="graduation-cap" aria-hidden="true" style="width:24px;height:24px;color:#065f46"></i>
+        </div>
+        <div class="flex-1">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700">TDIC educacional</span>
+          <h3 class="heading-font font-bold text-xl text-emerald-950 mt-1">MEC RED</h3>
+          <p class="text-sm leading-relaxed text-gray-600 mt-2">
+            Rede social da educação que permite conectar pessoas interessadas na área educacional, acessar, organizar e compartilhar Recursos Educacionais Digitais (RED).
+          </p>
+        </div>
+        <a href="https://mecred.mec.gov.br/" target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-700 text-white font-semibold hover:bg-emerald-800 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2 transition shrink-0"
+           aria-label="Acessar a MEC RED em nova aba">
+          Acessar MEC RED
+          <i data-lucide="external-link" aria-hidden="true" style="width:17px;height:17px"></i>
+        </a>
+      </div>
+    </article>
+
 
     <div class="mt-8 rounded-2xl border border-emerald-200 bg-emerald-50 p-5 md:p-6 flex gap-4 items-start">
       <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
@@ -214,10 +225,8 @@
 </section>
   </main>
 
-  <footer id="rodape" tabindex="-1" class="py-10 text-center" style="background:#0a1f15;">
-    <strong class="block text-lg mb-1 text-white">CoLeXEeM</strong>
-    <span class="block text-sm mb-3 text-emerald-200">Collaborative Learner eXperience Evaluation and redesign Method</span>
-    <p class="text-xs text-gray-400">Proposta acadêmica para avaliação e melhoria da Learner eXperience no contexto colaborativo.</p>
+  <footer id="rodape" tabindex="-1" data-template-id="footer-section" class="canva-footer py-10 text-center" style="background: rgb(10, 31, 21);"><strong data-template-id="footer-brand" class="canva-text block text-lg mb-1" style="color: rgb(255, 255, 255); font-weight: 700; font-style: normal; font-size: 16px;">CoLeXEeM</strong> <span data-template-id="footer-tagline" class="canva-text block text-sm mb-3" style="color: rgb(167, 243, 208); font-weight: 400; font-style: normal; font-size: 16px;">Collaborative Learner eXperience Evaluation and redesign Method</span>
+   <p data-template-id="footer-note" class="canva-text text-xs" style="color: rgb(107, 114, 128); font-weight: 400; font-style: normal; font-size: 16px;">Proposta acadêmica para avaliação e melhoria da Learner eXperience no contexto colaborativo.</p>
   </footer>
 
   <button id="back-to-top" type="button" aria-label="Voltar ao topo da página"
