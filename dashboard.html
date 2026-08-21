@@ -2825,7 +2825,25 @@ const elementData = {
   client.auth.onAuthStateChange(()=>setTimeout(refreshAuth,0)); refreshAuth();
 
   const bStudent=document.getElementById('dash-mode-student'), bClass=document.getElementById('dash-mode-class'), sStudent=document.getElementById('dash-search-student'), sClass=document.getElementById('dash-search-class');
-  function mode(which){ const student=which==='student'; sStudent.classList.toggle('hidden',!student);sClass.classList.toggle('hidden',student);bStudent.className=student?'px-4 py-2 rounded-lg bg-white shadow-sm text-sm font-bold text-emerald-800':'px-4 py-2 rounded-lg text-sm font-semibold text-gray-600';bClass.className=!student?'px-4 py-2 rounded-lg bg-white shadow-sm text-sm font-bold text-emerald-800':'px-4 py-2 rounded-lg text-sm font-semibold text-gray-600';results.innerHTML='';status.classList.add('hidden');}
+  function mode(which){
+    const student=which==='student';
+    sStudent.classList.toggle('hidden',!student);
+    sClass.classList.toggle('hidden',student);
+
+    // Mantém o formato original dos cartões e destaca somente a opção selecionada.
+    bStudent.className = student
+      ? 'text-left rounded-2xl border-2 border-sky-500 bg-sky-50 p-4 shadow-sm ring-2 ring-sky-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-sky-200 transition'
+      : 'text-left rounded-2xl border-2 border-gray-200 bg-white p-4 shadow-none ring-0 hover:border-sky-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-sky-200 transition';
+
+    bClass.className = !student
+      ? 'text-left rounded-2xl border-2 border-emerald-500 bg-emerald-50 p-4 shadow-sm ring-2 ring-emerald-100 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200 transition'
+      : 'text-left rounded-2xl border-2 border-gray-200 bg-white p-4 shadow-none ring-0 hover:border-emerald-300 focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-200 transition';
+
+    bStudent.setAttribute('aria-pressed', String(student));
+    bClass.setAttribute('aria-pressed', String(!student));
+    results.innerHTML='';
+    status.classList.add('hidden');
+  }
   bStudent?.addEventListener('click',()=>mode('student')); bClass?.addEventListener('click',()=>mode('class'));
 
   async function fetchRows(){
